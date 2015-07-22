@@ -14,8 +14,8 @@ module.exports =
         src: BASE 'src/scss/**/*.scss'
         dst: BASE 'public/css'
     watch:
-        server : BASE('server/**/*'),
-        js     : BASE('src/js/**/*'),
+        server : BASE('server/**/*')
+        js     : BASE('src/js/**/*')
         sass   : BASE('src/scss/**/*')
     pm2:
         app : BASE 'server/app.js'
