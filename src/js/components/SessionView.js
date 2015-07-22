@@ -2,23 +2,23 @@
 
 import React from 'react';
 
-import SessionView from './SessionView';
-
-class EvilApp extends React.Component {
+class SessionView extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
 
   componentDidMount () {
+
   }
 
   render () {
     return (
-      <SessionView />
+      <div>yo</div>
     );
   }
 }
 
 
-export default EvilApp;
+export default SessionView;
