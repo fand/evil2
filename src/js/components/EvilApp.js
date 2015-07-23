@@ -7,7 +7,14 @@ import SessionView from './SessionView';
 class EvilApp extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      song : {
+        scenes : [{
+          clips : []
+        }],
+        tracks : []
+      },
+    };
   }
 
   componentDidMount () {
@@ -15,7 +22,10 @@ class EvilApp extends React.Component {
 
   render () {
     return (
-      <SessionView />
+      <SessionView
+        song={this.state.song}
+        scenes={this.state.song.scenes}
+        tracks={this.state.song.tracks} />
     );
   }
 }
