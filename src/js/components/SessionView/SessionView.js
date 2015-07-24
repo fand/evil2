@@ -3,9 +3,8 @@
 import React from 'react';
 import {range} from 'lodash';
 
-import Cell from './Cell';
+import Row from './Row';
 
-const COLUMNS = 8;
 const ROWS = 8;
 
 /**
@@ -13,6 +12,7 @@ const ROWS = 8;
  *
  */
 class SessionView extends React.Component {
+
   constructor (props) {
     super(props);
     this.state = {
@@ -23,34 +23,25 @@ class SessionView extends React.Component {
 
   }
 
-  renderRows () {
-    let rows = Math.max(this.props.scenes.length, ROWS);
-    return range(rows).map(i => {
-      return (
-        <div className="SessionView__Row" key={i}>
-          {this.renderCells(i)}
-        </div>
-      );
-    });
-  }
-
-  renderCells (i) {
-    let columns = Math.max(this.props.tracks.length, COLUMNS);
-    return range(columns).map(j => {
-      return (
-        <Cell sceneIdx={i} trackIdx={j} key={j}></Cell>
-      );
-    });
+  renderRow (i) {
+    return (
+      <Row
+        rowIdx={i}
+        scene={this.props.scenes[i]}
+        key={i}></Row>
+    );
   }
 
   render () {
-    let rows = this.renderRows();
+    let rowsNum = Math.max(this.props.scenes.length, ROWS);
+    let rows = range(rowsNum).map(i => this.renderRow(i));
     return (
       <div className="SessionView">
         {rows}
       </div>
     );
   }
+
 }
 
 

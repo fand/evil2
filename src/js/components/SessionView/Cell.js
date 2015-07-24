@@ -11,7 +11,7 @@ class Cell extends React.Component {
     return (
       <div className="SessionView__Cell">
         <span className="SessionView__Cell__PlayButton">▲</span>
-        Cell({this.props.sceneIdx}:{this.props.trackIdx})
+        Cell({this.props.rowIdx}:{this.props.columnIdx})
       </div>
     );
   }
