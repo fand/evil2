@@ -1,3 +1,15 @@
 li {
     color: blue;
 }
+
+.SessionView__Row {
+    display: block;
+}
+
+.SessionView__Cell {
+    display: inline-block;
+
+    width  : 100px;
+    height : 20px;
+    border : 1px solid #0df;
+}

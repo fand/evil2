@@ -2,24 +2,30 @@
 
 import React from 'react';
 
+import SessionView from './SessionView';
+
 class EvilApp extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      width : 0
+      song : {
+        scenes : [{
+          clips : []
+        }],
+        tracks : []
+      },
     };
   }
 
   componentDidMount () {
-    window.addEventListener('resize', () => {
-      this.setState({width : window.innerWidth});
-    });
   }
 
   render () {
-    let {width} = this.state;
     return (
-      <div>width = {{width}}</div>
+      <SessionView
+        song={this.state.song}
+        scenes={this.state.song.scenes}
+        tracks={this.state.song.tracks} />
     );
   }
 }
