@@ -22,7 +22,8 @@
     "lodash": "^3.10.0",
     "pm2": "^0.14.3",
     "react": "^0.13.3",
-    "require-directory": "^2.1.1"
+    "require-directory": "^2.1.1",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "babelify": "^6.1.3",

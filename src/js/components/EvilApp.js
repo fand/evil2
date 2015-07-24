@@ -8,12 +8,7 @@ class EvilApp extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      song : {
-        scenes : [{
-          clips : []
-        }],
-        tracks : []
-      },
+      song : this.props.song
     };
   }
 
