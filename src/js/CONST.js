@@ -1,3 +1,7 @@
+'use strict';
+
+import uuid from 'uuid';
+
 const SONG_MODE = {
   SESSION_MODE     : 'SESSION_MODE',
   ARRANGEMENT_MODE : 'ARRANGEMENT_MODE'
@@ -35,7 +39,7 @@ const DEMO_ENV = {
   },
 };
 const DEMO_INFO = {
-  userId  : 'DEMOUSERID',
+  userId  : uuid.v4(),
   title   : 'This is only a test',
   artist  : 'mEgA+++dEmOn',
   created : new Date().toISOString(),
