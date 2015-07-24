@@ -3,4 +3,8 @@
 import React from 'react';
 import EvilApp from './components/EvilApp';
 
-React.render(<EvilApp />, document.getElementById('app'));
+import Song from './models/Song';
+
+let song = new Song();
+
+React.render(<EvilApp song={song} />, document.getElementById('app'));
