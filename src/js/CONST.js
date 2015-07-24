@@ -27,11 +27,36 @@ const DEFAULT_SONG = {
   mode : SONG_MODE.SESSION_MODE
 };
 
+
+const DEMO_ENV = {
+  tracks : [],
+  master : {
+    effects : []
+  },
+};
+const DEMO_INFO = {
+  userId  : 'DEMOUSERID',
+  title   : 'This is only a test',
+  artist  : 'mEgA+++dEmOn',
+  created : new Date().toISOString(),
+  updated : new Date().toISOString(),
+};
+const DEMO_SONG = {
+  scenes       : [],
+  arrangements : [],
+  clips        : [],
+  env  : DEMO_ENV,
+  info : DEMO_INFO,
+  mode : SONG_MODE.SESSION_MODE
+};
+
 const CONST = {
   SONG_MODE,
   DEFAULT_INFO,
   DEFAULT_ENV,
-  DEFAULT_SONG
+  DEFAULT_SONG,
+
+  DEMO_SONG,
 };
 
 export default CONST;
