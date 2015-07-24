@@ -1,7 +1,5 @@
 'use strict';
 
-let UUID = 0;
-
 /**
  * User
  * Not so important now, but will be required to cope with socail services.
@@ -17,10 +15,25 @@ class User {
    * @param {Date} user.updated
    */
   constructor (user) {
-    this.uuid    = user.id || UUID++;
-    this.name    = user.name || 'hoge';
-    this.created = new Date(user.created);
-    this.updated = new Date(user.updated);
+    if (!user) { throw 'user required'; }
+    this.uuid = user.id;
+    this.name = user.name;
+    this.setCreated(user.created);
+    this.setUpdated(user.updated);
+  }
+
+  setCreated (created) {
+    this.created = new Date(created);
+    if (this.created.toISOString() !== created) {
+      this.created = new Date();
+    }
+  }
+
+  setUpdated (updated) {
+    this.updated = new Date(updated);
+    if (this.updated.toISOString() !== updated) {
+      this.updated = new Date();
+    }
   }
 
 }
