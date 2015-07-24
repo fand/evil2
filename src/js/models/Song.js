@@ -4,8 +4,6 @@ import SongInfo from './SongInfo';
 import SongEnv from './SongEnv';
 import SongMode from './SongMode';
 
-import CONST from '../CONST';
-
 class Song {
 
   /**
@@ -17,7 +15,7 @@ class Song {
    * @param {SongMode}           mode
    */
   constructor (song) {
-    song = song || CONST.DEFAULT_SONG;
+    if (!song) { throw 'song required'; }
     this.scenes       = song.scenes || [];
     this.arrangements = song.arrangements || [];
     this.clips        = song.clips || {};

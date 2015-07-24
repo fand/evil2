@@ -2,6 +2,9 @@
 
 import Song from '../models/Song';
 
+import CONST from '../CONST';
+
+
 let data = {
   song : null
 };
@@ -27,7 +30,7 @@ class SongStore {
       return new Song(JSON.parse(document.getElementById('SongData').innerHTML));
     }
     else {
-      return new Song();
+      return new Song(CONST.DEMO_SONG);
     }
   }
 
