@@ -3,6 +3,8 @@
 import React from 'react';
 import {range} from 'lodash';
 
+import Cell from './Cell';
+
 const COLUMNS = 8;
 const ROWS = 8;
 
@@ -36,9 +38,7 @@ class SessionView extends React.Component {
     let columns = Math.max(this.props.tracks.length, COLUMNS);
     return range(columns).map(j => {
       return (
-        <div className="SessionView__Cell" key={j}>
-          Cell({i + ':' + j})
-        </div>
+        <Cell sceneIdx={i} trackIdx={j} key={j}></Cell>
       );
     });
   }
