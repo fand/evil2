@@ -15,13 +15,10 @@ class SessionView extends React.Component {
 
   constructor (props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
-  componentDidMount () {
-
-  }
+  componentDidMount () {}
 
   renderRow (i) {
     return (
@@ -45,12 +42,7 @@ class SessionView extends React.Component {
 }
 
 SessionView.propTypes = {
-  scenes : React.PropTypes.array,
-  tracks : React.PropTypes.array,
-};
-SessionView.defaultProps = {
-  scenes : [],
-  tracks : [],
+  song : React.PropTypes.object.isRequired
 };
 
 export default SessionView;
