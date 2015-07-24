@@ -45,8 +45,19 @@ const DEMO_INFO = {
   created : new Date().toISOString(),
   updated : new Date().toISOString(),
 };
+const DEMO_SCENES = [{
+  uuid     : uuid.v4(),
+  name     : 'scene1',
+  clips    : [],
+  controls : []
+}, {
+  uuid     : uuid.v4(),
+  name     : 'scene2',
+  clips    : [],
+  controls : []
+}];
 const DEMO_SONG = {
-  scenes       : [],
+  scenes       : DEMO_SCENES,
   arrangements : [],
   clips        : [],
   env  : DEMO_ENV,
