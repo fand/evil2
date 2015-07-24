@@ -19,11 +19,8 @@ class EvilApp extends React.Component {
   render () {
     return (
       <div className="EvilApp">
-        <SessionView
-          song={this.state.song}
-          scenes={this.state.song.scenes}
-          tracks={this.state.song.tracks} />
-        <SongInfo info={this.state.song.info}></SongInfo>
+        <SessionView song={this.state.song} />
+        <SongInfo info={this.state.song.info} />
       </div>
     );
   }

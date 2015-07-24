@@ -27,13 +27,13 @@ class SessionView extends React.Component {
     return (
       <Row
         rowIdx={i}
-        scene={this.props.scenes[i]}
+        scene={this.props.song.scenes[i]}
         key={i}></Row>
     );
   }
 
   render () {
-    let rowsNum = Math.max(this.props.scenes.length, ROWS);
+    let rowsNum = Math.max(this.props.song.scenes.length, ROWS);
     let rows = range(rowsNum).map(i => this.renderRow(i));
     return (
       <div className="SessionView">
