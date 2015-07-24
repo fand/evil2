@@ -44,5 +44,13 @@ class SessionView extends React.Component {
 
 }
 
+SessionView.propTypes = {
+  scenes : React.PropTypes.array,
+  tracks : React.PropTypes.array,
+};
+SessionView.defaultProps = {
+  scenes : [],
+  tracks : [],
+};
 
 export default SessionView;

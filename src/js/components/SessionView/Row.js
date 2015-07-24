@@ -11,7 +11,7 @@ const COLUMNS = 8;
  * SessionView
  *
  */
-class SessionView extends React.Component {
+class Row extends React.Component {
 
   constructor (props) {
     super(props);
@@ -47,5 +47,11 @@ class SessionView extends React.Component {
 
 }
 
+Row.propTypes = {
+  rowIdx : React.PropTypes.number.isRequired,
+  scene  : React.PropTypes.object
+};
+Row.defaultProps = {
+};
 
-export default SessionView;
+export default Row;

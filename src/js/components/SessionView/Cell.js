@@ -17,4 +17,11 @@ class Cell extends React.Component {
   }
 }
 
+Cell.propTypes = {
+  columnIdx : React.PropTypes.number.isRequired,
+  rowIdx    : React.PropTypes.number.isRequired
+};
+Cell.defaultProps = {
+};
+
 export default Cell;
