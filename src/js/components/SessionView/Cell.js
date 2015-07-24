@@ -8,10 +8,12 @@ class Cell extends React.Component {
   }
 
   render () {
+    let clip = this.props.clip;
+    let clipName = clip ? clip.name : '';
     return (
       <div className="SessionView__Cell">
         <span className="SessionView__Cell__PlayButton">▲</span>
-        Cell({this.props.rowIdx}:{this.props.columnIdx})
+        {clipName}
       </div>
     );
   }

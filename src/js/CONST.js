@@ -48,12 +48,24 @@ const DEMO_INFO = {
 const DEMO_SCENES = [{
   uuid     : uuid.v4(),
   name     : 'scene1',
-  clips    : [],
+  clips    : [{
+    uuid : uuid.v4(),
+    name : 'clips1-1',
+  }, {
+    uuid : uuid.v4(),
+    name : 'clips1-2',
+  }],
   controls : []
 }, {
   uuid     : uuid.v4(),
   name     : 'scene2',
-  clips    : [],
+  clips    : [{
+    uuid : uuid.v4(),
+    name : 'clips2-1',
+  }, {
+    uuid : uuid.v4(),
+    name : 'clips2-2',
+  }],
   controls : []
 }];
 const DEMO_SONG = {
