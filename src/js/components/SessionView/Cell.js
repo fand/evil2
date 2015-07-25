@@ -11,11 +11,16 @@ class Cell extends React.Component {
     let clip = this.props.clip;
     let clipName = clip ? clip.name : '';
     return (
-      <div className="SessionView__Cell">
+      <div className="SessionView__Cell" onClick={this.onClick.bind(this)}>
         <span className="SessionView__Cell__PlayButton">▲</span>
         {clipName}
       </div>
     );
+  }
+
+  onClick () {
+    console.log('yoeeee');
+    console.log(this.props.clip);
   }
 }
 

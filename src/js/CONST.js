@@ -51,9 +51,16 @@ const DEMO_SCENES = [{
   clips    : [{
     uuid : uuid.v4(),
     name : 'clips1-1',
+    midi : [
+      {time: 0x0000, data: [0x90, 64, 127]},
+      {time: 0x0100, data: [0x90, 68, 127]},
+      {time: 0x0200, data: [0x90, 71, 127]},
+      {time: 0x0300, data: [0x90, 76, 127]},
+    ]
   }, {
     uuid : uuid.v4(),
     name : 'clips1-2',
+    clips : []
   }],
   controls : []
 }, {
@@ -62,9 +69,18 @@ const DEMO_SCENES = [{
   clips    : [{
     uuid : uuid.v4(),
     name : 'clips2-1',
+    midi : [
+      {time: 0x0000, data: [0x90, 52, 127]},
+      {time: 0x0100, data: [0x90, 56, 127]},
+      {time: 0x0200, data: [0x90, 59, 127]},
+      {time: 0x0300, data: [0x90, 64, 127]},
+    ]
   }, {
     uuid : uuid.v4(),
     name : 'clips2-2',
+    midi : [
+
+    ]
   }],
   controls : []
 }];
