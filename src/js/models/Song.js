@@ -3,6 +3,7 @@
 import SongInfo from './SongInfo';
 import SongEnv from './SongEnv';
 import SongMode from './SongMode';
+import Scene from './Scene';
 
 class Song {
 
@@ -16,12 +17,21 @@ class Song {
    */
   constructor (song) {
     if (!song) { throw 'song required'; }
+
+    // Init clips first.
+    // because clips are required to init scenes.
+    this.clips        = song.clips || {};
+
     this.scenes       = song.scenes || [];
     this.arrangements = song.arrangements || [];
-    this.clips        = song.clips || {};
+
     this.env          = new SongEnv(song.env);
     this.info         = new SongInfo(song.info);
     this.mode         = new SongMode(song.mode);
+  }
+
+  setScenes (scenes) {
+    this.scenes = scenes.map(s => new Scene(s));
   }
 
   toJSON () {
