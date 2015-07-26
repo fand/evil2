@@ -16,6 +16,7 @@ class Row extends React.Component {
   static propTypes = {
     rowIdx  : React.PropTypes.number.isRequired,
     scene   : React.PropTypes.object,
+    session : React.PropTypes.object.isRequired,
     actions : React.PropTypes.object.isRequired,
   };
 
@@ -36,7 +37,7 @@ class Row extends React.Component {
   }
 
   renderCells (i) {
-    const { scene, rowIdx, actions } = this.props;
+    const { scene, session, rowIdx, actions } = this.props;
 
     let clips = this.props.scene ? this.props.scene.clips : [];
     let columns = Math.max(clips.length, COLUMNS);
@@ -44,6 +45,7 @@ class Row extends React.Component {
       return (
         <Cell
           clip={clips[j]}
+          session={session}
           rowIdx={i}
           columnIdx={j}
           actions={actions}

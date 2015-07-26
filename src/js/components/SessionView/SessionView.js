@@ -31,6 +31,7 @@ class SessionView extends React.Component {
       <Row
         rowIdx={i}
         scene={session.scenes[i]}
+        session={session}
         actions={actions}
         key={i}></Row>
     );

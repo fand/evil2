@@ -15,12 +15,15 @@ li {
 
 .SessionView__Cell {
     display: inline-block;
-
     width  : 100px;
     height : 20px;
     border : 1px solid #0df;
-}
 
+    &--selected {
+        @extend .SessionView__Cell;
+        background-color : #99ddff;
+    }
+}
 
 .ClipView {
     display : block;
