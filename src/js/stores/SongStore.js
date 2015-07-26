@@ -3,6 +3,7 @@
 import Song from '../models/Song';
 import CONST from '../CONST';
 
+const INIT_SONG   = 'INIT_SONG';
 const SELECT_SONG = 'SELECT_SONG';
 
 /**
@@ -25,6 +26,11 @@ let data = {
 const SongStore = function (state=data, action) {
 
   switch (action.type) {
+  case INIT_SONG:
+    let song = createNewSong();
+    state.songs[song.uuid] = song;
+    state.currentSong = song;
+    return state;
   case SELECT_SONG:
     state.currentSong = state.songs[action.songId];
     return state;
@@ -33,6 +39,5 @@ const SongStore = function (state=data, action) {
   }
 
 };
-
 
 export default SongStore;

@@ -4,6 +4,11 @@ import React from 'react';
 
 class ClipView extends React.Component {
 
+  static propTypes = {
+    clip    : React.PropTypes.object,
+    actions : React.PropTypes.object.isRequired,
+  }
+
   constructor (props) {
     super(props);
   }
@@ -19,6 +24,7 @@ class ClipView extends React.Component {
   }
 
   render () {
+    console.log(this.props);
     return (
       <div className="ClipView">
         {this.renderClip()}
