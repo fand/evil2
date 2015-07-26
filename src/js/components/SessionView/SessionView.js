@@ -14,7 +14,7 @@ const ROWS = 8;
 class SessionView extends React.Component {
 
   static propTypes = {
-    song    : React.PropTypes.object.isRequired,
+    session : React.PropTypes.object.isRequired,
     actions : React.PropTypes.object.isRequired,
   };
 
@@ -26,18 +26,18 @@ class SessionView extends React.Component {
   componentDidMount () {}
 
   renderRow (i) {
-    const { song, actions } = this.props;
+    const { session, actions } = this.props;
     return (
       <Row
         rowIdx={i}
-        scene={song.scenes[i]}
+        scene={session.scenes[i]}
         actions={actions}
         key={i}></Row>
     );
   }
 
   render () {
-    let rowsNum = Math.max(this.props.song.scenes.length, ROWS);
+    let rowsNum = Math.max(this.props.session.scenes.length, ROWS);
     let rows = range(rowsNum).map(i => this.renderRow(i));
     return (
       <div className="SessionView">

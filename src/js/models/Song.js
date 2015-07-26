@@ -20,7 +20,7 @@ class Song {
 
     // Init clips first.
     // because clips are required to init scenes.
-    this.clips        = song.clips || {};
+    this.clipData     = song.clips || {};
 
     this.scenes       = song.scenes || [];
     this.arrangements = song.arrangements || [];

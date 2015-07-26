@@ -1,41 +1,36 @@
 'use strict';
 
-import Song from '../models/Song';
+// import Song from '../models/Song';
 import CONST from '../CONST';
 
+import sessionStore from './SessionStore';
+import clipStore from './ClipStore';
+import infoStore from './InfoStore';
+
 const INIT_SONG   = 'INIT_SONG';
-const SELECT_SONG = 'SELECT_SONG';
 
 /**
  * Load song from data or create empty song.
  */
-let createNewSong = function () {
+const initSong = function (state, action) {
   if (document.getElementById('SongData')) {
-    return new Song(JSON.parse(document.getElementById('SongData').innerHTML));
+    return JSON.parse(document.getElementById('SongData').innerHTML);
   }
-  else {
-    return new Song(CONST.DEMO_SONG);
-  }
+  return CONST.DEMO_SONG;
 };
 
-let data = {
-  songs       : {},
-  currentSong : createNewSong()
-};
-
-const SongStore = function (state=data, action) {
+const SongStore = function (state=CONST.DEFAULT_SONG, action) {
 
   switch (action.type) {
   case INIT_SONG:
-    let song = createNewSong();
-    state.songs[song.uuid] = song;
-    state.currentSong = song;
-    return state;
-  case SELECT_SONG:
-    state.currentSong = state.songs[action.songId];
-    return state;
+    return initSong(state, action);
+
   default:
-    return state;
+    // init clips first!
+    const clipData    = clipStore(state.clipData, action);
+    const sessionData = sessionStore(state.sessionData, action);
+    const infoData    = infoStore(state.infoData, action);
+    return { sessionData, clipData, infoData };
   }
 
 };

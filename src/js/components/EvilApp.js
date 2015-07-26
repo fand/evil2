@@ -13,15 +13,10 @@ import * as SessionActions from '../actions/SessionActions';
 import * as ClipActions from '../actions/ClipAction';
 import * as SongActions from '../actions/SongActions';
 
-// @connect(state => ({
-//   song : state.Song.currentSong,
-//   clip : state.Clip.currentClip
-// }))
 @connect(state => {
-  console.log(state);
   return {
-    song : state.evil.songData.currentSong,
-    clip : state.evil.clipData.currentClip
+    song : state.song,
+    clip : state.song.clipData.currentClip,
   };
 })
 class EvilApp extends Component {
@@ -35,21 +30,20 @@ class EvilApp extends Component {
   }
 
   componentDidMount () {
-    const { evil, dispatch } = this.props;
+    const { song, dispatch } = this.props;
     const songActions = bindActionCreators(SongActions, dispatch);
     songActions.initSong();
   }
 
   render () {
     const { song, clip, dispatch } = this.props;
-    console.log(clip);
     const sessionActions = bindActionCreators(SessionActions, dispatch);
     const clipActions    = bindActionCreators(ClipActions, dispatch);
     return (
       <div className="EvilApp">
-        <SessionView song={song} actions={sessionActions} />
+        <SessionView session={song.sessionData} actions={sessionActions} />
         <ClipView clip={clip} actions={clipActions} />
-        <SongInfo info={song.info} />
+        <SongInfo info={song.infoData} />
       </div>
     );
   }

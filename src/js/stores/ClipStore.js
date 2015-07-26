@@ -8,7 +8,9 @@ let data = {
   currentClip : null
 };
 
-export default function ClipStore (state=data, action) {
+export default function clipStore (state=data, action) {
+  console.log('>> clipStore');
+  console.log(state);
   switch (action.type) {
   case SELECT_CLIP:
     state.currentClip = state.clips[action.clipId];

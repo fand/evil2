@@ -23,11 +23,18 @@ const DEFAULT_ENV = {
 };
 
 const DEFAULT_SONG = {
-  scenes       : [],
-  arrangements : [],
-  clips        : [],
-  env  : DEFAULT_ENV,
-  info : DEFAULT_INFO,
+  clipData : {
+    clips       : [],
+    currentClip : undefined
+  },
+  sessionData : {
+    scenes : [],
+  },
+  arrangementData : {
+    arrangements : [],
+  },
+  envData  : DEFAULT_ENV,
+  infoData : DEFAULT_INFO,
   mode : SONG_MODE.SESSION_MODE
 };
 
@@ -49,47 +56,83 @@ const DEMO_SCENES = [{
   uuid     : uuid.v4(),
   name     : 'scene1',
   clips    : [{
-    uuid : uuid.v4(),
-    name : 'clips1-1',
-    midi : [
-      {time: 0x0000, data: [0x90, 64, 127]},
-      {time: 0x0100, data: [0x90, 68, 127]},
-      {time: 0x0200, data: [0x90, 71, 127]},
-      {time: 0x0300, data: [0x90, 76, 127]},
-    ]
+    uuid  : 'aaa',
+    name  : 'clips1-1',
+    color : '#FF0000',
   }, {
-    uuid : uuid.v4(),
-    name : 'clips1-2',
-    clips : []
+    uuid  : 'bbb',
+    name  : 'clips1-2',
+    color : '#FFFF00',
   }],
   controls : []
 }, {
   uuid     : uuid.v4(),
   name     : 'scene2',
   clips    : [{
-    uuid : uuid.v4(),
+    uuid : 'ccc',
     name : 'clips2-1',
-    midi : [
-      {time: 0x0000, data: [0x90, 52, 127]},
-      {time: 0x0100, data: [0x90, 56, 127]},
-      {time: 0x0200, data: [0x90, 59, 127]},
-      {time: 0x0300, data: [0x90, 64, 127]},
-    ]
+    color : '#FF00FF',
   }, {
-    uuid : uuid.v4(),
+    uuid : 'ddd',
     name : 'clips2-2',
-    midi : [
-
-    ]
+    color : '#00FFFF',
   }],
   controls : []
 }];
 const DEMO_SONG = {
-  scenes       : DEMO_SCENES,
-  arrangements : [],
+  clipData : {
+    clips : [{
+      uuid : 'aaa',
+      name : 'clips1-1',
+      color : '#FF0000',
+      midi : [
+        {time: 0x0000, data: [0x90, 64, 127]},
+        {time: 0x0100, data: [0x90, 68, 127]},
+        {time: 0x0200, data: [0x90, 71, 127]},
+        {time: 0x0300, data: [0x90, 76, 127]},
+      ]
+    }, {
+      uuid : 'bbb',
+      name : 'clips1-2',
+      color : '#FFFF00',
+      midi : [
+        {time: 0x0000, data: [0x90, 64, 127]},
+        {time: 0x0100, data: [0x90, 68, 127]},
+        {time: 0x0200, data: [0x90, 71, 127]},
+        {time: 0x0300, data: [0x90, 76, 127]},
+      ]
+    }, {
+      uuid : 'ccc',
+      name : 'clips2-1',
+      color : '#FF00FF',
+      midi : [
+        {time: 0x0000, data: [0x90, 52, 127]},
+        {time: 0x0100, data: [0x90, 56, 127]},
+        {time: 0x0200, data: [0x90, 59, 127]},
+        {time: 0x0300, data: [0x90, 64, 127]},
+      ]
+    }, {
+      uuid : 'ddd',
+      name : 'clips2-2',
+      color : '#00FFFF',
+      midi : [
+        {time: 0x0000, data: [0x90, 52, 127]},
+        {time: 0x0100, data: [0x90, 56, 127]},
+        {time: 0x0200, data: [0x90, 59, 127]},
+        {time: 0x0300, data: [0x90, 64, 127]},
+      ]
+    }],
+    currentClip : undefined,
+  },
+  sessionData : {
+    scenes : DEMO_SCENES,
+  },
+  arrangementData : {
+    arrangements : [],
+  },
   clips        : [],
-  env  : DEMO_ENV,
-  info : DEMO_INFO,
+  envData  : DEMO_ENV,
+  infoData : DEMO_INFO,
   mode : SONG_MODE.SESSION_MODE
 };
 

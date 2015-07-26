@@ -1,1 +1,1 @@
-export { default as evil } from './EvilStore';
+export { default as song } from './songStore';
