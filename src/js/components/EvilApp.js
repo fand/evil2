@@ -1,12 +1,25 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'redux/react';
 
 import SessionView from './SessionView';
 import ClipView from './ClipView';
 import SongInfo from './SongInfo';
 
-class EvilApp extends React.Component {
+import * as SessionActions from '../actions/SessionActions';
+import * as ClipActions from '../actions/ClipActions';
+import * as SongActions from '../actions/SongActions';
+
+@connect(state => {
+  return {
+    song : state.song,
+    clip : state.song.clipData.currentClip,
+  };
+})
+class EvilApp extends Component {
+
   constructor (props) {
     super(props);
     this.state = {
@@ -16,17 +29,24 @@ class EvilApp extends React.Component {
   }
 
   componentDidMount () {
+    const { song, dispatch } = this.props;
+    const songActions = bindActionCreators(SongActions, dispatch);
+    songActions.initSong();
   }
 
   render () {
+    const { song, clip, dispatch } = this.props;
+    const sessionActions = bindActionCreators(SessionActions, dispatch);
+    const clipActions    = bindActionCreators(ClipActions, dispatch);
     return (
       <div className="EvilApp">
-        <SessionView song={this.state.song} />
-        <ClipView clip={this.state.clip} />
-        <SongInfo info={this.state.song.info} />
+        <SessionView clips={song.clipData.clips} session={song.sessionData} actions={sessionActions} />
+        <ClipView clip={clip} actions={clipActions} />
+        <SongInfo info={song.infoData} />
       </div>
     );
   }
+
 }
 
 

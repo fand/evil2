@@ -1,10 +1,6 @@
 'use strict';
 
 import React from 'react';
-import EvilApp from './components/EvilApp';
+import App from './components/App';
 
-import SongStore from './stores/SongStore';
-
-let song = SongStore.getCurrentSong();
-
-React.render(<EvilApp song={song} />, document.getElementById('app'));
+React.render(<App />, document.getElementById('app'));

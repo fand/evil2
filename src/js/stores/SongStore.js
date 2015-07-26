@@ -1,39 +1,38 @@
 'use strict';
 
-import Song from '../models/Song';
-
+// import Song from '../models/Song';
 import CONST from '../CONST';
 
+import sessionStore from './SessionStore';
+import clipStore from './ClipStore';
+import infoStore from './InfoStore';
 
-let data = {
-  song : null
+const INIT_SONG   = 'INIT_SONG';
+
+/**
+ * Load song from data or create empty song.
+ */
+const initSong = function (state, action) {
+  if (document.getElementById('SongData')) {
+    return JSON.parse(document.getElementById('SongData').innerHTML);
+  }
+  return CONST.DEMO_SONG;
 };
 
-class SongStore {
+const SongStore = function (state=CONST.DEFAULT_SONG, action) {
 
-  constructor () {
+  switch (action.type) {
+  case INIT_SONG:
+    return initSong(state, action);
 
+  default:
+    // init clips first!
+    const clipData    = clipStore(state.clipData, action);
+    const sessionData = sessionStore(state.sessionData, action);
+    const infoData    = infoStore(state.infoData, action);
+    return { sessionData, clipData, infoData };
   }
 
-  getCurrentSong () {
-    if (! data.song) {
-      data.song = this.createNewSong();
-    }
-    return data.song;
-  }
+};
 
-  /**
-   * Load song from data or create empty song.
-   */
-  createNewSong () {
-    if (document.getElementById('SongData')) {
-      return new Song(JSON.parse(document.getElementById('SongData').innerHTML));
-    }
-    else {
-      return new Song(CONST.DEMO_SONG);
-    }
-  }
-
-}
-
-export default new SongStore();
+export default SongStore;

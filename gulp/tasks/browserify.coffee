@@ -8,6 +8,8 @@ reload     = require('browser-sync').reload
 config     = require('../config').browserify
 notify = require '../utils/notify'
 
+babelify = require 'babelify'
+
 ##
 # util
 # ______________________________________
@@ -29,7 +31,9 @@ babel = (c, callback) ->
         debug: is_dev,
         cache: {}, packageCache: {}, fullPaths: true
 
-    bundler.transform 'babelify'
+    bundler.transform babelify.configure({
+        stage: 0
+    })
 
     console.log '#### browserify: rebuild'
 
