@@ -29,6 +29,21 @@
 
 - Help
 
+# stateの構造
+
+class Song {
+    sessionData : {
+        scenes : Array<Scene>
+    },
+    arrangemetData : {
+        arrangements : Array<Arrangement>
+    }
+    clipData : {
+        clips : {}
+        currentClip : null
+    }
+}
+
 
 # Model定義
 
