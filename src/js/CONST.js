@@ -81,47 +81,52 @@ const DEMO_SCENES = [{
 }];
 const DEMO_SONG = {
   clipData : {
-    clips : [{
-      uuid : 'aaa',
-      name : 'clips1-1',
-      color : '#FF0000',
-      midi : [
-        {time: 0x0000, data: [0x90, 64, 127]},
-        {time: 0x0100, data: [0x90, 68, 127]},
-        {time: 0x0200, data: [0x90, 71, 127]},
-        {time: 0x0300, data: [0x90, 76, 127]},
-      ]
-    }, {
-      uuid : 'bbb',
-      name : 'clips1-2',
-      color : '#FFFF00',
-      midi : [
-        {time: 0x0000, data: [0x90, 64, 127]},
-        {time: 0x0100, data: [0x90, 68, 127]},
-        {time: 0x0200, data: [0x90, 71, 127]},
-        {time: 0x0300, data: [0x90, 76, 127]},
-      ]
-    }, {
-      uuid : 'ccc',
-      name : 'clips2-1',
-      color : '#FF00FF',
-      midi : [
-        {time: 0x0000, data: [0x90, 52, 127]},
-        {time: 0x0100, data: [0x90, 56, 127]},
-        {time: 0x0200, data: [0x90, 59, 127]},
-        {time: 0x0300, data: [0x90, 64, 127]},
-      ]
-    }, {
-      uuid : 'ddd',
-      name : 'clips2-2',
-      color : '#00FFFF',
-      midi : [
-        {time: 0x0000, data: [0x90, 52, 127]},
-        {time: 0x0100, data: [0x90, 56, 127]},
-        {time: 0x0200, data: [0x90, 59, 127]},
-        {time: 0x0300, data: [0x90, 64, 127]},
-      ]
-    }],
+    clips : {
+      aaa: {
+        uuid : 'aaa',
+        name : 'clips1-1',
+        color : '#FF0000',
+        midi : [
+          {time: 0x0000, data: [0x90, 64, 127]},
+          {time: 0x0100, data: [0x90, 68, 127]},
+          {time: 0x0200, data: [0x90, 71, 127]},
+          {time: 0x0300, data: [0x90, 76, 127]},
+        ]
+      },
+      bbb : {
+        uuid : 'bbb',
+        name : 'clips1-2',
+        color : '#FFFF00',
+        midi : [
+          {time: 0x0000, data: [0x90, 64, 127]},
+          {time: 0x0100, data: [0x90, 68, 127]},
+          {time: 0x0200, data: [0x90, 71, 127]},
+          {time: 0x0300, data: [0x90, 76, 127]},
+        ]
+      },
+      ccc : {
+        uuid : 'ccc',
+        name : 'clips2-1',
+        color : '#FF00FF',
+        midi : [
+          {time: 0x0000, data: [0x90, 52, 127]},
+          {time: 0x0100, data: [0x90, 56, 127]},
+          {time: 0x0200, data: [0x90, 59, 127]},
+          {time: 0x0300, data: [0x90, 64, 127]},
+        ]
+      },
+      ddd : {
+        uuid : 'ddd',
+        name : 'clips2-2',
+        color : '#00FFFF',
+        midi : [
+          {time: 0x0000, data: [0x90, 52, 127]},
+          {time: 0x0100, data: [0x90, 56, 127]},
+          {time: 0x0200, data: [0x90, 59, 127]},
+          {time: 0x0300, data: [0x90, 64, 127]},
+        ]
+      }
+    },
     currentClip : undefined,
   },
   sessionData : {

@@ -10,9 +10,6 @@ let data = {
 
 export default function sessionStore (state=data, action) {
 
-  console.log('>> sessionStore');
-  console.log(state);
-
   switch (action.type) {
   case SELECT_SCENE:
     state.currentScene = state.scenes[action.index];
