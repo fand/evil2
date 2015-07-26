@@ -18,7 +18,11 @@ class ClipView extends React.Component {
     return (
       <ul>
         <li><input className="ClipView__ClipId" value={this.props.clip.uuid} /></li>
-        <li><input className="ClipView__ClipName" value={this.props.clip.name} /></li>
+        <li>
+          <input className="ClipView__ClipName" value={this.props.clip.name}
+            onChange={::this.onChangeClipName}
+            />
+        </li>
       </ul>
     );
   }
@@ -29,6 +33,10 @@ class ClipView extends React.Component {
         {this.renderClip()}
       </div>
     );
+  }
+
+  onChangeClipName (e) {
+    this.props.actions.setClipName(this.props.clip.uuid, e.target.value);
   }
 
 }
