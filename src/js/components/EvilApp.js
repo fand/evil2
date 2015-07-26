@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'redux/react';
 
 import * as SessionActions from '../actions/SessionActions';
-import * as ClipActions from '../actions/ClipAction';
+import * as ClipActions from '../actions/ClipActions';
 import * as SongActions from '../actions/SongActions';
 
 @connect(state => {
