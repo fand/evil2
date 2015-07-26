@@ -2,6 +2,13 @@ li {
     color: blue;
 }
 
+.SessionView {
+    display: block;
+    width   : 100%;
+    height  : 300px;
+    border  : 1px solid #0088FF;
+}
+
 .SessionView__Row {
     display: block;
 }
@@ -12,4 +19,20 @@ li {
     width  : 100px;
     height : 20px;
     border : 1px solid #0df;
+}
+
+
+.ClipView {
+    display : block;
+    width   : 100%;
+    height  : 300px;
+    border  : 1px solid #FF8800;
+}
+
+
+.SongInfo {
+    display : block;
+    width   : 100%;
+    height  : 300px;
+    border  : 1px solid #888888;
 }
