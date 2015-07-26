@@ -7,6 +7,8 @@ import classnames from 'classnames';
 class Cell extends React.Component {
 
   static propTypes = {
+    clipId    : React.PropTypes.string,
+    clips     : React.PropTypes.object.isRequired,
     session   : React.PropTypes.object.isRequired,
     columnIdx : React.PropTypes.number.isRequired,
     rowIdx    : React.PropTypes.number.isRequired,
@@ -26,7 +28,7 @@ class Cell extends React.Component {
   }
 
   render () {
-    let clip = this.props.clip;
+    let clip = this.props.clips[this.props.clipId];
     let clipName = clip ? clip.name : '';
 
     const className = 'SessionView__Cell' + (this.isSelected() ? '--selected' : '');
@@ -40,8 +42,8 @@ class Cell extends React.Component {
   }
 
   onClick () {
-    if (!this.props.clip) { return; }
-    this.props.actions.selectClip(this.props.clip.uuid);
+    if (!this.props.clipId) { return; }
+    this.props.actions.selectClip(this.props.clipId);
     this.props.actions.selectCell({
       rowIdx    : this.props.rowIdx,
       columnIdx : this.props.columnIdx

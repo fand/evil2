@@ -14,6 +14,7 @@ const ROWS = 8;
 class SessionView extends React.Component {
 
   static propTypes = {
+    clips   : React.PropTypes.object.isRequired,
     session : React.PropTypes.object.isRequired,
     actions : React.PropTypes.object.isRequired,
   };
@@ -26,11 +27,12 @@ class SessionView extends React.Component {
   componentDidMount () {}
 
   renderRow (i) {
-    const { session, actions } = this.props;
+    const { session, clips, actions } = this.props;
     return (
       <Row
         rowIdx={i}
         scene={session.scenes[i]}
+        clips={clips}
         session={session}
         actions={actions}
         key={i}></Row>

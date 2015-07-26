@@ -55,28 +55,12 @@ const DEMO_INFO = {
 const DEMO_SCENES = [{
   uuid     : uuid.v4(),
   name     : 'scene1',
-  clips    : [{
-    uuid  : 'aaa',
-    name  : 'clips1-1',
-    color : '#FF0000',
-  }, {
-    uuid  : 'bbb',
-    name  : 'clips1-2',
-    color : '#FFFF00',
-  }],
+  clipIds  : ['aaa', 'bbb'],
   controls : []
 }, {
   uuid     : uuid.v4(),
   name     : 'scene2',
-  clips    : [{
-    uuid : 'ccc',
-    name : 'clips2-1',
-    color : '#FF00FF',
-  }, {
-    uuid : 'ddd',
-    name : 'clips2-2',
-    color : '#00FFFF',
-  }],
+  clipIds  : ['ccc', 'ddd'],
   controls : []
 }];
 const DEMO_SONG = {

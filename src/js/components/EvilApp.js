@@ -40,7 +40,7 @@ class EvilApp extends Component {
     const clipActions    = bindActionCreators(ClipActions, dispatch);
     return (
       <div className="EvilApp">
-        <SessionView session={song.sessionData} actions={sessionActions} />
+        <SessionView clips={song.clipData.clips} session={song.sessionData} actions={sessionActions} />
         <ClipView clip={clip} actions={clipActions} />
         <SongInfo info={song.infoData} />
       </div>

@@ -37,15 +37,16 @@ class Row extends React.Component {
   }
 
   renderCells (i) {
-    const { scene, session, rowIdx, actions } = this.props;
+    const { scene, clips, session, rowIdx, actions } = this.props;
 
-    let clips = this.props.scene ? this.props.scene.clips : [];
-    let columns = Math.max(clips.length, COLUMNS);
+    let clipIds = this.props.scene ? this.props.scene.clipIds : [];
+    let columns = Math.max(clipIds.length, COLUMNS);
     return range(columns).map(j => {
       return (
         <Cell
-          clip={clips[j]}
+          clips={clips}
           session={session}
+          clipId={clipIds[j]}
           rowIdx={i}
           columnIdx={j}
           actions={actions}
