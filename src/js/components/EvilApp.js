@@ -1,13 +1,12 @@
 'use strict';
 
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'redux/react';
 
 import SessionView from './SessionView';
 import ClipView from './ClipView';
 import SongInfo from './SongInfo';
-
-import { bindActionCreators } from 'redux';
-import { connect } from 'redux/react';
 
 import * as SessionActions from '../actions/SessionActions';
 import * as ClipActions from '../actions/ClipActions';
