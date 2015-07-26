@@ -13,10 +13,15 @@ const COLUMNS = 8;
  */
 class Row extends React.Component {
 
+  static propTypes = {
+    rowIdx  : React.PropTypes.number.isRequired,
+    scene   : React.PropTypes.object,
+    actions : React.PropTypes.object.isRequired,
+  };
+
   constructor (props) {
     super(props);
-    this.state = {
-    };
+    console.log(props);
   }
 
   componentDidMount () {
@@ -32,6 +37,8 @@ class Row extends React.Component {
   }
 
   renderCells (i) {
+    const { scene, rowIdx, actions } = this.props;
+
     let clips = this.props.scene ? this.props.scene.clips : [];
     let columns = Math.max(clips.length, COLUMNS);
     return range(columns).map(j => {
@@ -40,18 +47,12 @@ class Row extends React.Component {
           clip={clips[j]}
           rowIdx={i}
           columnIdx={j}
+          actions={actions}
           key={j}></Cell>
       );
     });
   }
 
 }
-
-Row.propTypes = {
-  rowIdx : React.PropTypes.number.isRequired,
-  scene  : React.PropTypes.object
-};
-Row.defaultProps = {
-};
 
 export default Row;

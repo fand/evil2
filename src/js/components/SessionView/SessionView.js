@@ -13,6 +13,11 @@ const ROWS = 8;
  */
 class SessionView extends React.Component {
 
+  static propTypes = {
+    song    : React.PropTypes.object.isRequired,
+    actions : React.PropTypes.object.isRequired,
+  };
+
   constructor (props) {
     super(props);
     this.state = {};
@@ -21,10 +26,12 @@ class SessionView extends React.Component {
   componentDidMount () {}
 
   renderRow (i) {
+    const { song, actions } = this.props;
     return (
       <Row
         rowIdx={i}
-        scene={this.props.song.scenes[i]}
+        scene={song.scenes[i]}
+        actions={actions}
         key={i}></Row>
     );
   }
@@ -40,9 +47,5 @@ class SessionView extends React.Component {
   }
 
 }
-
-SessionView.propTypes = {
-  song : React.PropTypes.object.isRequired
-};
 
 export default SessionView;

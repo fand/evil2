@@ -36,7 +36,7 @@ class EvilApp extends Component {
     return (
       <div className="EvilApp">
         <SessionView song={song} actions={sessionActions} />
-        <ClipView clip={clip} action={clipActions} />
+        <ClipView clip={clip} actions={clipActions} />
         <SongInfo info={song.info} />
       </div>
     );
