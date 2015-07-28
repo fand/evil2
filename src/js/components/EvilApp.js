@@ -13,10 +13,8 @@ import * as ClipActions from '../actions/ClipActions';
 import * as SongActions from '../actions/SongActions';
 
 @connect(state => {
-  return {
-    song : state.song,
-    clip : state.song.clipData.currentClip,
-  };
+  const { song, view } =  state.root;
+  return { song, view };
 })
 class EvilApp extends Component {
 
@@ -42,7 +40,7 @@ class EvilApp extends Component {
     return (
       <div className="EvilApp">
         <SessionView clips={song.clipData.clips} session={song.sessionData} actions={sessionActions} />
-        <ClipView clip={clip} actions={clipActions} />
+        <ClipView clip={song.clipData.currentClip} actions={clipActions} />
         <SongInfo info={song.infoData} />
       </div>
     );

@@ -19,3 +19,10 @@ export function setClipName (clipId, name) {
     name   : name,
   };
 }
+
+export function clipSelected (clip) {
+  return {
+    type : 'CLIP_SELECTED',
+    clip : clip
+  };
+}

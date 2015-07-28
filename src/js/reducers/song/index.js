@@ -1,7 +1,7 @@
 'use strict';
 
 // import Song from '../models/Song';
-import CONST from '../CONST';
+import CONST from '../../CONST';
 
 import sessionReducer from './sessionReducer';
 import clipReducer from './clipReducer';

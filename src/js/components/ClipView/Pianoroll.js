@@ -15,13 +15,25 @@ class Pianoroll extends Component {
   render () {
     const { clip } = this.props;
 
+    const notes = this.midi2notes(clip.midi);
+
     return (
       <div className="Pianoroll">
         <ul>
-          { clip.midi.map(m => <li>{`${m.time / 0xFF} : ${m.data[0]} / ${m.data[1]}`}</li>) }
+          { clip.midi.map(m => <li>{`${m.time / 0x0100} : ${m.data[0]} / ${m.data[1]}`}</li>) }
         </ul>
       </div>
     );
+  }
+
+  midi2notes (midis) {
+    let notes = {};
+    midis.forEach(m => {
+      const noteNum = m.data[1]
+      if (! notes[noteNum]) { notes[noteNum] = []; }
+      notes[noteNum].push(m.data);
+    });
+    return notes;
   }
 
 }

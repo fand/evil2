@@ -1,6 +1,6 @@
 'use strict';
 
-import { DEFAULT_INFO } from '../CONST';
+import { DEFAULT_INFO } from '../../CONST';
 
 const SET_ARTIST = 'SET_ARTIST';
 

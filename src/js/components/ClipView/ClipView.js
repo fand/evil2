@@ -15,6 +15,13 @@ class ClipView extends React.Component {
     super(props);
   }
 
+  componentDidUpdate (prevProps) {
+    if (!this.props.clip) { return; }
+    if (!prevProps.clip || (this.props.clip.uuid !== prevProps.clip.uuid)) {
+      this.props.actions.clipSelected(this.props.clip);
+    }
+  }
+
   renderClip () {
     if (!this.props.clip) { return; }
     return (
