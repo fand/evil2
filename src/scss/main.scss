@@ -32,6 +32,15 @@ li {
     border  : 1px solid #FF8800;
 }
 
+.Pianoroll {
+    width: 800px;
+    background: #FFDDCC;
+
+    &__Note {
+        background: #FF8888;
+    }
+}
+
 
 .SongInfo {
     display : block;
