@@ -2,25 +2,42 @@
 
 // import Song from '../models/Song';
 
-const CLIP_UPDATED = 'CLIP_UPDATED';
+const CLIP_SELECTED = 'CLIP_SELECTED';
 
 const DEFAULT = {
   clip  : undefined,
   notes : {}
 };
 
-const clipUpdated = function (state, action) {
-  state.clip = action.clip;
-  let notes = [];
+const isNoteOn  = m => 0x90 <= m && m < 0xA0;
+const isNoteOff = m => 0x80 <= m && m < 0x90;
 
+const clipSelected = function (state, action) {
+  state.clip = action.clip;
+
+  let notes = [];
+  let rows = {};
+
+  state.clip.midi.forEach(function (m) {
+    if (isNoteOn(m.data[0])) {
+      rows[m.data[1]] = m;
+    }
+    if (isNoteOff(m.data[0])) {
+      notes.push([rows[m.data[1]], m]);
+      rows[m.data[1]] = undefined;
+    }
+  });
+
+  state.notes = notes;
+console.log('>>>>>>>>');console.log(state);
   return state;
 };
 
 const clipViewReducer = function (state=DEFAULT, action) {
 
   switch (action.type) {
-  case CLIP_UPDATED:
-    return clipUpdated(state, action);
+  case CLIP_SELECTED:
+    return clipSelected(state, action);
 
   default:
     return state;

@@ -1,7 +1,12 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'redux/react';
 
+@connect(state => {
+  const { view } =  state.root;
+  return { ...view.clipView };
+})
 class Pianoroll extends Component {
 
   static propTypes = {

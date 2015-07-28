@@ -72,9 +72,13 @@ const DEMO_SONG = {
         color : '#FF0000',
         midi : [
           {time: 0x0000, data: [0x90, 64, 127]},
+          {time: 0x00FF, data: [0x80, 64, 127]},
           {time: 0x0100, data: [0x90, 68, 127]},
+          {time: 0x01FF, data: [0x80, 68, 127]},
           {time: 0x0200, data: [0x90, 71, 127]},
+          {time: 0x02FF, data: [0x80, 71, 127]},
           {time: 0x0300, data: [0x90, 76, 127]},
+          {time: 0x03FF, data: [0x80, 76, 127]},
         ]
       },
       bbb : {
@@ -83,9 +87,13 @@ const DEMO_SONG = {
         color : '#FFFF00',
         midi : [
           {time: 0x0000, data: [0x90, 64, 127]},
+          {time: 0x00FF, data: [0x80, 64, 127]},
           {time: 0x0100, data: [0x90, 68, 127]},
+          {time: 0x01FF, data: [0x80, 68, 127]},
           {time: 0x0200, data: [0x90, 71, 127]},
+          {time: 0x02FF, data: [0x80, 71, 127]},
           {time: 0x0300, data: [0x90, 76, 127]},
+          {time: 0x03FF, data: [0x80, 76, 127]},
         ]
       },
       ccc : {
@@ -94,9 +102,13 @@ const DEMO_SONG = {
         color : '#FF00FF',
         midi : [
           {time: 0x0000, data: [0x90, 52, 127]},
+          {time: 0x00FF, data: [0x80, 52, 127]},
           {time: 0x0100, data: [0x90, 56, 127]},
+          {time: 0x01FF, data: [0x80, 56, 127]},
           {time: 0x0200, data: [0x90, 59, 127]},
+          {time: 0x02FF, data: [0x80, 59, 127]},
           {time: 0x0300, data: [0x90, 64, 127]},
+          {time: 0x03FF, data: [0x80, 64, 127]},
         ]
       },
       ddd : {
@@ -105,9 +117,13 @@ const DEMO_SONG = {
         color : '#00FFFF',
         midi : [
           {time: 0x0000, data: [0x90, 52, 127]},
+          {time: 0x00FF, data: [0x80, 52, 127]},
           {time: 0x0100, data: [0x90, 56, 127]},
+          {time: 0x01FF, data: [0x80, 56, 127]},
           {time: 0x0200, data: [0x90, 59, 127]},
+          {time: 0x02FF, data: [0x80, 59, 127]},
           {time: 0x0300, data: [0x90, 64, 127]},
+          {time: 0x03FF, data: [0x80, 64, 127]},
         ]
       }
     },
