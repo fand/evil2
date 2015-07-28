@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import Pianoroll from './Pianoroll';
+
 class ClipView extends React.Component {
 
   static propTypes = {
@@ -16,14 +18,18 @@ class ClipView extends React.Component {
   renderClip () {
     if (!this.props.clip) { return; }
     return (
-      <ul>
-        <li>UUID : {this.props.clip.uuid}</li>
-        <li>
-          <input className="ClipView__ClipName" value={this.props.clip.name}
-            onChange={::this.onChangeClipName}
-            />
-        </li>
-      </ul>
+      <div>
+        <ul>
+          <li>UUID : {this.props.clip.uuid}</li>
+          <li>
+            <input className="ClipView__ClipName" value={this.props.clip.name}
+              onChange={::this.onChangeClipName}
+              />
+          </li>
+        </ul>
+
+        <Pianoroll clip={this.props.clip} />
+      </div>
     );
   }
 
