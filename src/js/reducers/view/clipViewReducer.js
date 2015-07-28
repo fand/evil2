@@ -5,8 +5,13 @@
 const CLIP_SELECTED = 'CLIP_SELECTED';
 
 const DEFAULT = {
-  clip  : undefined,
-  notes : [],
+  clip        : undefined,
+  notes       : [],
+  zoomX       : 1.0,  // (1 / zoom) bars per window
+  zoomY       : 1.0,  // 10px per note
+  bars        : 2,
+  beats       : 2,
+  beatsPerBar : 4,
 };
 
 const isNoteOn  = m => 0x90 <= m && m < 0xA0;

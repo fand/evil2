@@ -20,11 +20,21 @@ class Pianoroll extends Component {
   }
 
   render () {
-    const { clip, notes } = this.props;
+    const { clip, notes, zoomX, zoomY, bars, beats, beatsPerBar } = this.props;
+
+    const totalBars = bars + beats / beatsPerBar;
+
+    const notesStyle = {
+      width: `${totalBars * zoomX * 100}%`
+    };
 
     return (
       <div className="Pianoroll">
-        { notes.map((n, i) => this.renderNote(n, i)) }
+        <div className="Pianoroll__NotesWrapper">
+          <div className="Pianoroll__Notes" style={notesStyle}>
+            { notes.map((n, i) => this.renderNote(n, i)) }
+          </div>
+        </div>
       </div>
     );
   }
