@@ -17,7 +17,7 @@ class ClipView extends React.Component {
     if (!this.props.clip) { return; }
     return (
       <ul>
-        <li><input className="ClipView__ClipId" value={this.props.clip.uuid} /></li>
+        <li>UUID : {this.props.clip.uuid}</li>
         <li>
           <input className="ClipView__ClipName" value={this.props.clip.name}
             onChange={::this.onChangeClipName}

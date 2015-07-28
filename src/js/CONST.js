@@ -24,7 +24,7 @@ const DEFAULT_ENV = {
 
 const DEFAULT_SONG = {
   clipData : {
-    clips       : [],
+    clips       : {},
     currentClip : undefined
   },
   sessionData : {

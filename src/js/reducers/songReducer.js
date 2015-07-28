@@ -3,9 +3,9 @@
 // import Song from '../models/Song';
 import CONST from '../CONST';
 
-import sessionStore from './SessionStore';
-import clipStore from './ClipStore';
-import infoStore from './InfoStore';
+import sessionReducer from './sessionReducer';
+import clipReducer from './clipReducer';
+import infoReducer from './infoReducer';
 
 const INIT_SONG   = 'INIT_SONG';
 
@@ -19,7 +19,7 @@ const initSong = function (state, action) {
   return CONST.DEMO_SONG;
 };
 
-const SongStore = function (state=CONST.DEFAULT_SONG, action) {
+const songReducer = function (state=CONST.DEFAULT_SONG, action) {
 
   switch (action.type) {
   case INIT_SONG:
@@ -27,12 +27,12 @@ const SongStore = function (state=CONST.DEFAULT_SONG, action) {
 
   default:
     // init clips first!
-    const clipData    = clipStore(state.clipData, action);
-    const sessionData = sessionStore(state.sessionData, action);
-    const infoData    = infoStore(state.infoData, action);
+    const clipData    = clipReducer(state.clipData, action);
+    const sessionData = sessionReducer(state.sessionData, action);
+    const infoData    = infoReducer(state.infoData, action);
     return { sessionData, clipData, infoData };
   }
 
 };
 
-export default SongStore;
+export default songReducer;

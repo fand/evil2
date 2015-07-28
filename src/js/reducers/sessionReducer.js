@@ -10,7 +10,7 @@ let data = {
   currentCell  : null,
 };
 
-export default function sessionStore (state=data, action) {
+export default function sessionReducer (state=data, action) {
 
   switch (action.type) {
   case SELECT_CELL:

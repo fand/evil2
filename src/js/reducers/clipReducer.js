@@ -9,7 +9,7 @@ let data = {
   currentClip : null
 };
 
-export default function clipStore (state=data, action) {
+export default function clipReducer (state=data, action) {
   switch (action.type) {
   case SELECT_CLIP:
     state.currentClip = state.clips[action.clipId];
