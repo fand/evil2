@@ -6,7 +6,7 @@ const CLIP_SELECTED = 'CLIP_SELECTED';
 
 const DEFAULT = {
   clip  : undefined,
-  notes : {}
+  notes : [],
 };
 
 const isNoteOn  = m => 0x90 <= m && m < 0xA0;
@@ -29,7 +29,7 @@ const clipSelected = function (state, action) {
   });
 
   state.notes = notes;
-console.log('>>>>>>>>');console.log(state);
+
   return state;
 };
 

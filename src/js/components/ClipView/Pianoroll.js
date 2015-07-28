@@ -3,6 +3,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'redux/react';
 
+import PianoNote from './PianoNote';
+
 @connect(state => {
   const { view } =  state.root;
   return { ...view.clipView };
@@ -18,31 +20,17 @@ class Pianoroll extends Component {
   }
 
   render () {
-    const { clip } = this.props;
-
-    const notes = this.midi2notes(clip.midi);
+    const { clip, notes } = this.props;
 
     return (
       <div className="Pianoroll">
-        <ul>
-          { clip.midi.map((m, i) =>
-            <li key={i}>
-              {`${m.time / 0x0100} : ${m.data[0]} / ${m.data[1]}`}
-            </li>
-          ) }
-        </ul>
+        { notes.map((n, i) => this.renderNote(n, i)) }
       </div>
     );
   }
 
-  midi2notes (midis) {
-    let notes = {};
-    midis.forEach(m => {
-      const noteNum = m.data[1]
-      if (! notes[noteNum]) { notes[noteNum] = []; }
-      notes[noteNum].push(m.data);
-    });
-    return notes;
+  renderNote (note, i) {
+    return <PianoNote note={note} key={i} />;
   }
 
 }
