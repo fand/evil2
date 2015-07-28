@@ -20,7 +20,11 @@ class Pianoroll extends Component {
     return (
       <div className="Pianoroll">
         <ul>
-          { clip.midi.map(m => <li>{`${m.time / 0x0100} : ${m.data[0]} / ${m.data[1]}`}</li>) }
+          { clip.midi.map((m, i) =>
+            <li key={i}>
+              {`${m.time / 0x0100} : ${m.data[0]} / ${m.data[1]}`}
+            </li>
+          ) }
         </ul>
       </div>
     );

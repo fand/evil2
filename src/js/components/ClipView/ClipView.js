@@ -22,6 +22,11 @@ class ClipView extends React.Component {
     }
   }
 
+  renderPianoroll () {
+    if (! this.props.clip) { return; }
+    return <Pianoroll clip={this.props.clip} />;
+  }
+
   renderClip () {
     if (!this.props.clip) { return; }
     return (
@@ -35,7 +40,8 @@ class ClipView extends React.Component {
           </li>
         </ul>
 
-        <Pianoroll clip={this.props.clip} />
+        {this.renderPianoroll()}
+
       </div>
     );
   }
