@@ -2,6 +2,9 @@
 
 import React from 'react';
 
+import Pianoroll from './Pianoroll';
+import ClipInfo from './ClipInfo';
+
 class ClipView extends React.Component {
 
   static propTypes = {
@@ -13,13 +16,20 @@ class ClipView extends React.Component {
     super(props);
   }
 
+  componentDidUpdate (prevProps) {
+    if (!this.props.clip) { return; }
+    if (!prevProps.clip || (this.props.clip.uuid !== prevProps.clip.uuid)) {
+      this.props.actions.clipSelected(this.props.clip);
+    }
+  }
+
   renderClip () {
     if (!this.props.clip) { return; }
     return (
-      <ul>
-        <li><input className="ClipView__ClipId" value={this.props.clip.uuid} /></li>
-        <li><input className="ClipView__ClipName" value={this.props.clip.name} /></li>
-      </ul>
+      <div>
+        <ClipInfo clip={this.props.clip} actions={this.props.actions}/>
+        <Pianoroll clip={this.props.clip} />
+      </div>
     );
   }
 
@@ -29,6 +39,10 @@ class ClipView extends React.Component {
         {this.renderClip()}
       </div>
     );
+  }
+
+  onChangeClipName (e) {
+    this.props.actions.setClipName(this.props.clip.uuid, e.target.value);
   }
 
 }

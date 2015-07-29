@@ -32,6 +32,29 @@ li {
     border  : 1px solid #FF8800;
 }
 
+.Pianoroll {
+    position: relative;
+    width: 800px;
+    height   : 200px;
+    background: #FFDDCC;
+
+    &__NotesWrapper {
+        width    : 740px;
+        height   : 100%;
+        position : absolute;
+        top      : 0;
+        left     : 60px;
+        border   : 1px solid red;
+        overflow : scroll;
+    }
+    &__Notes {
+        background: #FFDDCC;
+    }
+    &__Note {
+        background: #FF8888;
+    }
+}
+
 
 .SongInfo {
     display : block;
