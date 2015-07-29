@@ -13,12 +13,18 @@ class PianoNote extends Component {
   }
 
   render () {
-    const { note } = this.props;
+    const { note, beatWidth } = this.props;
+
+    const style = {
+      position : 'absolute',
+      top      : 1280 - note.noteNum * 10,
+      left     : note.left * beatWidth,
+      width    : note.width * beatWidth,
+      height   : 10,
+    };
 
     return (
-      <div className="Pianoroll__Note">
-        {`${note[0].time} -> ${note[1].time} : ${note[0].data[0]}`}
-      </div>
+      <div className="Pianoroll__Note" style={style} />
     );
   }
 

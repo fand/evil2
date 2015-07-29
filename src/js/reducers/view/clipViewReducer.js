@@ -28,7 +28,14 @@ const clipSelected = function (state, action) {
       rows[m.data[1]] = m;
     }
     if (isNoteOff(m.data[0])) {
-      notes.push([rows[m.data[1]], m]);
+      const n = rows[m.data[1]];
+      const note = {
+        left    : n.time / 0x100,
+        width   : (m.time - n.time) / 0x100,
+        noteNum : n.data[1],
+      };
+
+      notes.push(note);
       rows[m.data[1]] = undefined;
     }
   });
