@@ -1,8 +1,11 @@
 'use strict';
 
+import _ from 'lodash';
+
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'redux/react';
 
+import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
 
 @connect(state => {
@@ -48,6 +51,7 @@ class Pianoroll extends Component {
 
     return (
       <div className="Pianoroll">
+        {this.renderKeys()}
         <div className="Pianoroll__NotesWrapper" ref="wrapper">
           <div className="Pianoroll__Notes" style={notesStyle}>
             { notes.map((n, i) => this.renderNote(n, i)) }
@@ -59,6 +63,15 @@ class Pianoroll extends Component {
 
   renderNote (note, i) {
     return <PianoNote note={note} key={i} beatWidth={this.state.beatWidth} />;
+  }
+
+  renderKeys () {
+    const height = this.props.zoomY * 10;
+    return (
+      <div className="Pianoroll__Keys">
+        {_.range(128).map(i => <PianoKey key={i} noteNum={128 - i} height={height} />)}
+      </div>
+    );
   }
 
 }
