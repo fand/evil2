@@ -13,14 +13,13 @@ class PianoNote extends Component {
   }
 
   render () {
-    const { note, beatWidth } = this.props;
+    const { note, beatWidth, height } = this.props;
 
     const style = {
-      position : 'absolute',
       top      : 1280 - note.noteNum * 10,
       left     : note.left * beatWidth,
       width    : note.width * beatWidth,
-      height   : 10,
+      height   : height,
     };
 
     return (

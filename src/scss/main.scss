@@ -37,21 +37,33 @@ li {
     width: 800px;
     height   : 200px;
     background: #FFDDCC;
+    overflow : scroll;
+    border   : 1px solid red;
 
     &__NotesWrapper {
         width    : 740px;
-        height   : 100%;
+        height   : 1280px;
         position : absolute;
         top      : 0;
         left     : 60px;
-        border   : 1px solid red;
         overflow : scroll;
     }
     &__Notes {
         background: #FFDDCC;
     }
     &__Note {
-        background: #FF8888;
+        position   : absolute;
+        background : #FF8888;
+    }
+
+    &__Keys {
+        width  : 60px;
+        height : 1280px;
+    }
+
+    &__Key {
+        display : block;
+        width   : 100%;
     }
 }
 

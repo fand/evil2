@@ -19,8 +19,6 @@ class PianoKey extends Component {
 
     const style = {
       background : NOTE_COLOR[noteNum % 12],
-      display    : 'block',
-      width      : '100%',
       height     : height,
     };
 

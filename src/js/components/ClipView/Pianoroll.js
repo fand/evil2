@@ -62,7 +62,8 @@ class Pianoroll extends Component {
   }
 
   renderNote (note, i) {
-    return <PianoNote note={note} key={i} beatWidth={this.state.beatWidth} />;
+    const height = this.props.zoomY * 10;
+    return <PianoNote note={note} key={i} beatWidth={this.state.beatWidth} height={height} />;
   }
 
   renderKeys () {
