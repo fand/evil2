@@ -6,7 +6,7 @@ import { connect } from 'redux/react';
 import PianoNote from './PianoNote';
 
 @connect(state => {
-  const { view } =  state.root;
+  const { view } =  state;
   return { ...view.clipView };
 })
 class Pianoroll extends Component {
