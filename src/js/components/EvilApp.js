@@ -13,7 +13,7 @@ import * as ClipActions from '../actions/ClipActions';
 import * as SongActions from '../actions/SongActions';
 
 @connect(state => {
-  const { song, view } =  state.root;
+  const { song, view } =  state;
   return { song, view };
 })
 class EvilApp extends Component {

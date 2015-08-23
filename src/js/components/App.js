@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'redux/react';
 import reducers from '../reducers/index';
 
-const store = createStore({root : reducers});
+const store = createStore(reducers);
 
 export default class App extends Component {
   render() {
