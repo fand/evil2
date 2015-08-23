@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'redux-react';
+import { connect } from 'redux/react';
 
 import SessionView from './SessionView';
 import ClipView from './ClipView';

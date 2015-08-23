@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EvilApp from './EvilApp';
 import { createStore } from 'redux';
-import { Provider } from 'redux-react';
+import { Provider } from 'redux/react';
 import reducers from '../reducers/index';
 
 const store = createStore({root : reducers});
