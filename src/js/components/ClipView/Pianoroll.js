@@ -3,13 +3,13 @@
 import _ from 'lodash';
 
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'redux/react';
+import { connect } from 'react-redux';
 
 import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
 
 @connect(state => {
-  const { view } =  state.root;
+  const { view } = state;
   return { ...view.clipView };
 })
 class Pianoroll extends Component {

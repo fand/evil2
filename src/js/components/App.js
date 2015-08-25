@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import EvilApp from './EvilApp';
-import { createRedux } from 'redux';
-import { Provider } from 'redux/react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import reducers from '../reducers/index';
 
-const redux = createRedux({root : reducers});
+const store = createStore(reducers);
 
 export default class App extends Component {
   render() {
     return (
-      <Provider redux={redux}>
+      <Provider store={store}>
         {() => <EvilApp />}
       </Provider>
     );
