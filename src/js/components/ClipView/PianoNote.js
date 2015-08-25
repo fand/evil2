@@ -24,10 +24,24 @@ class PianoNote extends Component {
 
     return (
       <div className="PianoNote" style={style}>
-        <div className="PianoNote__Left" />
+        <div className="PianoNote__Left"
+          onDragStart={this.onDragStartLeft()}
+          onDragEnd={this.onDragEnd()} draggable />
         <div className="PianoNote__Right" />
       </div>
     );
+  }
+
+  onDragStartLeft () {
+    // this.isDraggingLeft = true;
+  }
+
+  onDragStartLeft () {
+    // this.isDraggingLeft = true;
+  }
+
+  onDragEnd () {
+
   }
 
 }
