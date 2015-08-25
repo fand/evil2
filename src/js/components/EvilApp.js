@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'redux/react';
+import { connect } from 'react-redux';
 
 import SessionView from './SessionView';
 import ClipView from './ClipView';
@@ -13,7 +13,7 @@ import * as ClipActions from '../actions/ClipActions';
 import * as SongActions from '../actions/SongActions';
 
 @connect(state => {
-  const { song, view } =  state.root;
+  const { song, view } =  state;
   return { song, view };
 })
 class EvilApp extends Component {
