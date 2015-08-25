@@ -53,15 +53,17 @@ const DEMO_INFO = {
   updated : new Date().toISOString(),
 };
 const DEMO_SCENES = [{
-  uuid     : uuid.v4(),
-  name     : 'scene1',
-  clipIds  : ['aaa', 'bbb'],
-  controls : []
+  uuid        : uuid.v4(),
+  name        : 'scene1',
+  clipIds     : ['aaa', 'bbb'],
+  controls    : [],
+  beatsPerBar : 4
 }, {
-  uuid     : uuid.v4(),
-  name     : 'scene2',
-  clipIds  : ['ccc', 'ddd'],
-  controls : []
+  uuid        : uuid.v4(),
+  name        : 'scene2',
+  clipIds     : ['ccc', 'ddd'],
+  controls    : [],
+  beatsPerBar : 4
 }];
 const DEMO_SONG = {
   clipData : {
@@ -79,7 +81,11 @@ const DEMO_SONG = {
           {time: 0x02FF, data: [0x80, 71, 127]},
           {time: 0x0300, data: [0x90, 76, 127]},
           {time: 0x03FF, data: [0x80, 76, 127]},
-        ]
+        ],
+        start    : [1,1,1],
+        end      : [3,1,1],
+        position : [1,1,1],
+        length   : [2,0,0]
       },
       bbb : {
         uuid : 'bbb',
@@ -94,7 +100,11 @@ const DEMO_SONG = {
           {time: 0x02FF, data: [0x80, 71, 127]},
           {time: 0x0300, data: [0x90, 76, 127]},
           {time: 0x03FF, data: [0x80, 76, 127]},
-        ]
+        ],
+        start    : [1,1,1],
+        end      : [3,1,1],
+        position : [1,1,1],
+        length   : [2,0,0]
       },
       ccc : {
         uuid : 'ccc',
@@ -109,7 +119,11 @@ const DEMO_SONG = {
           {time: 0x02FF, data: [0x80, 59, 127]},
           {time: 0x0300, data: [0x90, 64, 127]},
           {time: 0x03FF, data: [0x80, 64, 127]},
-        ]
+        ],
+        start    : [1,1,1],
+        end      : [3,1,1],
+        position : [1,1,1],
+        length   : [2,0,0]
       },
       ddd : {
         uuid : 'ddd',
@@ -124,7 +138,11 @@ const DEMO_SONG = {
           {time: 0x02FF, data: [0x80, 59, 127]},
           {time: 0x0300, data: [0x90, 64, 127]},
           {time: 0x03FF, data: [0x80, 64, 127]},
-        ]
+        ],
+        start    : [1,1,1],
+        end      : [3,1,1],
+        position : [1,1,1],
+        length   : [2,0,0]
       }
     },
     currentClip : undefined,
