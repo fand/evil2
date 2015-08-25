@@ -1,12 +1,12 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'redux/react';
+import { connect } from 'react-redux';
 
 import PianoNote from './PianoNote';
 
 @connect(state => {
-  const { view } =  state;
+  const { view } = state;
   return { ...view.clipView };
 })
 class Pianoroll extends Component {
