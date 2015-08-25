@@ -1940,8 +1940,8 @@
       }
     },
     "redux": {
-      "version": "1.0.0-alpha",
-      "resolved": "https://registry.npmjs.org/redux/-/redux-1.0.0-alpha.tgz",
+      "version": "1.0.0-rc",
+      "resolved": "https://registry.npmjs.org/redux/-/redux-1.0.0-rc.tgz",
       "dependencies": {
         "invariant": {
           "version": "2.1.0",

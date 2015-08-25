@@ -23,7 +23,7 @@
     "lodash": "^3.10.0",
     "pm2": "^0.14.5",
     "react": "^0.13.3",
-    "redux": "^1.0.0-alpha",
+    "redux": "^1.0.0-rc",
     "require-directory": "^2.1.1",
     "uuid": "^2.0.1"
   },
