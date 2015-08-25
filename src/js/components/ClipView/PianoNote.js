@@ -23,7 +23,10 @@ class PianoNote extends Component {
     };
 
     return (
-      <div className="Pianoroll__Note" style={style} />
+      <div className="PianoNote" style={style}>
+        <div className="PianoNote__Left" />
+        <div className="PianoNote__Right" />
+      </div>
     );
   }
 
