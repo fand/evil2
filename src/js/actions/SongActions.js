@@ -5,9 +5,7 @@
 const INIT_SONG = 'INIT_SONG';
 
 export function initSong () {
-  return (dispatch) => {
-    setTimeout(() => {
-      dispatch({ type   : INIT_SONG });
-    }, 0);
+  return {
+    type : INIT_SONG
   };
 }
