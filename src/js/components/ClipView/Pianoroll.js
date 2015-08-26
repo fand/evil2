@@ -9,8 +9,8 @@ import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
 
 @connect(state => {
-  const { view } = state;
-  return { ...view.clipView };
+  const scene = state.song.sessionData.currentScene
+  return { ...state.view.pianoroll, scene };
 })
 class Pianoroll extends Component {
 
@@ -35,14 +35,17 @@ class Pianoroll extends Component {
     const wrapperWidth = this.refs.wrapper.getDOMNode().clientWidth;
     this.setState({
       wrapperWidth : wrapperWidth,
-      beatWidth    : wrapperWidth / this.props.beatsPerBar,
+      beatWidth    : wrapperWidth / this.props.scene.beatsPerBar,
     });
   }
 
   render () {
-    const { clip, notes, zoomX, zoomY, bars, beats, beatsPerBar } = this.props;
+    const { scene, clip, notes, zoomX, zoomY } = this.props;
+    const { beatsPerBar } = scene;
 
-    const totalBars = bars + beats / beatsPerBar;
+    // beats to show in pianoroll by default??????
+    const beats = clip.length[0] * beatsPerBar + clip.length[1] + (clip.length[2] ? 1 : 0);
+    const totalBars = beats / beatsPerBar + (beats % beatsPerBar ? 1 : 0);
 
     const notesStyle = {
       width: `${totalBars * zoomX * 100}%`,
@@ -63,7 +66,14 @@ class Pianoroll extends Component {
 
   renderNote (note, i) {
     const height = this.props.zoomY * 10;
-    return <PianoNote note={note} key={i} beatWidth={this.state.beatWidth} height={height} />;
+    return (
+      <PianoNote
+        note={note}
+        key={i}
+        beatWidth={this.state.beatWidth}
+        height={height}
+        mouse={this.props.mouse} />
+    );
   }
 
   renderKeys () {
