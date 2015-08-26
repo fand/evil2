@@ -28,7 +28,7 @@ class ClipView extends React.Component {
     return (
       <div>
         <ClipInfo clip={this.props.clip} actions={this.props.actions}/>
-        <Pianoroll clip={this.props.clip} />
+        <Pianoroll clip={this.props.clip} actions={this.props.actions}/>
       </div>
     );
   }

@@ -10,7 +10,10 @@ import PianoNote from './PianoNote';
 
 @connect(state => {
   const scene = state.song.sessionData.currentScene
-  return { ...state.view.pianoroll, scene };
+  return {
+    ...state.view.pianoroll,
+    scene,
+  };
 })
 class Pianoroll extends Component {
 
@@ -72,7 +75,7 @@ class Pianoroll extends Component {
         key={i}
         beatWidth={this.state.beatWidth}
         height={height}
-        mouse={this.props.mouse} />
+        actions={this.props.actions} />
     );
   }
 
