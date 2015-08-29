@@ -3,20 +3,23 @@
     background : #FF8888;
 
     &__Left {
-        position : absolute;
-        top      : 0;
-        left     : 0;
-        width    : 10px;
-        height   : 100%;
-        background:#FF00FF;
+        position   : absolute;
+        top        : 0;
+        left       : 0;
+        width      : 10px;
+        height     : 100%;
+        background : #FF00FF;
+        cursor     : col-resize;
     }
 
     &__Right {
-        position : absolute;
-        top      : 0;
-        right    : 0;
-        width    : 10px;
-        height   : 100%;
-        background:#FF00FF;
+        position   : absolute;
+        top        : 0;
+        right      : 0;
+        width      : 10px;
+        height     : 100%;
+        background : #FF00FF;
+        cursor     : col-resize;
     }
+
 }

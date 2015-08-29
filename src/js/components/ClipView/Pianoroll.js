@@ -28,10 +28,18 @@ class Pianoroll extends Component {
   componentDidMount () {
     this.onResize();
     window.addEventListener('resize', ::this.onResize);
+    window.addEventListener('mousemove', ::this.onMouseMove);
+    window.addEventListener('mouseup', ::this.onMouseUp);
   }
 
   componentWillUnmount () {
     window.removeListener('resize', ::this.onResize);
+    window.removeListener('mousemove', ::this.onMouseMove);
+    window.removeListener('mouseup', ::this.onMouseUp);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    console.log(nextProps);
   }
 
   onResize () {
@@ -40,6 +48,16 @@ class Pianoroll extends Component {
       wrapperWidth : wrapperWidth,
       beatWidth    : wrapperWidth / this.props.scene.beatsPerBar,
     });
+  }
+
+  onMouseMove (e) {
+    if (this.props.isDragging) {
+      console.log('>>>>>>>>> dragging');
+    }
+  }
+
+  onMouseUp (e) {
+    this.props.actions.dragEnded();
   }
 
   render () {

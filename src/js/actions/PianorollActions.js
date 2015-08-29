@@ -21,14 +21,15 @@ export function dragMoved (pos) {
   };
 }
 
-export function selectNote () {
+export function selectNote (note) {
   return {
-    type : 'NOTE_SELECTED',
+    type : 'SELECT_NOTE',
+    note,
   };
 }
 
 export function addSelectedNote () {
   return {
-    type : 'NOTE_SELECTED',
+    type : 'ADD_NOTE_SELECTED',
   };
 }
