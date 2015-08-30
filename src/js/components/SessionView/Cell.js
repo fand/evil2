@@ -44,6 +44,7 @@ class Cell extends React.Component {
   onClick () {
     if (!this.props.clipId) { return; }
     this.props.actions.selectClip(this.props.clipId);
+    this.props.actions.selectScene(this.props.columnIdx);
     this.props.actions.selectCell({
       rowIdx    : this.props.rowIdx,
       columnIdx : this.props.columnIdx

@@ -26,3 +26,12 @@ export function clipSelected (clip) {
     clip : clip
   };
 }
+
+export function updateClipMidi ({clipId, midiId, newMidi}) {
+  return {
+    type : 'UPDATE_CLIP_MIDI',
+    clipId,
+    midiId,
+    newMidi,
+  };
+}
