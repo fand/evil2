@@ -8,6 +8,9 @@ const DRAG_ENDED    = 'DRAG_ENDED';
 const DRAG_MOVED    = 'DRAG_MOVED';
 const SELECT_NOTE   = 'SELECT_NOTE';
 
+const NOTE_HEIGHT = 10;
+
+
 const DEFAULT = {
   notes : [],
   zoomX : 1.0, // (1 / zoom) bars per window
@@ -68,27 +71,38 @@ const dragEnded = function (state, action) {
     ...state,
     x : 0,
     y : 0,
+    w : 0,
     isDragging : false,
     dragMode : null,
   };
 };
 
 const dragMoved = function (state, action) {
+  const dx = action.pos.x - state.clickPos.x;
+  const dy = action.pos.y - state.clickPos.y;
   if (state.dragMode === 'NOTE_ON') {
-
+    return {
+      ...state,
+      x : dx,
+      w : -dx,
+    };
   }
   if (state.dragMode === 'NOTE_OFF') {
-
+    return {
+      ...state,
+      w : dx,
+    };
   }
   if (state.dragMode === 'NOTE') {
-
+    const height = NOTE_HEIGHT * state.zoomY;
+    return {
+      ...state,
+      x : dx,
+      y : Math.floor(dy / height) * height,
+    };
   }
 
-  return {
-    ...state,
-    x : action.pos.x - state.clickPos.x,
-    y : action.pos.y - state.clickPos.y,
-  };
+  return state;
 };
 
 const selectNote = function (state, action) {

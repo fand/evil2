@@ -98,6 +98,7 @@ class Pianoroll extends Component {
         isSelected={isSelected}
         x={this.props.x}
         y={this.props.y}
+        w={this.props.w}
         key={i}
         beatWidth={this.state.beatWidth}
         height={height}

@@ -23,8 +23,9 @@ class PianoNote extends Component {
     };
 
     if (this.props.isSelected) {
-      style.top  += this.props.y;
-      style.left += this.props.x;
+      style.top   += this.props.y;
+      style.left  += this.props.x;
+      style.width += this.props.w;
     }
 
     const cx = `PianoNote ${this.props.isSelected ? 'selected' : ''}`;
