@@ -1,9 +1,11 @@
 'use strict';
 
+import uuid from 'uuid';
+
 const CLIP_SELECTED = 'CLIP_SELECTED';
 const DRAG_STARTED  = 'DRAG_STARTED';
 const DRAG_ENDED    = 'DRAG_ENDED';
-const DRAG_MOVED    = 'DRAG_MOVEED';
+const DRAG_MOVED    = 'DRAG_MOVED';
 const SELECT_NOTE   = 'SELECT_NOTE';
 
 const DEFAULT = {
@@ -13,8 +15,9 @@ const DEFAULT = {
   clickPos : null,
   x : 0,
   y : 0,
-  isDragging : false,
-  dragMode : null,
+  isDragging    : false,
+  dragMode      : null,
+  selectedNotes : {},
 };
 
 const isNoteOn  = m => 0x90 <= m && m < 0xA0;
@@ -31,7 +34,8 @@ const midiToNotes = function (midi) {
     if (isNoteOff(m.data[0])) {
       const n = rows[m.data[1]];
       const note = {
-        left    : n.time / 0x100,
+        uuid    : uuid.v4(),
+        left    : n.time  / 0x100,
         width   : (m.time - n.time) / 0x100,
         noteNum : n.data[1],
       };
@@ -60,7 +64,7 @@ const dragStarted = function (state, action) {
 };
 
 const dragEnded = function (state, action) {
-  console.log('########## ended');
+  console.log('######### end');   console.log(state);
   return {
     ...state,
     x : 0,
@@ -71,10 +75,21 @@ const dragEnded = function (state, action) {
 };
 
 const dragMoved = function (state, action) {
+  console.log('MMMM');   console.log(state);
+  if (state.dragMode === 'NOTE_ON') {
+
+  }
+  if (state.dragMode === 'NOTE_OFF') {
+
+  }
+  if (state.dragMode === 'NOTE') {
+
+  }
+
   return {
     ...state,
     x : action.pos.x - state.clickPos.x,
-    y : action.pos.y - state.clickPos.y
+    y : action.pos.y - state.clickPos.y,
   };
 };
 
@@ -113,7 +128,7 @@ const pianorollReducer = function (state=DEFAULT, action) {
   case DRAG_STARTED:
     return dragStarted(state, action);
   case DRAG_MOVED:
-    return dragStarted(state, action);
+    return dragMoved(state, action);
   case DRAG_ENDED:
     return dragEnded(state, action);
   case SELECT_NOTE:

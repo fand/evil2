@@ -39,7 +39,7 @@ class Pianoroll extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log(nextProps);
+    // console.log(nextProps);
   }
 
   onResize () {
@@ -52,8 +52,10 @@ class Pianoroll extends Component {
 
   onMouseMove (e) {
     if (this.props.isDragging) {
-      console.log('>>>>>>>>> dragging');
-      console.log(this.props.dragMode);
+      this.props.actions.dragMoved({
+        x : e.clientX,
+        y : e.clientY,
+      });
     }
   }
 
@@ -91,6 +93,9 @@ class Pianoroll extends Component {
     return (
       <PianoNote
         note={note}
+        selectedNotes={this.props.selectedNotes}
+        x={this.props.x}
+        y={this.props.y}
         key={i}
         beatWidth={this.state.beatWidth}
         height={height}

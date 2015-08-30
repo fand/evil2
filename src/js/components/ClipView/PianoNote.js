@@ -13,7 +13,7 @@ class PianoNote extends Component {
   }
 
   render () {
-    const { note, beatWidth, height } = this.props;
+    const { note, beatWidth, height, selectedNotes } = this.props;
 
     const style = {
       top      : 1280 - note.noteNum * 10,
@@ -21,6 +21,11 @@ class PianoNote extends Component {
       width    : note.width * beatWidth,
       height   : height,
     };
+
+    if (this.props.selectedNotes[note.uuid]) {
+      style.top  += this.props.y;
+      style.left += this.props.x;
+    }
 
     return (
       <div className="PianoNote" style={style}
