@@ -50,3 +50,10 @@ export function startMovingNote () {
     type : 'START_MOVING_NOTE',
   };
 }
+
+export function updateNotes (clip) {
+  return {
+    type : 'UPDATE_NOTES',
+    clip,
+  };
+}

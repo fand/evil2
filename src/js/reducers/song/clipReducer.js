@@ -9,9 +9,26 @@ let data = {
   currentClipId : null
 };
 
-// const updateClipMidis = function (state, action) {
-//   currentClip.
-// };
+const updateClipMidi = function (state, action) {
+  const { clipId, midiId, newMidi } = action;
+
+  const clip = state.clips[clipId];
+
+  for (let i = 0; i < clip.midi.length; i++) {
+    if (clip.midi[i].uuid === midiId) {
+      clip.midi[i] = newMidi;
+      break;
+    }
+  }
+
+  return {
+    ...state,
+    clips : {
+      ...state.clips,
+      [clipId] : clip,
+    },
+  };
+};
 
 export default function clipReducer (state=data, action) {
   switch (action.type) {
@@ -32,8 +49,8 @@ export default function clipReducer (state=data, action) {
       }
     };
 
-  // case 'UPDATE_CLIP_MIDIS':
-  //   return updateClipMidis(state, action);
+  case 'UPDATE_CLIP_MIDI':
+    return updateClipMidi(state, action);
 
   default:
     return state;

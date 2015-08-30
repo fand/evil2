@@ -8,6 +8,9 @@ import { connect } from 'react-redux';
 import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
 
+const NOTE_HEIGHT = 10;
+
+
 @connect(state => {
   const scene = state.song.sessionData.currentScene
   return {
@@ -64,19 +67,57 @@ class Pianoroll extends Component {
 
     const { notes, selectedNotes, dragMode, x, y } = this.props;
 
+    const dx = (x / this.state.beatWidth) * 0xFF;
+    const dy = y / NOTE_HEIGHT;
+
     notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
-      console.log(note);
-      // this.props.actions.updateMidi();
+
+      if (dragMode === 'NOTE_ON') {
+        this.props.actions.updateClipMidi({
+          clipId : this.props.clip.uuid,
+          midiId : note.on.uuid,
+          newMidi : {
+            ...note.on,
+            time : note.on.time + dx,
+          },
+        });
+      }
+      if (dragMode === 'NOTE_OFF') {
+        this.props.actions.updateClipMidi({
+          clipId : this.props.clip.uuid,
+          midiId : note.off.uuid,
+          newMidi : {
+            ...note.off,
+            time : note.off.time + dx,
+          },
+        });
+      }
+      if (dragMode === 'NOTE') {
+        const { on, off } = note;
+        this.props.actions.updateClipMidi({
+          clipId : this.props.clip.uuid,
+          midiId : on.uuid,
+          newMidi : {
+            uuid : on.uuid,
+            time : note.on.time + dx,
+            data : [on.data[0], on.data[1] + dy, on.data[2]],
+          },
+        });
+        this.props.actions.updateClipMidi({
+          clipId : this.props.clip.uuid,
+          midiId : note.off.uuid,
+          newMidi : {
+            uuid : off.uuid,
+            time : note.off.time + dx,
+            data : [off.data[0], off.data[1] + dy, off.data[2]],
+          },
+        });
+      }
+
     });
 
-    // this.props.updateSelectedNotes({
-    //   notes : selectedNotes,
-    //   mode  : dragMode,
-    //   dx    : x,
-    //   dx    : y,
-    // });
-
     this.props.actions.dragEnded();
+    this.props.actions.updateNotes(this.props.clip);
   }
 
   render () {
