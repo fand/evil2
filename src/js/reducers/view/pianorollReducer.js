@@ -82,7 +82,7 @@ const dragEnded = function (state, action) {
     y : 0,
     w : 0,
     isDragging : false,
-    dragMode : null,
+    dragMode   : null,
   };
 };
 

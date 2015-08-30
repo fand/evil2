@@ -67,12 +67,16 @@ class Pianoroll extends Component {
 
     const { notes, selectedNotes, dragMode, x, y } = this.props;
 
+    if (Math.abs(x) + Math.abs(y) < 40) {
+      this.props.actions.dragEnded();
+      return;
+    }
+
     const dx = (x / this.state.beatWidth) * 0xFF;
-    const dy = y / NOTE_HEIGHT;
+    const dy = - y / NOTE_HEIGHT;
 
-    notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
-
-      if (dragMode === 'NOTE_ON') {
+    if (dragMode === 'NOTE_ON') {
+      notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         this.props.actions.updateClipMidi({
           clipId : this.props.clip.uuid,
           midiId : note.on.uuid,
@@ -81,8 +85,10 @@ class Pianoroll extends Component {
             time : note.on.time + dx,
           },
         });
-      }
-      if (dragMode === 'NOTE_OFF') {
+      });
+    }
+    if (dragMode === 'NOTE_OFF') {
+      notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         this.props.actions.updateClipMidi({
           clipId : this.props.clip.uuid,
           midiId : note.off.uuid,
@@ -91,8 +97,10 @@ class Pianoroll extends Component {
             time : note.off.time + dx,
           },
         });
-      }
-      if (dragMode === 'NOTE') {
+      });
+    }
+    if (dragMode === 'NOTE') {
+      notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const { on, off } = note;
         this.props.actions.updateClipMidi({
           clipId : this.props.clip.uuid,
@@ -112,9 +120,8 @@ class Pianoroll extends Component {
             data : [off.data[0], off.data[1] + dy, off.data[2]],
           },
         });
-      }
-
-    });
+      });
+    }
 
     this.props.actions.dragEnded();
     this.props.actions.updateNotes(this.props.clip);
