@@ -39,10 +39,12 @@ class EvilApp extends Component {
     const clipActions      = bindActionCreators(ClipActions, dispatch);
     const pianorollActions = bindActionCreators(PianorollActions, dispatch);
 
+    const currentClip = song.clipData.clips[song.clipData.currentClipId];
+
     return (
       <div className="EvilApp">
         <SessionView clips={song.clipData.clips} session={song.sessionData} actions={sessionActions} />
-        <ClipView clip={song.clipData.currentClip} actions={{...clipActions, ...pianorollActions}} />
+        <ClipView clip={currentClip} actions={{...clipActions, ...pianorollActions}} />
         <SongInfo info={song.infoData} />
       </div>
     );
