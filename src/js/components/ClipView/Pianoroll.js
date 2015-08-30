@@ -77,54 +77,76 @@ class Pianoroll extends Component {
 
     if (dragMode === 'NOTE_ON') {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
+        const newOn = {
+          ...note.on,
+          time : note.on.time + dx,
+        };
         this.props.actions.updateClipMidi({
-          clipId : this.props.clip.uuid,
-          midiId : note.on.uuid,
-          newMidi : {
-            ...note.on,
-            time : note.on.time + dx,
-          },
+          clipId  : this.props.clip.uuid,
+          midiId  : note.on.uuid,
+          newMidi : newOn,
+        });
+        this.props.actions.updateNote({
+          ...note,
+          left  : newMidi.time / 0x100,
+          width : (note.off.time - newMidi.time) / 0x100,
+          onn   : newOn,
         });
       });
     }
     if (dragMode === 'NOTE_OFF') {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
+        const newOff = {
+          ...note.off,
+          time : note.off.time + dx,
+        };
+
         this.props.actions.updateClipMidi({
-          clipId : this.props.clip.uuid,
-          midiId : note.off.uuid,
-          newMidi : {
-            ...note.off,
-            time : note.off.time + dx,
-          },
+          clipId  : this.props.clip.uuid,
+          midiId  : note.off.uuid,
+          newMidi : newOff,
+        });
+        this.props.actions.updateNote({
+          ...note,
+          width : (newMidi.time - note.on.time) / 0x100,
+          off   : newOff,
         });
       });
     }
     if (dragMode === 'NOTE') {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const { on, off } = note;
+        const newOn = {
+          uuid : on.uuid,
+          time : note.on.time + dx,
+          data : [on.data[0], on.data[1] + dy, on.data[2]],
+        };
+        const newOff = {
+          uuid : off.uuid,
+          time : note.off.time + dx,
+          data : [off.data[0], off.data[1] + dy, off.data[2]],
+        }
         this.props.actions.updateClipMidi({
-          clipId : this.props.clip.uuid,
-          midiId : on.uuid,
-          newMidi : {
-            uuid : on.uuid,
-            time : note.on.time + dx,
-            data : [on.data[0], on.data[1] + dy, on.data[2]],
-          },
+          clipId  : this.props.clip.uuid,
+          midiId  : on.uuid,
+          newMidi : newOn,
         });
         this.props.actions.updateClipMidi({
-          clipId : this.props.clip.uuid,
-          midiId : note.off.uuid,
-          newMidi : {
-            uuid : off.uuid,
-            time : note.off.time + dx,
-            data : [off.data[0], off.data[1] + dy, off.data[2]],
-          },
+          clipId  : this.props.clip.uuid,
+          midiId  : note.off.uuid,
+          newMidi : newOff,
+        });
+        this.props.actions.updateNote({
+          ...note,
+          left  : newOn.time / 0x100,
+          width : (newOff.time - newOn.time) / 0x100,
+          on    : newOn,
+          off   : newOff,
         });
       });
     }
 
     this.props.actions.dragEnded();
-    this.props.actions.updateNotes(this.props.clip);
   }
 
   render () {

@@ -60,11 +60,18 @@ const clipSelected = function (state, action) {
   };
 };
 
-const updateNotes = function (state, action) {
-  return {
-    ...state,
-    notes : midiToNotes(action.clip.midi),
-  };
+const updateNote = function (state, action) {
+  const { newNote } = action;
+  for (let i = 0; i < state.notes.length; i++) {
+    if (state.notes[i].uuid === newNote.uuid) {
+      state.notes[i] = newNote;
+      return {
+        ...state,
+      };
+    }
+  }
+
+  return state;
 };
 
 const dragStarted = function (state, action) {
@@ -174,8 +181,8 @@ const pianorollReducer = function (state=DEFAULT, action) {
   case 'START_MOVING_NOTE':
     return startMovingNote(state, action);
 
-  case 'UPDATE_NOTES':
-    return updateNotes(state, action);
+  case 'UPDATE_NOTE':
+    return updateNote(state, action);
 
   default:
     return state;

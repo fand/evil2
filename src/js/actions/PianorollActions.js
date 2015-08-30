@@ -51,9 +51,9 @@ export function startMovingNote () {
   };
 }
 
-export function updateNotes (clip) {
+export function updateNote (newNote) {
   return {
-    type : 'UPDATE_NOTES',
-    clip,
+    type : 'UPDATE_NOTE',
+    newNote,
   };
 }
