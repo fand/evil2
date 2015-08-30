@@ -67,7 +67,7 @@ class Pianoroll extends Component {
 
     const { notes, selectedNotes, dragMode, x, y } = this.props;
 
-    if (Math.abs(x) + Math.abs(y) < 40) {
+    if (Math.abs(x) < 20 && Math.abs(y) < 10) {
       this.props.actions.dragEnded();
       return;
     }
@@ -137,11 +137,12 @@ class Pianoroll extends Component {
           newMidi : newOff,
         });
         this.props.actions.updateNote({
-          ...note,
-          left  : newOn.time / 0x100,
-          width : (newOff.time - newOn.time) / 0x100,
-          on    : newOn,
-          off   : newOff,
+          uuid    : note.uuid,
+          left    : newOn.time / 0x100,
+          width   : (newOff.time - newOn.time) / 0x100,
+          noteNum : newOn.data[1],
+          on      : newOn,
+          off     : newOff,
         });
       });
     }
