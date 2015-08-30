@@ -12,12 +12,21 @@ let data = {
 export default function clipReducer (state=data, action) {
   switch (action.type) {
   case SELECT_CLIP:
-    state.currentClip = state.clips[action.clipId];
-    return state;
+    return {
+      ...state,
+      currentClip: state.clips[action.clipId],
+    };
   case SET_CLIP_NAME:
     let clip = state.clips[action.clipId];
     clip.name = action.name;
-    return state;
+    return {
+      ...state,
+      clips : {
+        ...state.clips,
+        [action.clipId] : clip,
+      }
+    };
+
   default:
     return state;
   }

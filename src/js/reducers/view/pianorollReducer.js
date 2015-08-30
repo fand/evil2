@@ -41,6 +41,8 @@ const midiToNotes = function (midi) {
         left    : n.time  / 0x100,
         width   : (m.time - n.time) / 0x100,
         noteNum : n.data[1],
+        on  : n,
+        off : m,
       };
 
       notes.push(note);

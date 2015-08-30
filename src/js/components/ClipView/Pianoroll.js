@@ -60,6 +60,22 @@ class Pianoroll extends Component {
   }
 
   onMouseUp (e) {
+    if (!this.props.isDragging) { return; }
+
+    const { notes, selectedNotes, dragMode, x, y } = this.props;
+
+    notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
+      console.log(note);
+      // this.props.actions.updateMidi();
+    });
+
+    // this.props.updateSelectedNotes({
+    //   notes : selectedNotes,
+    //   mode  : dragMode,
+    //   dx    : x,
+    //   dx    : y,
+    // });
+
     this.props.actions.dragEnded();
   }
 
