@@ -90,10 +90,12 @@ class Pianoroll extends Component {
 
   renderNote (note, i) {
     const height = this.props.zoomY * 10;
+    const isSelected = this.props.selectedNotes[note.uuid];
+
     return (
       <PianoNote
         note={note}
-        selectedNotes={this.props.selectedNotes}
+        isSelected={isSelected}
         x={this.props.x}
         y={this.props.y}
         key={i}

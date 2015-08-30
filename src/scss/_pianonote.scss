@@ -32,4 +32,8 @@
         cursor     : move;
     }
 
+
+    &.selected {
+        box-shadow : 0px 0px 3px #0000FF;
+    }
 }

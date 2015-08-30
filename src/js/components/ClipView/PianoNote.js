@@ -22,13 +22,15 @@ class PianoNote extends Component {
       height   : height,
     };
 
-    if (this.props.selectedNotes[note.uuid]) {
+    if (this.props.isSelected) {
       style.top  += this.props.y;
       style.left += this.props.x;
     }
 
+    const cx = `PianoNote ${this.props.isSelected ? 'selected' : ''}`;
+
     return (
-      <div className="PianoNote" style={style}
+      <div className={cx} style={style}
         onMouseDown={::this.selectNote}>
         <div className="PianoNote__Left"
           onMouseDown={::this.onMouseDownLeftHandle} />
@@ -41,10 +43,10 @@ class PianoNote extends Component {
   }
 
   selectNote (e) {
-    if (e.ctrlKey) {
-      this.props.actions.addSelectedNote();
+    if (e.shiftKey) {
+      this.props.actions.addSelectedNote(this.props.note);
     }
-    else {
+    else if (!this.props.isSelected) {
       this.props.actions.selectNote(this.props.note);
     }
   }

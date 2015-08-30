@@ -64,7 +64,6 @@ const dragStarted = function (state, action) {
 };
 
 const dragEnded = function (state, action) {
-  console.log('######### end');   console.log(state);
   return {
     ...state,
     x : 0,
@@ -75,7 +74,6 @@ const dragEnded = function (state, action) {
 };
 
 const dragMoved = function (state, action) {
-  console.log('MMMM');   console.log(state);
   if (state.dragMode === 'NOTE_ON') {
 
   }
@@ -97,6 +95,16 @@ const selectNote = function (state, action) {
   return {
     ...state,
     selectedNotes : { [action.note.uuid] : true }
+  };
+};
+
+const addSelectedNote = function (state, action) {
+  return {
+    ...state,
+    selectedNotes : {
+      ...state.selectedNotes,
+      [action.note.uuid] : true
+    }
   };
 };
 
@@ -133,6 +141,8 @@ const pianorollReducer = function (state=DEFAULT, action) {
     return dragEnded(state, action);
   case SELECT_NOTE:
     return selectNote(state, action);
+  case 'ADD_SELECTED_NOTE':
+    return addSelectedNote(state, action);
 
   case 'START_MOVING_NOTE_ON':
     return startMovingNoteOn(state, action);

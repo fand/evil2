@@ -28,9 +28,10 @@ export function selectNote (note) {
   };
 }
 
-export function addSelectedNote () {
+export function addSelectedNote (note) {
   return {
-    type : 'ADD_NOTE_SELECTED',
+    type : 'ADD_SELECTED_NOTE',
+    note,
   };
 }
 
