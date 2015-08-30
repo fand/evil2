@@ -33,3 +33,19 @@ export function addSelectedNote () {
     type : 'ADD_NOTE_SELECTED',
   };
 }
+
+export function startMovingNoteOn () {
+  return {
+    type : 'START_MOVING_NOTE_ON',
+  };
+}
+export function startMovingNoteOff () {
+  return {
+    type : 'START_MOVING_NOTE_OFF',
+  };
+}
+export function startMovingNote () {
+  return {
+    type : 'START_MOVING_NOTE',
+  };
+}

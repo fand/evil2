@@ -26,9 +26,11 @@ class PianoNote extends Component {
       <div className="PianoNote" style={style}
         onMouseDown={::this.selectNote}>
         <div className="PianoNote__Left"
-          onMouseDown={::this.onMouseDown} />
+          onMouseDown={::this.onMouseDownLeftHandle} />
         <div className="PianoNote__Right"
-          onMouseDown={::this.onMouseDown} />
+          onMouseDown={::this.onMouseDownRightHandle} />
+        <div className="PianoNote__Center"
+          onMouseDown={::this.onMouseDownCenter} />
       </div>
     );
   }
@@ -42,7 +44,24 @@ class PianoNote extends Component {
     }
   }
 
-  onMouseDown (e) {
+  onMouseDownLeftHandle (e) {
+    this.props.actions.startMovingNoteOn();
+    this.props.actions.dragStarted({
+      x : e.clientX,
+      y : e.clientY,
+    });
+  }
+
+  onMouseDownRightHandle (e) {
+    this.props.actions.startMovingNoteOff();
+    this.props.actions.dragStarted({
+      x : e.clientX,
+      y : e.clientY,
+    });
+  }
+
+  onMouseDownCenter (e) {
+    this.props.actions.startMovingNote();
     this.props.actions.dragStarted({
       x : e.clientX,
       y : e.clientY,

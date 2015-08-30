@@ -14,6 +14,7 @@ const DEFAULT = {
   x : 0,
   y : 0,
   isDragging : false,
+  dragMode : null,
 };
 
 const isNoteOn  = m => 0x90 <= m && m < 0xA0;
@@ -65,6 +66,7 @@ const dragEnded = function (state, action) {
     x : 0,
     y : 0,
     isDragging : false,
+    dragMode : null,
   };
 };
 
@@ -83,6 +85,27 @@ const selectNote = function (state, action) {
   };
 };
 
+
+const startMovingNoteOn = function (state, action) {
+  return {
+    ...state,
+    dragMode : 'NOTE_ON',
+  };
+};
+const startMovingNoteOff = function (state, action) {
+  return {
+    ...state,
+    dragMode : 'NOTE_OFF',
+  };
+};
+const startMovingNote = function (state, action) {
+  return {
+    ...state,
+    dragMode : 'NOTE',
+  };
+};
+
+
 const pianorollReducer = function (state=DEFAULT, action) {
   switch (action.type) {
   case CLIP_SELECTED:
@@ -95,6 +118,14 @@ const pianorollReducer = function (state=DEFAULT, action) {
     return dragEnded(state, action);
   case SELECT_NOTE:
     return selectNote(state, action);
+
+  case 'START_MOVING_NOTE_ON':
+    return startMovingNoteOn(state, action);
+  case 'START_MOVING_NOTE_OFF':
+    return startMovingNoteOff(state, action);
+  case 'START_MOVING_NOTE':
+    return startMovingNote(state, action);
+
   default:
     return state;
   }

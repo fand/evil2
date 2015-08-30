@@ -53,6 +53,7 @@ class Pianoroll extends Component {
   onMouseMove (e) {
     if (this.props.isDragging) {
       console.log('>>>>>>>>> dragging');
+      console.log(this.props.dragMode);
     }
   }
 
