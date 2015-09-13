@@ -3,7 +3,7 @@
 // import Song from '../models/Song';
 import CONST from '../../CONST';
 
-import sessionReducer from './sessionReducer';
+import sessionReducer from '../../session/reducers/sessionReducer';
 import clipReducer from './clipReducer';
 import infoReducer from './infoReducer';
 
