@@ -4,11 +4,11 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import SessionView from './SessionView';
+import SessionView from '../session/components/SessionView';
 import ClipView from './ClipView';
 import SongInfo from './SongInfo';
 
-import * as SessionActions from '../actions/SessionActions';
+import * as SessionActions from '../session/actions/SessionActions';
 import * as ClipActions from '../actions/ClipActions';
 import * as SongActions from '../actions/SongActions';
 import * as PianorollActions from '../actions/PianorollActions';
