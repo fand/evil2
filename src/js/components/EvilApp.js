@@ -32,13 +32,12 @@ class EvilApp extends Component {
   }
 
   render () {
-    const { song, dispatch } = this.props;
-    const sessionActions   = bindActionCreators(SessionActions, dispatch);
+    const { song } = this.props;
     const currentClip = song.clipData.clips[song.clipData.currentClipId];
 
     return (
       <div className="EvilApp">
-        <SessionView clips={song.clipData.clips} session={song.sessionData} actions={sessionActions} />
+        <SessionView clips={song.clipData.clips} session={song.sessionData} />
         <ClipView clip={currentClip} />
         <SongInfo info={song.infoData} />
       </div>
