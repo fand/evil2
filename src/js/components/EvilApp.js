@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import SessionView from '../session/components/SessionView';
 import ClipView from '../clip/components/ClipView';
-import SongInfo from './SongInfo';
+import SongInfo from '../info/components/SongInfo';
 
 import * as SessionActions from '../session/actions/SessionActions';
 import * as SongActions from '../actions/SongActions';
