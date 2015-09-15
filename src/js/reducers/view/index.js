@@ -1,6 +1,6 @@
 'use strict';
 
-import clipViewReducer from './clipViewReducer';
+import clipViewReducer from '../../clip/reducers/clipViewReducer';
 import pianorollReducer from '../../pianoroll/reducers/pianorollReducer';
 
 export default function (state, action) {
