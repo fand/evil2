@@ -27,13 +27,12 @@ class EvilApp extends Component {
   }
 
   componentDidMount () {
-    const { song, dispatch } = this.props;
-    const songActions = bindActionCreators(SongActions, dispatch);
+    const songActions = bindActionCreators(SongActions, this.props.dispatch);
     songActions.initSong();
   }
 
   render () {
-    const { song, clip, dispatch } = this.props;
+    const { song, dispatch } = this.props;
     const sessionActions   = bindActionCreators(SessionActions, dispatch);
     const currentClip = song.clipData.clips[song.clipData.currentClipId];
 
