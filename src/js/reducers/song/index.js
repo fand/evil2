@@ -3,9 +3,9 @@
 // import Song from '../models/Song';
 import CONST from '../../CONST';
 
-import sessionReducer from './sessionReducer';
-import clipReducer from './clipReducer';
-import infoReducer from './infoReducer';
+import sessionReducer from '../../session/reducers/sessionReducer';
+import clipReducer from '../../clip/reducers/clipReducer';
+import infoReducer from '../../info/reducers/infoReducer';
 
 const INIT_SONG   = 'INIT_SONG';
 

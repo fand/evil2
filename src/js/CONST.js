@@ -2,6 +2,8 @@
 
 import uuid from 'uuid';
 
+import SESSION from './session/CONST';
+
 const SONG_MODE = {
   SESSION_MODE     : 'SESSION_MODE',
   ARRANGEMENT_MODE : 'ARRANGEMENT_MODE'
@@ -27,9 +29,7 @@ const DEFAULT_SONG = {
     clips       : {},
     currentClip : undefined
   },
-  sessionData : {
-    scenes : [],
-  },
+  sessionData : SESSION.DEFAULT_SESSION,
   arrangementData : {
     arrangements : [],
   },
@@ -147,9 +147,7 @@ const DEMO_SONG = {
     },
     currentClip : undefined,
   },
-  sessionData : {
-    scenes : DEMO_SCENES,
-  },
+  sessionData : SESSION.DEMO_SESSION,
   arrangementData : {
     arrangements : [],
   },

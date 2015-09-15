@@ -4,14 +4,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import SessionView from './SessionView';
-import ClipView from './ClipView';
-import SongInfo from './SongInfo';
+import SessionView from '../session/components/SessionView';
+import ClipView from '../clip/components/ClipView';
+import SongInfo from '../info/components/SongInfo';
 
-import * as SessionActions from '../actions/SessionActions';
-import * as ClipActions from '../actions/ClipActions';
+import * as SessionActions from '../session/actions/SessionActions';
 import * as SongActions from '../actions/SongActions';
-import * as PianorollActions from '../actions/PianorollActions';
+
 
 @connect(state => {
   const { song, view } =  state;
@@ -28,23 +27,18 @@ class EvilApp extends Component {
   }
 
   componentDidMount () {
-    const { song, dispatch } = this.props;
-    const songActions = bindActionCreators(SongActions, dispatch);
+    const songActions = bindActionCreators(SongActions, this.props.dispatch);
     songActions.initSong();
   }
 
   render () {
-    const { song, clip, dispatch } = this.props;
-    const sessionActions   = bindActionCreators(SessionActions, dispatch);
-    const clipActions      = bindActionCreators(ClipActions, dispatch);
-    const pianorollActions = bindActionCreators(PianorollActions, dispatch);
-
+    const { song } = this.props;
     const currentClip = song.clipData.clips[song.clipData.currentClipId];
 
     return (
       <div className="EvilApp">
-        <SessionView clips={song.clipData.clips} session={song.sessionData} actions={sessionActions} />
-        <ClipView clip={currentClip} actions={{...clipActions, ...pianorollActions}} />
+        <SessionView clips={song.clipData.clips} session={song.sessionData} />
+        <ClipView clip={currentClip} />
         <SongInfo info={song.infoData} />
       </div>
     );

@@ -1,10 +1,17 @@
 'use strict';
 
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import Pianoroll from './Pianoroll';
+import * as ClipActions from '../actions/ClipActions';
+
+import Pianoroll from '../../pianoroll/components/Pianoroll';
 import ClipInfo from './ClipInfo';
 
+@connect((state) => state, (dispatch) => {
+  return { actions : bindActionCreators(ClipActions, dispatch) };
+})
 class ClipView extends React.Component {
 
   static propTypes = {
@@ -25,10 +32,11 @@ class ClipView extends React.Component {
 
   renderClip () {
     if (!this.props.clip) { return; }
+
     return (
       <div>
         <ClipInfo clip={this.props.clip} actions={this.props.actions}/>
-        <Pianoroll clip={this.props.clip} actions={this.props.actions}/>
+        <Pianoroll clip={this.props.clip} clipActions={this.props.actions}/>
       </div>
     );
   }
