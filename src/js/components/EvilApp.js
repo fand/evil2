@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import SessionView from '../session/components/SessionView';
-import ClipView from './ClipView';
+import ClipView from '../clip/components/ClipView';
 import SongInfo from './SongInfo';
 
 import * as SessionActions from '../session/actions/SessionActions';
-import * as ClipActions from '../actions/ClipActions';
+// import * as ClipActions from '../actions/ClipActions';
 import * as SongActions from '../actions/SongActions';
 import * as PianorollActions from '../actions/PianorollActions';
 
@@ -36,7 +36,7 @@ class EvilApp extends Component {
   render () {
     const { song, clip, dispatch } = this.props;
     const sessionActions   = bindActionCreators(SessionActions, dispatch);
-    const clipActions      = bindActionCreators(ClipActions, dispatch);
+    // const clipActions      = bindActionCreators(ClipActions, dispatch);
     const pianorollActions = bindActionCreators(PianorollActions, dispatch);
 
     const currentClip = song.clipData.clips[song.clipData.currentClipId];
@@ -44,7 +44,7 @@ class EvilApp extends Component {
     return (
       <div className="EvilApp">
         <SessionView clips={song.clipData.clips} session={song.sessionData} actions={sessionActions} />
-        <ClipView clip={currentClip} actions={{...clipActions, ...pianorollActions}} />
+        <ClipView clip={currentClip} />
         <SongInfo info={song.infoData} />
       </div>
     );

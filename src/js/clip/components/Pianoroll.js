@@ -1,9 +1,12 @@
 'use strict';
 
 import _ from 'lodash';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import * as PianorollActions from '../../actions/PianorollActions';
 
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 
 import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
@@ -17,6 +20,8 @@ const NOTE_HEIGHT = 10;
     ...state.view.pianoroll,
     scene,
   };
+}, dispatch => {
+  return { actions : bindActionCreators(PianorollActions, dispatch) };
 })
 class Pianoroll extends Component {
 
@@ -81,7 +86,7 @@ class Pianoroll extends Component {
           ...note.on,
           time : note.on.time + dx,
         };
-        this.props.actions.updateClipMidi({
+        this.props.clipActions.updateClipMidi({
           clipId  : this.props.clip.uuid,
           midiId  : note.on.uuid,
           newMidi : newOn,
@@ -101,7 +106,7 @@ class Pianoroll extends Component {
           time : note.off.time + dx,
         };
 
-        this.props.actions.updateClipMidi({
+        this.props.clipActions.updateClipMidi({
           clipId  : this.props.clip.uuid,
           midiId  : note.off.uuid,
           newMidi : newOff,
@@ -126,12 +131,12 @@ class Pianoroll extends Component {
           time : note.off.time + dx,
           data : [off.data[0], off.data[1] + dy, off.data[2]],
         }
-        this.props.actions.updateClipMidi({
+        this.props.clipActions.updateClipMidi({
           clipId  : this.props.clip.uuid,
           midiId  : on.uuid,
           newMidi : newOn,
         });
-        this.props.actions.updateClipMidi({
+        this.props.clipActions.updateClipMidi({
           clipId  : this.props.clip.uuid,
           midiId  : note.off.uuid,
           newMidi : newOff,
