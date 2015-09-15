@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as PianorollActions from '../../actions/PianorollActions';
+import * as PianorollActions from '../actions/PianorollActions';
 
 import React, { Component, PropTypes } from 'react';
 
