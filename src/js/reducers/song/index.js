@@ -5,7 +5,7 @@ import CONST from '../../CONST';
 
 import sessionReducer from '../../session/reducers/sessionReducer';
 import clipReducer from '../../clip/reducers/clipReducer';
-import infoReducer from './infoReducer';
+import infoReducer from '../../info/reducers/infoReducer';
 
 const INIT_SONG   = 'INIT_SONG';
 
