@@ -1,7 +1,7 @@
 'use strict';
 
 import clipViewReducer from './clipViewReducer';
-import pianorollReducer from './pianorollReducer';
+import pianorollReducer from '../../pianoroll/reducers/pianorollReducer';
 
 export default function (state, action) {
   const clipView = clipViewReducer(state.clipView, action);
