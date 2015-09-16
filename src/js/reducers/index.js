@@ -1,6 +1,6 @@
 'use strict';
 
-import songReducer from './song';
+import songReducer from '../song/reducers/songReducer';
 import viewReducer from './view';
 
 const DEFAULT = {

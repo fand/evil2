@@ -9,7 +9,7 @@ import ClipView from '../clip/components/ClipView';
 import SongInfo from '../info/components/SongInfo';
 
 import * as SessionActions from '../session/actions/SessionActions';
-import * as SongActions from '../actions/SongActions';
+import * as SongActions from '../song/actions/SongActions';
 
 
 @connect(state => {
