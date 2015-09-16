@@ -1,16 +1,11 @@
 'use strict';
 
-// import { SELECT_CLIP } from '../CONST';
+import CONST from '../CONST';
+
 const SELECT_SCENE = 'SELECT_SCENE';
 const SELECT_CELL = 'SELECT_CELL';
 
-let data = {
-  scenes       : [],
-  currentScene : null,
-  currentCell  : null,
-};
-
-export default function sessionReducer (state=data, action) {
+export default function sessionReducer (state=CONST.DEFAULT_SESSION, action) {
 
   switch (action.type) {
   case SELECT_CELL:
