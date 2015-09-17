@@ -11,10 +11,9 @@ import SongInfo from '../info/components/SongInfo';
 import * as SessionActions from '../session/actions/SessionActions';
 import * as SongActions from '../song/actions/SongActions';
 
-
-@connect(state => {
-  const { song, view } =  state;
-  return { song, view };
+@connect((state) => {
+  const { clipData, sessionData, infoData } = state;
+  return { clipData, sessionData, infoData };
 })
 class EvilApp extends Component {
 
@@ -32,14 +31,15 @@ class EvilApp extends Component {
   }
 
   render () {
-    const { song } = this.props;
-    const currentClip = song.clipData.clips[song.clipData.currentClipId];
+    const { clipData, sessionData, infoData } = this.props;
+
+    const currentClip = clipData.clips[clipData.currentClipId];
 
     return (
       <div className="EvilApp">
-        <SessionView clips={song.clipData.clips} session={song.sessionData} />
+        <SessionView clips={clipData.clips} session={sessionData} />
         <ClipView clip={currentClip} />
-        <SongInfo info={song.infoData} />
+        <SongInfo info={infoData} />
       </div>
     );
   }

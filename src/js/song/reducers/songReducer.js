@@ -1,13 +1,7 @@
 'use strict';
 
-// import Song from '../models/Song';
 import CONST from '../../CONST';
-
-import sessionReducer from '../../session/reducers/sessionReducer';
-import clipReducer from '../../clip/reducers/clipReducer';
-import infoReducer from '../../info/reducers/infoReducer';
-
-const INIT_SONG   = 'INIT_SONG';
+const INIT_SONG = 'INIT_SONG';
 
 /**
  * Load song from data or create empty song.
@@ -26,11 +20,7 @@ const songReducer = function (state=CONST.DEFAULT_SONG, action) {
     return initSong(state, action);
 
   default:
-    // init clips first!
-    const clipData    = clipReducer(state.clipData, action);
-    const sessionData = sessionReducer(state.sessionData, action);
-    const infoData    = infoReducer(state.infoData, action);
-    return { sessionData, clipData, infoData };
+    return state;
   }
 
 };

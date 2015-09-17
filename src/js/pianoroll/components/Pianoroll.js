@@ -15,9 +15,9 @@ const NOTE_HEIGHT = 10;
 
 
 @connect(state => {
-  const scene = state.song.sessionData.currentScene
+  const scene = state.sessionData.currentScene
   return {
-    ...state.view.pianoroll,
+    ...state.pianoroll,
     scene,
   };
 }, dispatch => {

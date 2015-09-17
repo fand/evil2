@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import EvilApp from './EvilApp';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducers from '../reducers/index';
+import reducer from '../reducer';
 
-const store = createStore(reducers);
+const store = createStore(reducer);
 
 export default class App extends Component {
   render() {
