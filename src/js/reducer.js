@@ -5,6 +5,7 @@ import pianorollReducer from './pianoroll/reducers/pianorollReducer';
 import sessionReducer from './session/reducers/sessionReducer';
 import clipReducer from './clip/reducers/clipReducer';
 import infoReducer from './info/reducers/infoReducer';
+import playerReducer from './player/reducers/playerReducer';
 
 // const DEFAULT = {
 //   clipData    : {},
@@ -24,6 +25,7 @@ const reducer = function (state=CONST.DEMO_SONG, action) {
   const infoData    = infoReducer(state.infoData, action);
   const clipView    = clipViewReducer(state.clipView, action);
   const pianoroll   = pianorollReducer(state.pianoroll, action);
+  const playerData  = playerReducer(state.playerData, action);
 
   return {
     clipData,
@@ -31,6 +33,7 @@ const reducer = function (state=CONST.DEMO_SONG, action) {
     infoData,
     clipView,
     pianoroll,
+    playerData,
   };
 };
 

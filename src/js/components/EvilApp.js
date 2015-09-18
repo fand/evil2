@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import SessionView from '../session/components/SessionView';
 import ClipView from '../clip/components/ClipView';
 import SongInfo from '../info/components/SongInfo';
+import PlayerView from '../player/components/PlayerView';
 
 import * as SessionActions from '../session/actions/SessionActions';
 import * as SongActions from '../song/actions/SongActions';
@@ -40,6 +41,7 @@ class EvilApp extends Component {
         <SessionView clips={clipData.clips} session={sessionData} />
         <ClipView clip={currentClip} />
         <SongInfo info={infoData} />
+        <PlayerView />
       </div>
     );
   }
