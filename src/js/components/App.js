@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import EvilApp from './EvilApp';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducer from '../reducer';
 
-const store = createStore(reducer);
+const createStoreWithMiddleware = applyMiddleware(
+  thunkMiddleware
+)(createStore);
+
+const store = createStoreWithMiddleware(reducer);
 
 export default class App extends Component {
   render() {
