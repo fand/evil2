@@ -3,8 +3,12 @@
 import { Actions } from '../CONST';
 
 const play = () => {
+  console.log('>>');
 
   return (dispatch, getState) => {
+    dispatch({
+      type : Actions.PLAY,
+    });
 
     const interval = getState().playerData.interval;
 
@@ -13,11 +17,7 @@ const play = () => {
       if (!state.playerData.isPlaying) { return; }
 
       dispatch({
-        ...state,
-        playerData : {
-          ...state.playerData,
-          position : position + (interval / beatLength),
-        },
+        type: Actions.TICK,
       });
 
       setTimeout(tick, interval);
@@ -26,9 +26,6 @@ const play = () => {
     tick();
   };
 
-  return {
-    type : Actions.PLAY,
-  };
 };
 
 const stop = () => {

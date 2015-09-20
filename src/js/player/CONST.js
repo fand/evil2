@@ -12,6 +12,7 @@ const DEFAULT_PLAY = {
 const Actions = {
   PLAY : Symbol(),
   STOP : Symbol(),
+  TICK : Symbol(),
 };
 
 export default {
