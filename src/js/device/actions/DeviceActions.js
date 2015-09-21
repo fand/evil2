@@ -8,6 +8,13 @@ const play = () => {
   };
 };
 
+const initDevices = () => {
+  return {
+    type: Actions.INIT_DEVICES,
+  };
+};
+
 export default {
   play,
+  initDevices,
 };

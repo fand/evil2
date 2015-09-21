@@ -1,11 +1,13 @@
 'use strict';
 
 const DEFAULT_DEVICE = {
-  isPlaying : false
+  isPlaying : false,
+  devices   : [],
 };
 
 const Actions = {
-  PLAY : Symbol(),
+  PLAY         : Symbol(),
+  INIT_DEVICES : Symbol(),
 };
 
 export default {

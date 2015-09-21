@@ -11,6 +11,7 @@ import PlayerView from '../player/components/PlayerView';
 
 import * as SessionActions from '../session/actions/SessionActions';
 import * as SongActions from '../song/actions/SongActions';
+import * as DeviceActions from '../device/actions/DeviceActions';
 
 @connect((state) => {
   const { clipData, sessionData, infoData } = state;
@@ -29,6 +30,7 @@ class EvilApp extends Component {
   componentDidMount () {
     const songActions = bindActionCreators(SongActions, this.props.dispatch);
     songActions.initSong();
+    this.props.dispatch(DeviceActions.initDevices());
   }
 
   render () {

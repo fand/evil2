@@ -3,7 +3,6 @@
 import { Actions } from '../CONST';
 
 const play = () => {
-  console.log('>>');
 
   return (dispatch, getState) => {
     dispatch({
