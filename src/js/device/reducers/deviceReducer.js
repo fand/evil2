@@ -2,14 +2,21 @@
 
 import CONST, { Actions } from '../CONST';
 
-import RezSynth from '../models/RezSynth';
+import DeviceFactory from '../models/DeviceFactory';
 
 const initDevices = (state, action) => {
+  let newDevices = {};
+
+  Object.keys(state.device).forEach((k) => {
+    newDevices[k] = {
+      data   : { ...state.device[k].data },
+      entity : DeviceFactory.create(state.devices[k].data),
+    };
+  });
+
   return {
     ...state,
-    devices : [
-      new RezSynth()
-    ],
+    devices : newDevices,
   };
 };
 
