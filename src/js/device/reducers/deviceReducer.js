@@ -8,19 +8,21 @@ const initDevices = (state, action) => {
   let newDevices = {};
 
   Object.keys(state.device).forEach((k) => {
+    const d = DeviceFactory.create(state.device[k].data);
+    console.log('#####');console.log(d);
     newDevices[k] = {
       data   : { ...state.device[k].data },
-      entity : DeviceFactory.create(state.devices[k].data),
+      entity : d,
     };
   });
 
   return {
     ...state,
-    devices : newDevices,
+    device : newDevices,
   };
 };
 
-const deviceReducer = (state=CONST.DEFAULT_DEVICE, action) => {
+const deviceReducer = (state=CONST.DEMO_DEVICE, action) => {
   switch (action.type) {
   case Actions.INIT_DEVICES:
     return initDevices(state, action);

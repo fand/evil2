@@ -28,7 +28,7 @@ const reducer = function (state=CONST.DEMO_SONG, action) {
   const pianoroll   = pianorollReducer(state.pianoroll, action);
   const playerData  = playerReducer(state.playerData, action);
   const deviceData  = deviceReducer(state.deviceData, action);
-
+console.log('>>>>>>>>>>>>>>>>');console.log(deviceData);
   return {
     clipData,
     sessionData,

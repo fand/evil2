@@ -5,19 +5,14 @@ const DEVICE_TYPE = {
 };
 
 const DEFAULT_DEVICE = {
-  data : {
-    device : {},
-  },
-  entities : {
-    device : {},
-  },
+  device : {}
 };
 
 const DEMO_DEVICE = {
   device : {
     0 : {
       data : {
-        name : DEVICE_TYPE.REZ_SYNTH,
+        type : DEVICE_TYPE.REZ_SYNTH,
       },
       entity : null,
     },
