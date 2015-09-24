@@ -1,12 +1,7 @@
 'use strict';
 
 import uuid from 'uuid';
-
-const CLIP_SELECTED = 'CLIP_SELECTED';
-const DRAG_STARTED  = 'DRAG_STARTED';
-const DRAG_ENDED    = 'DRAG_ENDED';
-const DRAG_MOVED    = 'DRAG_MOVED';
-const SELECT_NOTE   = 'SELECT_NOTE';
+import {Actions} from '../CONST';
 
 const NOTE_HEIGHT = 10;
 
@@ -161,27 +156,27 @@ const startMovingNote = function (state, action) {
 
 const pianorollReducer = function (state=DEFAULT, action) {
   switch (action.type) {
-  case CLIP_SELECTED:
+  case Actions.CLIP_SELECTED:
     return clipSelected(state, action);
-  case DRAG_STARTED:
+  case Actions.DRAG_STARTED:
     return dragStarted(state, action);
-  case DRAG_MOVED:
+  case Actions.DRAG_MOVED:
     return dragMoved(state, action);
-  case DRAG_ENDED:
+  case Actions.DRAG_ENDED:
     return dragEnded(state, action);
-  case SELECT_NOTE:
+  case Actions.SELECT_NOTE:
     return selectNote(state, action);
-  case 'ADD_SELECTED_NOTE':
+  case Actions.ADD_SELECTED_NOTE:
     return addSelectedNote(state, action);
 
-  case 'START_MOVING_NOTE_ON':
+  case Actions.START_MOVING_NOTE_ON:
     return startMovingNoteOn(state, action);
-  case 'START_MOVING_NOTE_OFF':
+  case Actions.START_MOVING_NOTE_OFF:
     return startMovingNoteOff(state, action);
-  case 'START_MOVING_NOTE':
+  case Actions.TART_MOVING_NOTE:
     return startMovingNote(state, action);
 
-  case 'UPDATE_NOTE':
+  case Actions.UPDATE_NOTE:
     return updateNote(state, action);
 
   default:
