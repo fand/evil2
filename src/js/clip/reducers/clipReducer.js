@@ -23,25 +23,32 @@ const updateClipMidi = function (state, action) {
   };
 };
 
+const setClipName = (state, action) => {
+  let clip = state.clips[action.clipId];
+  clip.name = action.name;
+
+  return {
+    ...state,
+    clips : {
+      ...state.clips,
+      [action.clipId] : clip,
+    }
+  };
+};
+
+const selectClip = (state, action) => {
+  return {
+    ...state,
+    currentClipId: action.clipId,
+  };
+};
+
 export default function clipReducer (state=CONST.DEFAULT_CLIP, action) {
   switch (action.type) {
   case Actions.SELECT_CLIP:
-    return {
-      ...state,
-      currentClipId: action.clipId,
-    };
+    return selectClip(state, action);
   case Actions.SET_CLIP_NAME:
-    let clip = state.clips[action.clipId];
-    clip.name = action.name;
-
-    return {
-      ...state,
-      clips : {
-        ...state.clips,
-        [action.clipId] : clip,
-      }
-    };
-
+    return setClipName(state, action);
   case Actions.UPDATE_CLIP_MIDI:
     return updateClipMidi(state, action);
 
