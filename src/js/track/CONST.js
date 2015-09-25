@@ -4,7 +4,7 @@ import uuid from 'uuid';
 
 const DEFAULT_TRACK = {
   entities : {
-    track : {
+    tracks : {
       0 : {
         uuid     : 0,
         name     : 'Drum',

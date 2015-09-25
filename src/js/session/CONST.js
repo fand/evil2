@@ -9,28 +9,15 @@ const Actions = {
 };
 
 const DEFAULT_SESSION = {
-    scenes : [],
+  scenes : [],
+  selectedSceneId : null,
+  currentSceneId  : null,
 };
 
-const uuids = [uuid.v4(), uuid.v4()];
 const DEMO_SESSION = {
-  entities: {
-    [uuids[0]] : {
-      uuid        : uuids[0],
-      name        : 'scene1',
-      clipIds     : ['aaa', 'bbb'],
-      controls    : [],
-      beatsPerBar : 4,
-    },
-    [uuids[1]] : {
-      uuid        : uuids[1],
-      name        : 'scene2',
-      clipIds     : ['ccc', 'ddd'],
-      controls    : [],
-      beatsPerBar : 4,
-    },
-  },
-  scenes : uuids,
+  scenes : ['scene1', 'scene2'],
+  selectedSceneId : 'scene1',
+  currentSceneId  : 'scene1',
 };
 
 export default {
