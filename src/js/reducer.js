@@ -7,14 +7,7 @@ import clipReducer from './clip/reducers/clipReducer';
 import infoReducer from './info/reducers/infoReducer';
 import playerReducer from './player/reducers/playerReducer';
 import deviceReducer from './device/reducers/deviceReducer';
-
-// const DEFAULT = {
-//   clipData    : {},
-//   sessionData : {},
-//   infoData    : {},
-//   clipView    : {},
-//   pianoroll   : {},
-// };
+import sceneReducer from './scene/reducers/sceneReducer';
 
 import CONST from './CONST';
 
@@ -28,8 +21,9 @@ const reducer = function (state=CONST.DEMO_SONG, action) {
   const pianoroll   = pianorollReducer(state.pianoroll, action);
   const playerData  = playerReducer(state.playerData, action);
   const deviceData  = deviceReducer(state.deviceData, action);
-console.log('>>>>>>>>>>>>>>>>');console.log(deviceData);
-  return {
+  const sceneData   = sceneReducer(state.sceneData, action);
+
+  const s = {
     clipData,
     sessionData,
     infoData,
@@ -37,7 +31,10 @@ console.log('>>>>>>>>>>>>>>>>');console.log(deviceData);
     pianoroll,
     playerData,
     deviceData,
+    sceneData,
   };
+  console.log('>>>>>>>>');console.log(s);
+  return s;
 };
 
 export default reducer;
