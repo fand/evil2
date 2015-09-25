@@ -1,10 +1,6 @@
 'use strict';
 
-import CONST from '../CONST';
-
-const SELECT_CLIP   = 'SELECT_CLIP';
-const SET_CLIP_NAME = 'SET_CLIP_NAME';
-
+import CONST, { Actions } from '../CONST';
 
 const updateClipMidi = function (state, action) {
   const { clipId, midiId, newMidi } = action;
@@ -29,12 +25,12 @@ const updateClipMidi = function (state, action) {
 
 export default function clipReducer (state=CONST.DEFAULT_CLIP, action) {
   switch (action.type) {
-  case SELECT_CLIP:
+  case Actions.SELECT_CLIP:
     return {
       ...state,
       currentClipId: action.clipId,
     };
-  case SET_CLIP_NAME:
+  case Actions.SET_CLIP_NAME:
     let clip = state.clips[action.clipId];
     clip.name = action.name;
 
@@ -46,7 +42,7 @@ export default function clipReducer (state=CONST.DEFAULT_CLIP, action) {
       }
     };
 
-  case 'UPDATE_CLIP_MIDI':
+  case Actions.UPDATE_CLIP_MIDI:
     return updateClipMidi(state, action);
 
   default:

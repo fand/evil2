@@ -2,6 +2,13 @@
 
 import uuid from 'uuid';
 
+const Actions = {
+  SELECT_CLIP      : Symbol(),
+  SET_CLIP_NAME    : Symbol(),
+  CLIP_SELECTED    : Symbol(),
+  UPDATE_CLIP_MIDI : Symbol(),
+};
+
 const DEFAULT_CLIP = {
   clips         : {},
   currentClipId : null,
@@ -90,6 +97,7 @@ const DEMO_CLIP = {
 };
 
 export default {
+  Actions,
   DEFAULT_CLIP,
   DEMO_CLIP,
 };
