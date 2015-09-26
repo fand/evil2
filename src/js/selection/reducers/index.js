@@ -10,11 +10,16 @@ const selectScene = (state, action) => ({
   selectedSceneIds : [...state.selectedSceneIds, action.sceneId],
 });
 
+const selectCell = (state, action) => ({
+  ...state,
+  selectedCellIds : [...state.selectedCellIds, action.cellId],
+});
+
 const deselectClip = (state, action) => {
   const newClipIds = state.selectedClipIds.filter(c => c !== action.clipId);
   return {
     ...state,
-    selectedClipIds : [...newClipIds],
+    selectedClipIds : newClipIds,
   }
 };
 
@@ -22,7 +27,15 @@ const deselectScene = (state, action) => {
   const newSceneIds = state.selectedSceneIds.filter(c => c !== action.sceneId);
   return {
     ...state,
-    selectedSceneIds : [...newSceneIds],
+    selectedSceneIds : newSceneIds,
+  }
+};
+
+const deselectCell = (state, action) => {
+  const newCellIds = state.selectedCellIds.filter(c => c !== action.cellId);
+  return {
+    ...state,
+    selectedCellIds : newCellIds,
   }
 };
 
@@ -43,6 +56,14 @@ const selectionReducer = (state=CONST.DEFAULT_SELECTION, action) => {
     return selectClip(state, action);
   case Actions.SELECT_SCENE:
     return selectScene(state, action);
+  case Actions.SELECT_CELL:
+    return selectCell(state, action);
+  case Actions.DESELECT_CLIP:
+    return deselectClip(state, action);
+  case Actions.DESELECT_SCENE:
+    return deselectScene(state, action);
+  case Actions.DESELECT_CELL:
+    return deselectCell(state, action);
   case Actions.FOCUS_CLIP:
     return focusClip(state, action);
   case Actions.FOCUS_SCENE:

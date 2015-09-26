@@ -43,6 +43,7 @@ class Row extends React.Component {
           clip={clip}
           rowIdx={i}
           columnIdx={j}
+          id={`${i}-${j}`}
           actions={actions}
           state={state}
           key={j}></Cell>

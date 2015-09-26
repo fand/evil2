@@ -16,9 +16,6 @@ const ROWS = 8;
  * SessionView
  *
  */
-@connect((state) => state, (dispatch) => {
-  return { actions : bindActionCreators(SessionActions, dispatch) };
-})
 class SessionView extends React.Component {
 
   static propTypes = {

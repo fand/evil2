@@ -11,6 +11,8 @@ import PlayerView from '../player/components/PlayerView';
 
 import * as SessionActions from '../session/actions/SessionActions';
 import * as SongActions from '../song/actions/SongActions';
+import * as ClipActions from '../clip/actions/ClipActions';
+import * as SelectionActions from '../selection/actions';
 import * as DeviceActions from '../device/actions/DeviceActions';
 
 @connect(state => ({state}))
@@ -31,11 +33,17 @@ class EvilApp extends Component {
   }
 
   render () {
-    const { state } = this.props;
+    const { state, dispatch } = this.props;
 
+    const actions = {
+      clip      : bindActionCreators(ClipActions, dispatch),
+      session   : bindActionCreators(SessionActions, dispatch),
+      selection : bindActionCreators(SelectionActions, dispatch),
+    };
+console.log(actions);
     return (
       <div className="EvilApp">
-        <SessionView state={state} />
+        <SessionView state={state} actions={actions} />
       </div>
     );
 

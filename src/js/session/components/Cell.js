@@ -7,9 +7,10 @@ import classnames from 'classnames';
 class Cell extends React.Component {
 
   static propTypes = {
-    clip      : React.PropTypes.object.isRequired,
+    clip      : React.PropTypes.object,
     columnIdx : React.PropTypes.number.isRequired,
     rowIdx    : React.PropTypes.number.isRequired,
+    id        : React.PropTypes.string.isRequired,  // not universally-unique
     actions   : React.PropTypes.object.isRequired
   };
 
@@ -18,9 +19,8 @@ class Cell extends React.Component {
   }
 
   isSelected () {
-    const { selection, clip, state } = this.props;
-    if (!clip) { return false; }
-    if (state.selection.selectedClipIds.indexOf(clip.uuid) !== -1) {
+    const { selection, clip, state, id } = this.props;
+    if (state.selection.selectedCellIds.indexOf(id) !== -1) {
       return true;
     }
     return false;
@@ -41,13 +41,13 @@ class Cell extends React.Component {
   }
 
   onClick () {
-    if (!this.props.clipId) { return; }
-    this.props.actions.selectClip(this.props.clipId);
-    this.props.actions.selectScene(this.props.columnIdx);
-    this.props.actions.selectCell({
-      rowIdx    : this.props.rowIdx,
-      columnIdx : this.props.columnIdx
-    });
+    const { clip, id } = this.props;
+
+    this.props.actions.selection.selectCell(id);
+
+    if (clip) {
+      this.props.actions.selection.selectClip(clip.uuid);
+    }
   }
 
 }
