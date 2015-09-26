@@ -13,10 +13,7 @@ import * as SessionActions from '../session/actions/SessionActions';
 import * as SongActions from '../song/actions/SongActions';
 import * as DeviceActions from '../device/actions/DeviceActions';
 
-@connect((state) => {
-  const { clipData, sessionData, infoData } = state;
-  return { clipData, sessionData, infoData };
-})
+@connect(state => ({state}))
 class EvilApp extends Component {
 
   constructor (props) {
@@ -34,21 +31,19 @@ class EvilApp extends Component {
   }
 
   render () {
-    const { clipData, sessionData, infoData } = this.props;
-
-    const currentClip = clipData.clips[clipData.currentClipId];
+    const { state } = this.props;
 
     return (
       <div className="EvilApp">
-        <SessionView clips={clipData.clips} session={sessionData} />
-        <ClipView clip={currentClip} />
-        <SongInfo info={infoData} />
-        <PlayerView />
+        <SessionView state={state} />
       </div>
     );
+
+    // <ClipView state={state} />
+    // <SongInfo state={state} />
+    // <PlayerView />
   }
 
 }
-
 
 export default EvilApp;

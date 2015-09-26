@@ -2,23 +2,15 @@
 
 import CONST, { Actions } from '../CONST';
 
-const selectCell = (state, action) => ({
-  ...state,
-  currentCell : action.pos,
-});
-
-const selectScene = (state, action) => ({
-  ...state,
-  selectedSceneId : state.scenes[action.index],
-});
+const addScene = (state, action) => {
+  return state;
+};
 
 export default function sessionReducer (state=CONST.DEFAULT_SESSION, action) {
 
   switch (action.type) {
-  case Actions.SELECT_CELL:
-    return selectCell(state, action);
-  case Actions.SELECT_SCENE:
-    return selectScene(state, action);
+  case Actions.ADD_SCENE:
+    return addScene(state, action);
 
   default:
     return state;

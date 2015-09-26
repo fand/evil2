@@ -2,8 +2,11 @@
 
 import SESSION from './session/CONST';
 import CLIP from './clip/CONST';
+import SELECTION from './selection/CONST';
+
 import INFO from './info/CONST';
 import PLAYER from './player/CONST';
+
 
 const SONG_MODE = {
   SESSION_MODE     : 'SESSION_MODE',
@@ -18,15 +21,17 @@ const DEFAULT_ENV = {
 };
 
 const DEFAULT_SONG = {
-  clipData : CLIP.DEFAULT_CLIP,
-  sessionData : SESSION.DEFAULT_SESSION,
+  clip      : CLIP.DEFAULT_CLIP,
+  session   : SESSION.DEFAULT_SESSION,
+  selection : SELECTION.DEFAULT_SELECTION,
+
   arrangementData : {
     arrangements : [],
   },
-  envData  : DEFAULT_ENV,
-  infoData : INFO.DEFAULT_INFO,
-  mode : SONG_MODE.SESSION_MODE,
-  playerData : PLAYER.DEFAULT_PLAY,
+  env    : DEFAULT_ENV,
+  info   : INFO.DEFAULT_INFO,
+  mode   : SONG_MODE.SESSION_MODE,
+  player : PLAYER.DEFAULT_PLAY,
 };
 
 const DEMO_ENV = {
@@ -37,16 +42,17 @@ const DEMO_ENV = {
 };
 
 const DEMO_SONG = {
-  clipData : CLIP.DEMO_CLIP,
-  sessionData : SESSION.DEMO_SESSION,
-  arrangementData : {
+  clip      : CLIP.DEMO_CLIP,
+  session   : SESSION.DEMO_SESSION,
+  selection : SELECTION.DEFAULT_SELECTION,
+
+  arrangement : {
     arrangements : [],
   },
-  clips        : [],
-  envData  : DEMO_ENV,
-  infoData : INFO.DEMO_INFO,
-  mode : SONG_MODE.SESSION_MODE,
-  playerData : PLAYER.DEFAULT_PLAY,
+  env    : DEMO_ENV,
+  info   : INFO.DEMO_INFO,
+  mode   : SONG_MODE.SESSION_MODE,
+  player : PLAYER.DEFAULT_PLAY,
 };
 
 const CONST = {

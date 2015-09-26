@@ -8,30 +8,23 @@ import infoReducer from './info/reducers/infoReducer';
 import playerReducer from './player/reducers/playerReducer';
 import deviceReducer from './device/reducers/deviceReducer';
 import sceneReducer from './scene/reducers/sceneReducer';
+import selectionReducer from './selection/reducers';
 
 import CONST from './CONST';
 
 const reducer = function (state=CONST.DEMO_SONG, action) {
 
   // init clips first!
-  const clipData    = clipReducer(state.clipData, action);
-  const sessionData = sessionReducer(state.sessionData, action);
-  const infoData    = infoReducer(state.infoData, action);
-  const clipView    = clipViewReducer(state.clipView, action);
-  const pianoroll   = pianorollReducer(state.pianoroll, action);
-  const playerData  = playerReducer(state.playerData, action);
-  const deviceData  = deviceReducer(state.deviceData, action);
-  const sceneData   = sceneReducer(state.sceneData, action);
+  const clip      = clipReducer(state.clip, action);
+  const session   = sessionReducer(state.session, action);
+  const scene     = sceneReducer(state.scene, action);
+  const selection = selectionReducer(state.selection, action);
 
   const s = {
-    clipData,
-    sessionData,
-    infoData,
-    clipView,
-    pianoroll,
-    playerData,
-    deviceData,
-    sceneData,
+    clip,
+    session,
+    scene,
+    selection,
   };
   console.log('>>>>>>>>');console.log(s);
   return s;

@@ -22,32 +22,28 @@ const ROWS = 8;
 class SessionView extends React.Component {
 
   static propTypes = {
-    clips   : React.PropTypes.object.isRequired,
-    session : React.PropTypes.object.isRequired,
+    actions : React.PropTypes.object.isRequired,
+    state   : React.PropTypes.object.isRequired,
   };
 
-  constructor (props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount () {}
-
   renderRow (i) {
-    const { session, clips, actions } = this.props;
+    const { actions, state } = this.props;
+    const scene = state.scene.entities.scenes[state.session.sceneIds[i]];
     return (
       <Row
         rowIdx={i}
-        scene={session.scenes[i]}
-        clips={clips}
-        session={session}
+        scene={scene}
         actions={actions}
+        state={state}
         key={i}></Row>
     );
   }
 
   render () {
-    let rowsNum = Math.max(this.props.session.scenes.length, ROWS);
+    const { state } = this.props;
+    const sceneIds = state.session.sceneIds;
+
+    let rowsNum = Math.max(sceneIds.length, ROWS);
     let rows = range(rowsNum).map(i => this.renderRow(i));
     return (
       <div className="SessionView">
