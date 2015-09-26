@@ -25,9 +25,21 @@ const deselectScene = (sceneId) => ({
   sceneId,
 });
 
-const deselectCell = (sceneId) => ({
+const deselectCell = () => ({
   type : Actions.DESELECT_CELL,
   cellId,
+});
+
+const deselectAllClips = () => ({
+  type : Actions.DESELECT_ALL_CLIPS,
+});
+
+const deselectAllScenes = () => ({
+  type : Actions.DESELECT_ALL_SCENES,
+});
+
+const deselectAllCells = (sceneId) => ({
+  type : Actions.DESELECT_ALL_CELLS,
 });
 
 const focusClip = (clipId) => ({
@@ -47,6 +59,9 @@ export default {
   deselectClip,
   deselectScene,
   deselectCell,
+  deselectAllClips,
+  deselectAllScenes,
+  deselectAllCells,
   focusClip,
   focusScene,
 };

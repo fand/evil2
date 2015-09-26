@@ -40,13 +40,16 @@ class Cell extends React.Component {
     );
   }
 
-  onClick () {
-    const { clip, id } = this.props;
+  onClick (e) {
+    const { clip, id, actions } = this.props;
 
-    this.props.actions.selection.selectCell(id);
+    console.log(e);
+
+    actions.selection.deselectAllCells(id);
+    actions.selection.selectCell(id);
 
     if (clip) {
-      this.props.actions.selection.selectClip(clip.uuid);
+      actions.selection.selectClip(clip.uuid);
     }
   }
 

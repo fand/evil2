@@ -40,7 +40,7 @@ class EvilApp extends Component {
       session   : bindActionCreators(SessionActions, dispatch),
       selection : bindActionCreators(SelectionActions, dispatch),
     };
-console.log(actions);
+
     return (
       <div className="EvilApp">
         <SessionView state={state} actions={actions} />

@@ -39,6 +39,21 @@ const deselectCell = (state, action) => {
   }
 };
 
+const deselectAllClips = (state, action) => ({
+  ...state,
+  selectedClipIds : [],
+});
+
+const deselectAllScenes = (state, action) => ({
+  ...state,
+  selectedSceneIds : [],
+});
+
+const deselectAllCells = (state, action) => ({
+  ...state,
+  selectedCellIds : [],
+});
+
 const focusClip = (state, action) => ({
   ...state,
   focusedClipId : action.clipId,
@@ -64,6 +79,12 @@ const selectionReducer = (state=CONST.DEFAULT_SELECTION, action) => {
     return deselectScene(state, action);
   case Actions.DESELECT_CELL:
     return deselectCell(state, action);
+  case Actions.DESELECT_ALL_CLIPS:
+    return deselectAllClips(state, action);
+  case Actions.DESELECT_ALL_SCENES:
+    return deselectAllScenes(state, action);
+  case Actions.DESELECT_ALL_CELLS:
+    return deselectAllCells(state, action);
   case Actions.FOCUS_CLIP:
     return focusClip(state, action);
   case Actions.FOCUS_SCENE:

@@ -26,7 +26,7 @@ const reducer = function (state=CONST.DEMO_SONG, action) {
     scene,
     selection,
   };
-  console.log('>>>>>>>>');console.log(s);
+  // console.log('>>>>>>>>');console.log(s);
   return s;
 };
 
