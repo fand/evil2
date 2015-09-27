@@ -44,10 +44,10 @@ class EvilApp extends Component {
     return (
       <div className="EvilApp">
         <SessionView state={state} actions={actions} />
+        <ClipView state={state} actions={actions} />
       </div>
     );
 
-    // <ClipView state={state} />
     // <SongInfo state={state} />
     // <PlayerView />
   }

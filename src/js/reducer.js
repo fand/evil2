@@ -19,14 +19,16 @@ const reducer = function (state=CONST.DEMO_SONG, action) {
   const session   = sessionReducer(state.session, action);
   const scene     = sceneReducer(state.scene, action);
   const selection = selectionReducer(state.selection, action);
+  const pianoroll = pianorollReducer(state.pianoroll, action);
 
   const s = {
     clip,
     session,
     scene,
     selection,
+    pianoroll,
   };
-  // console.log('>>>>>>>>');console.log(s);
+  console.log('>>>>>>>>');console.log(s);
   return s;
 };
 

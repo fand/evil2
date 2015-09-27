@@ -8,6 +8,7 @@ class Cell extends React.Component {
 
   static propTypes = {
     clip      : React.PropTypes.object,
+    scene     : React.PropTypes.object,
     columnIdx : React.PropTypes.number.isRequired,
     rowIdx    : React.PropTypes.number.isRequired,
     id        : React.PropTypes.string.isRequired,  // not universally-unique
@@ -41,11 +42,12 @@ class Cell extends React.Component {
   }
 
   onClick (e) {
-    const { clip, id, actions } = this.props;
+    const { scene, clip, id, actions } = this.props;
 
     if (! e.shiftKey) {
-      actions.selection.deselectAllCells(id);
-      actions.selection.deselectAllClips(clip.uuid);
+      actions.selection.deselectAllCells();
+      actions.selection.deselectAllClips();
+      actions.selection.deselectAllScenes();
     }
 
     actions.selection.selectCell(id);
@@ -53,6 +55,7 @@ class Cell extends React.Component {
     if (clip) {
       actions.selection.selectClip(clip.uuid);
       actions.selection.focusClip(clip.uuid);
+      actions.selection.focusScene(scene.uuid);
     }
   }
 

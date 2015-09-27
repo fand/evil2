@@ -5,7 +5,6 @@ import {Actions} from '../CONST';
 
 const NOTE_HEIGHT = 10;
 
-
 const DEFAULT = {
   notes : [],
   zoomX : 1.0, // (1 / zoom) bars per window

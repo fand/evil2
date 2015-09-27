@@ -41,6 +41,7 @@ class Row extends React.Component {
       return (
         <Cell
           clip={clip}
+          scene={scene}
           rowIdx={i}
           columnIdx={j}
           id={`${i}-${j}`}
