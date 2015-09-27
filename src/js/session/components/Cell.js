@@ -43,13 +43,16 @@ class Cell extends React.Component {
   onClick (e) {
     const { clip, id, actions } = this.props;
 
-    console.log(e);
+    if (! e.shiftKey) {
+      actions.selection.deselectAllCells(id);
+      actions.selection.deselectAllClips(clip.uuid);
+    }
 
-    actions.selection.deselectAllCells(id);
     actions.selection.selectCell(id);
 
     if (clip) {
       actions.selection.selectClip(clip.uuid);
+      actions.selection.focusClip(clip.uuid);
     }
   }
 
