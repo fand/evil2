@@ -18,11 +18,11 @@ const midiToNotes = function (midi) {
       const n = rows[m.data[1]];
       const note = {
         uuid    : uuid.v4(),
-        left    : n.time  / 0x100,
+        left    : n.time / 0x100,
         width   : (m.time - n.time) / 0x100,
         noteNum : n.data[1],
-        on  : n,
-        off : m,
+        on      : n,
+        off     : m,
       };
 
       notes.push(note);
@@ -42,16 +42,19 @@ const clipSelected = function (state, action) {
 
 const updateNote = function (state, action) {
   const { newNote } = action;
+
+  const newNotes = [];
   for (let i = 0; i < state.notes.length; i++) {
     if (state.notes[i].uuid === newNote.uuid) {
-      state.notes[i] = newNote;
-      return {
-        ...state,
-      };
+      newNotes.push(newNote);
     }
+    newNotes.push(state.notes[i]);
   }
 
-  return state;
+  return {
+    ...state,
+    notes : newNotes
+  };
 };
 
 const dragStarted = function (state, action) {
@@ -65,9 +68,9 @@ const dragStarted = function (state, action) {
 const dragEnded = function (state, action) {
   return {
     ...state,
-    x : 0,
-    y : 0,
-    w : 0,
+    x          : 0,
+    y          : 0,
+    w          : 0,
     isDragging : false,
     dragMode   : null,
   };
@@ -118,26 +121,18 @@ const addSelectedNote = function (state, action) {
   };
 };
 
-
-const startMovingNoteOn = function (state, action) {
-  return {
-    ...state,
-    dragMode : DragMode.NOTE_ON,
-  };
-};
-const startMovingNoteOff = function (state, action) {
-  return {
-    ...state,
-    dragMode : DragMode.NOTE_OFF
-  };
-};
-const startMovingNote = function (state, action) {
-  return {
-    ...state,
-    dragMode : DragMode.NOTE,
-  };
-};
-
+const startMovingNoteOn = (state, action) => ({
+  ...state,
+  dragMode : DragMode.NOTE_ON,
+});
+const startMovingNoteOff = (state, action) => ({
+  ...state,
+  dragMode : DragMode.NOTE_OFF
+});
+const startMovingNote = (state, action) => ({
+  ...state,
+  dragMode : DragMode.NOTE,
+});
 
 const pianorollReducer = function (state=CONST.DEFAULT_PIANO, action) {
   switch (action.type) {
