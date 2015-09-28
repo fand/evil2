@@ -1,21 +1,7 @@
 'use strict';
 
 import uuid from 'uuid';
-import {Actions} from '../CONST';
-
-const NOTE_HEIGHT = 10;
-
-const DEFAULT = {
-  notes : [],
-  zoomX : 1.0, // (1 / zoom) bars per window
-  zoomY : 1.0, // 10px per note
-  clickPos : null,
-  x : 0,
-  y : 0,
-  isDragging    : false,
-  dragMode      : null,
-  selectedNotes : {},
-};
+import CONST, { Actions, DragMode } from '../CONST';
 
 const isNoteOn  = m => 0x90 <= m && m < 0xA0;
 const isNoteOff = m => 0x80 <= m && m < 0x90;
@@ -90,21 +76,21 @@ const dragEnded = function (state, action) {
 const dragMoved = function (state, action) {
   const dx = action.pos.x - state.clickPos.x;
   const dy = action.pos.y - state.clickPos.y;
-  if (state.dragMode === 'NOTE_ON') {
+  if (state.dragMode === DragMode.NOTE_ON) {
     return {
       ...state,
       x : dx,
       w : -dx,
     };
   }
-  if (state.dragMode === 'NOTE_OFF') {
+  if (state.dragMode === DragMode.NOTE_OFF) {
     return {
       ...state,
       w : dx,
     };
   }
-  if (state.dragMode === 'NOTE') {
-    const height = NOTE_HEIGHT * state.zoomY;
+  if (state.dragMode === DragMode.NOTE) {
+    const height = CONST.NOTE_HEIGHT * state.zoomY;
     return {
       ...state,
       x : dx,
@@ -136,24 +122,24 @@ const addSelectedNote = function (state, action) {
 const startMovingNoteOn = function (state, action) {
   return {
     ...state,
-    dragMode : 'NOTE_ON',
+    dragMode : DragMode.NOTE_ON,
   };
 };
 const startMovingNoteOff = function (state, action) {
   return {
     ...state,
-    dragMode : 'NOTE_OFF',
+    dragMode : DragMode.NOTE_OFF
   };
 };
 const startMovingNote = function (state, action) {
   return {
     ...state,
-    dragMode : 'NOTE',
+    dragMode : DragMode.NOTE,
   };
 };
 
 
-const pianorollReducer = function (state=DEFAULT, action) {
+const pianorollReducer = function (state=CONST.DEFAULT_PIANO, action) {
   switch (action.type) {
   case Actions.CLIP_SELECTED:
     return clipSelected(state, action);

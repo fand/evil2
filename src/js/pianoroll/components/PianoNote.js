@@ -5,15 +5,13 @@ import React, { Component, PropTypes } from 'react';
 class PianoNote extends Component {
 
   static propTypes = {
-    note : PropTypes.object.isRequired,
-  }
-
-  constructor (props) {
-    super(props);
+    note    : PropTypes.object.isRequired,
+    actions : PropTypes.object.isRequired,
   }
 
   render () {
     const { note, beatWidth, height, selectedNotes } = this.props;
+    const { dragMode, x, y } = this.props.state.pianoroll;
 
     const style = {
       top      : 1280 - note.noteNum * 10,

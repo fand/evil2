@@ -216,7 +216,7 @@ class Pianoroll extends Component {
   renderNote (note, i) {
     const height = this.props.zoomY * 10;
     const isSelected = this.props.state.selection.selectedNoteIds.indexOf(note.uuid) !== -1;
-
+    const { dragMode, x, y } = this.props.state.pianoroll;
     return (
       <PianoNote
         note={note}
