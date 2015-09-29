@@ -1,12 +1,17 @@
 import React from 'react';
-import EvilApp from './EvilApp';
-import { createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
-import reducer from '../reducer';
+import { devTools, persistState } from 'redux-devtools';
+import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react'
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware
+import reducer from '../reducer';
+import EvilApp from './EvilApp';
+
+const createStoreWithMiddleware = compose(
+  applyMiddleware(thunkMiddleware),
+  devTools(),
+  persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
 )(createStore);
 
 const store = createStoreWithMiddleware(reducer);
@@ -14,9 +19,14 @@ const store = createStoreWithMiddleware(reducer);
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={store}>
-        {() => <EvilApp />}
-      </Provider>
+      <div>
+        <Provider store={store}>
+          {() => <EvilApp />}
+        </Provider>
+        <DebugPanel top right bottom>
+          <DevTools store={store} monitor={LogMonitor} />
+        </DebugPanel>
+      </div>
     );
   }
 }
