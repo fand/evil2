@@ -1940,44 +1940,20 @@
       }
     },
     "react-redux": {
-      "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/react-redux/-/react-redux-1.0.0.tgz",
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/react-redux/-/react-redux-3.0.1.tgz",
       "dependencies": {
         "invariant": {
-          "version": "2.1.0",
-          "resolved": "https://registry.npmjs.org/invariant/-/invariant-2.1.0.tgz",
+          "version": "2.1.1",
+          "resolved": "https://registry.npmjs.org/invariant/-/invariant-2.1.1.tgz",
           "dependencies": {
-            "envify": {
-              "version": "3.4.0",
-              "resolved": "https://registry.npmjs.org/envify/-/envify-3.4.0.tgz",
+            "loose-envify": {
+              "version": "1.0.0",
+              "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.0.0.tgz",
               "dependencies": {
-                "jstransform": {
-                  "version": "10.1.0",
-                  "resolved": "https://registry.npmjs.org/jstransform/-/jstransform-10.1.0.tgz",
-                  "dependencies": {
-                    "base62": {
-                      "version": "0.1.1",
-                      "resolved": "https://registry.npmjs.org/base62/-/base62-0.1.1.tgz"
-                    },
-                    "esprima-fb": {
-                      "version": "13001.1001.0-dev-harmony-fb",
-                      "resolved": "https://registry.npmjs.org/esprima-fb/-/esprima-fb-13001.1001.0-dev-harmony-fb.tgz"
-                    },
-                    "source-map": {
-                      "version": "0.1.31",
-                      "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.1.31.tgz",
-                      "dependencies": {
-                        "amdefine": {
-                          "version": "1.0.0",
-                          "resolved": "https://registry.npmjs.org/amdefine/-/amdefine-1.0.0.tgz"
-                        }
-                      }
-                    }
-                  }
-                },
-                "through": {
-                  "version": "2.3.8",
-                  "resolved": "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
+                "js-tokens": {
+                  "version": "1.0.1",
+                  "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-1.0.1.tgz"
                 }
               }
             }
@@ -1986,8 +1962,12 @@
       }
     },
     "redux": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/redux/-/redux-1.0.1.tgz"
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/redux/-/redux-2.0.0.tgz"
+    },
+    "redux-thunk": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/redux-thunk/-/redux-thunk-1.0.0.tgz"
     },
     "require-directory": {
       "version": "2.1.1",
