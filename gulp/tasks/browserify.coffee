@@ -9,6 +9,7 @@ config     = require('../config').browserify
 notify = require '../utils/notify'
 
 babelify = require 'babelify'
+envify   = require 'envify'
 
 ##
 # util
@@ -34,6 +35,8 @@ babel = (c, callback) ->
     bundler.transform babelify.configure({
         stage: 0
     })
+
+    bundler.transform envify
 
     console.log '#### browserify: rebuild'
 
