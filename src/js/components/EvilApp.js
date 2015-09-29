@@ -13,6 +13,8 @@ import * as SessionActions from '../session/actions/SessionActions';
 import * as SongActions from '../song/actions/SongActions';
 import * as ClipActions from '../clip/actions/ClipActions';
 import * as SelectionActions from '../selection/actions';
+import * as PianorollActions from '../pianoroll/actions/PianorollActions';
+
 import * as DeviceActions from '../device/actions/DeviceActions';
 
 @connect(state => ({state}))
@@ -39,6 +41,7 @@ class EvilApp extends React.Component {
       clip      : bindActionCreators(ClipActions, dispatch),
       session   : bindActionCreators(SessionActions, dispatch),
       selection : bindActionCreators(SelectionActions, dispatch),
+      pianoroll : bindActionCreators(PianorollActions, dispatch),
     };
 
     return (

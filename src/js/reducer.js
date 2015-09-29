@@ -28,7 +28,7 @@ const reducer = function (state=CONST.DEMO_SONG, action) {
     selection,
     pianoroll,
   };
-  console.log('>>>>>>>>');console.log(s);
+  // console.log('>>>>>>>>');console.log(s);
   return s;
 };
 

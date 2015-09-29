@@ -8,8 +8,7 @@ import React, { PropTypes } from 'react';
 
 import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
-
-const NOTE_HEIGHT = 10;
+import CONST, { DragMode } from '../CONST';
 
 const isNoteOn  = m => 0x90 <= m && m < 0xA0;
 const isNoteOff = m => 0x80 <= m && m < 0x90;
@@ -84,8 +83,8 @@ class Pianoroll extends React.Component {
   }
 
   onMouseMove (e) {
-    if (this.props.isDragging) {
-      this.props.actions.dragMoved({
+    if (this.props.state.pianoroll.isDragging) {
+      this.props.actions.pianoroll.dragMoved({
         x : e.clientX,
         y : e.clientY,
       });
@@ -93,21 +92,22 @@ class Pianoroll extends React.Component {
   }
 
   onMouseUp () {
-    if (!this.props.state.pianoroll.isDragging) { return; }
+    if (! this.props.state.pianoroll.isDragging) { return; }
 
-    const { dragMode, x, y } = this.props.state.pianoroll;
+    const { clip, state, actions } = this.props;
+    const { dragMode, x, y, selectedNotes } = state.pianoroll;
 
     const notes = midiToNotes(clip.midi);
 
     if (Math.abs(x) < 20 && Math.abs(y) < 10) {
-      this.props.actions.dragEnded();
+      actions.pianoroll.dragEnded();
       return;
     }
 
     const dx = (x / this.state.beatWidth) * 0xFF;
-    const dy = - y / NOTE_HEIGHT;
+    const dy = - y / CONST.NOTE_HEIGHT;
 
-    if (dragMode === 'NOTE_ON') {
+    if (dragMode === DragMode.NOTE_ON) {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const newOn = {
           ...note.on,
@@ -120,13 +120,13 @@ class Pianoroll extends React.Component {
         });
         this.props.actions.updateNote({
           ...note,
-          left  : newMidi.time / 0x100,
-          width : (note.off.time - newMidi.time) / 0x100,
-          onn   : newOn,
+          left  : newOn.time / 0x100,
+          width : (note.off.time - newOn.time) / 0x100,
+          on    : newOn,
         });
       });
     }
-    if (dragMode === 'NOTE_OFF') {
+    if (dragMode === DragMode.NOTE_OFF) {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const newOff = {
           ...note.off,
@@ -140,12 +140,12 @@ class Pianoroll extends React.Component {
         });
         this.props.actions.updateNote({
           ...note,
-          width : (newMidi.time - note.on.time) / 0x100,
+          width : (newOff.time - note.on.time) / 0x100,
           off   : newOff,
         });
       });
     }
-    if (dragMode === 'NOTE') {
+    if (dragMode === DragMode.NOTE) {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const { on, off } = note;
         const newOn = {
@@ -211,9 +211,12 @@ class Pianoroll extends React.Component {
   }
 
   renderNote (note, i) {
-    const height = this.props.zoomY * 10;
-    const isSelected = this.props.state.selection.selectedNoteIds.indexOf(note.uuid) !== -1;
-    const { x, y, w } = this.props.state.pianoroll;
+    const { state, actions } = this.props;
+    const { x, y, w, zoomY } = state.pianoroll;
+
+    const height = zoomY * 10;
+    const isSelected = state.selection.selectedNoteIds.indexOf(note.uuid) !== -1;
+
     return (
       <PianoNote
         note={note}
@@ -222,10 +225,10 @@ class Pianoroll extends React.Component {
         y={y}
         w={w}
         key={i}
-        beatWidth={this.props.beatWidth}
+        beatWidth={this.state.beatWidth}
         height={height}
-        state={this.props.state}
-        actions={this.props.actions} />
+        state={state}
+        actions={actions} />
     );
   }
 

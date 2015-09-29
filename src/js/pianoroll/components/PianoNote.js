@@ -5,8 +5,17 @@ import React, { PropTypes } from 'react';
 class PianoNote extends React.Component {
 
   static propTypes = {
-    note    : PropTypes.object.isRequired,
-    actions : PropTypes.object.isRequired,
+    note       : PropTypes.object.isRequired,
+    isSelected : PropTypes.bool.isRequired,
+    beatWidth  : PropTypes.number.isRequired,
+    height     : PropTypes.number.isRequired,
+    state      : PropTypes.object.isRequired,
+    actions    : PropTypes.object.isRequired,
+
+    // TODO: Calculate these props in this component
+    // x : PropTypes.number.isRequired,
+    // y : PropTypes.number.isRequired,
+    // w : PropTypes.number.isRequired,
   }
 
   render () {
@@ -43,32 +52,32 @@ class PianoNote extends React.Component {
 
   selectNote (e) {
     if (e.shiftKey) {
-      this.props.actions.addSelectedNote(this.props.note);
+      this.props.actions.pianoroll.addSelectedNote(this.props.note);
     }
     else if (!this.props.isSelected) {
-      this.props.actions.selectNote(this.props.note);
+      this.props.actions.pianoroll.selectNote(this.props.note);
     }
   }
 
   onMouseDownLeftHandle (e) {
-    this.props.actions.startMovingNoteOn();
-    this.props.actions.dragStarted({
+    this.props.actions.pianoroll.startMovingNoteOn();
+    this.props.actions.pianoroll.dragStarted({
       x : e.clientX,
       y : e.clientY,
     });
   }
 
   onMouseDownRightHandle (e) {
-    this.props.actions.startMovingNoteOff();
-    this.props.actions.dragStarted({
+    this.props.actions.pianoroll.startMovingNoteOff();
+    this.props.actions.pianoroll.dragStarted({
       x : e.clientX,
       y : e.clientY,
     });
   }
 
   onMouseDownCenter (e) {
-    this.props.actions.startMovingNote();
-    this.props.actions.dragStarted({
+    this.props.actions.pianoroll.startMovingNote();
+    this.props.actions.pianoroll.dragStarted({
       x : e.clientX,
       y : e.clientY,
     });
