@@ -1962,8 +1962,8 @@
       }
     },
     "redux": {
-      "version": "3.0.0",
-      "resolved": "https://registry.npmjs.org/redux/-/redux-3.0.0.tgz"
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/redux/-/redux-3.0.2.tgz"
     },
     "redux-thunk": {
       "version": "1.0.0",
