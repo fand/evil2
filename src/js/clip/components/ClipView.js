@@ -1,42 +1,32 @@
 'use strict';
 
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-import * as ClipActions from '../actions/ClipActions';
 
 import Pianoroll from '../../pianoroll/components/Pianoroll';
 import ClipInfo from './ClipInfo';
 
-@connect((state) => state, (dispatch) => {
-  return { actions : bindActionCreators(ClipActions, dispatch) };
+@connect((state) => {
+  const focusedClipId = state.selection.focusedClipId;
+  const clip = (focusedClipId) ?  state.clip.entities.clips[focusedClipId] : null;
+  return { clip };
 })
 class ClipView extends React.Component {
 
   static propTypes = {
-    clip    : React.PropTypes.object,
+    state   : React.PropTypes.object.isRequired,
     actions : React.PropTypes.object.isRequired,
-  }
-
-  constructor (props) {
-    super(props);
-  }
-
-  componentDidUpdate (prevProps) {
-    if (!this.props.clip) { return; }
-    if (!prevProps.clip || (this.props.clip.uuid !== prevProps.clip.uuid)) {
-      this.props.actions.clipSelected(this.props.clip);
-    }
+    clip    : React.PropTypes.object,
   }
 
   renderClip () {
-    if (!this.props.clip) { return; }
+    const { state, actions, clip } = this.props;
+    if (!clip) { return; }
 
     return (
       <div>
-        <ClipInfo clip={this.props.clip} actions={this.props.actions}/>
-        <Pianoroll clip={this.props.clip} clipActions={this.props.actions}/>
+        <ClipInfo clip={clip} state={state} actions={actions}/>
+        <Pianoroll clip={clip} state={state} actions={actions}/>
       </div>
     );
   }
@@ -47,10 +37,6 @@ class ClipView extends React.Component {
         {this.renderClip()}
       </div>
     );
-  }
-
-  onChangeClipName (e) {
-    this.props.actions.setClipName(this.props.clip.uuid, e.target.value);
   }
 
 }

@@ -1,19 +1,26 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class PianoNote extends Component {
+class PianoNote extends React.Component {
 
   static propTypes = {
-    note : PropTypes.object.isRequired,
-  }
+    note       : PropTypes.object.isRequired,
+    isSelected : PropTypes.bool.isRequired,
+    beatWidth  : PropTypes.number.isRequired,
+    height     : PropTypes.number.isRequired,
+    state      : PropTypes.object.isRequired,
+    actions    : PropTypes.object.isRequired,
 
-  constructor (props) {
-    super(props);
+    // TODO: Calculate these props in this component
+    // x : PropTypes.number.isRequired,
+    // y : PropTypes.number.isRequired,
+    // w : PropTypes.number.isRequired,
   }
 
   render () {
-    const { note, beatWidth, height, selectedNotes } = this.props;
+    const { note, beatWidth, height, isSelected } = this.props;
+    const { x, y, w } = this.props.state.pianoroll;
 
     const style = {
       top      : 1280 - note.noteNum * 10,
@@ -22,13 +29,13 @@ class PianoNote extends Component {
       height   : height,
     };
 
-    if (this.props.isSelected) {
-      style.top   += this.props.y;
-      style.left  += this.props.x;
-      style.width += this.props.w;
+    if (isSelected) {
+      style.top   += y;
+      style.left  += x;
+      style.width += w;
     }
 
-    const cx = `PianoNote ${this.props.isSelected ? 'selected' : ''}`;
+    const cx = `PianoNote ${isSelected ? 'selected' : ''}`;
 
     return (
       <div className={cx} style={style}
@@ -45,32 +52,32 @@ class PianoNote extends Component {
 
   selectNote (e) {
     if (e.shiftKey) {
-      this.props.actions.addSelectedNote(this.props.note);
+      this.props.actions.pianoroll.addSelectedNote(this.props.note);
     }
     else if (!this.props.isSelected) {
-      this.props.actions.selectNote(this.props.note);
+      this.props.actions.pianoroll.selectNote(this.props.note);
     }
   }
 
   onMouseDownLeftHandle (e) {
-    this.props.actions.startMovingNoteOn();
-    this.props.actions.dragStarted({
+    this.props.actions.pianoroll.startMovingNoteOn();
+    this.props.actions.pianoroll.dragStarted({
       x : e.clientX,
       y : e.clientY,
     });
   }
 
   onMouseDownRightHandle (e) {
-    this.props.actions.startMovingNoteOff();
-    this.props.actions.dragStarted({
+    this.props.actions.pianoroll.startMovingNoteOff();
+    this.props.actions.pianoroll.dragStarted({
       x : e.clientX,
       y : e.clientY,
     });
   }
 
   onMouseDownCenter (e) {
-    this.props.actions.startMovingNote();
-    this.props.actions.dragStarted({
+    this.props.actions.pianoroll.startMovingNote();
+    this.props.actions.pianoroll.dragStarted({
       x : e.clientX,
       y : e.clientY,
     });

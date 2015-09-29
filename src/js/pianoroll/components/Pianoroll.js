@@ -1,53 +1,77 @@
 'use strict';
 
+import uuid from 'uuid';
 import _ from 'lodash';
-import { bindActionCreators } from 'redux';
+
 import { connect } from 'react-redux';
-
-import * as PianorollActions from '../actions/PianorollActions';
-
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
+import CONST, { DragMode } from '../CONST';
 
-const NOTE_HEIGHT = 10;
+const isNoteOn  = m => 0x90 <= m && m < 0xA0;
+const isNoteOff = m => 0x80 <= m && m < 0x90;
 
+const midiToNotes = function (midi) {
+  let notes = [];
+  let rows  = {};
 
-@connect(state => {
-  const scene = state.sessionData.currentScene
-  return {
-    ...state.pianoroll,
-    scene,
-  };
-}, dispatch => {
-  return { actions : bindActionCreators(PianorollActions, dispatch) };
+  midi.forEach(function (m) {
+    if (isNoteOn(m.data[0])) {
+      rows[m.data[1]] = m;
+    }
+    if (isNoteOff(m.data[0])) {
+      const n = rows[m.data[1]];
+      const note = {
+        uuid    : uuid.v4(),
+        left    : n.time  / 0x100,
+        width   : (m.time - n.time) / 0x100,
+        noteNum : n.data[1],
+        on  : n,
+        off : m,
+      };
+
+      notes.push(note);
+      rows[m.data[1]] = undefined;
+    }
+  });
+
+  return notes;
+};
+
+@connect((state) => {
+  const focusedSceneId = state.selection.focusedSceneId;
+  const scene = (focusedSceneId) ? state.scene.entities.scenes[focusedSceneId] : null;
+  return { scene, ...state.pianoroll };
 })
-class Pianoroll extends Component {
+class Pianoroll extends React.Component {
 
   static propTypes = {
-    clip : PropTypes.object.isRequired,
+    clip  : PropTypes.object.isRequired,
+    scene : PropTypes.object.isRequired,
+    state : PropTypes.object.isRequired,
   }
 
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
+    this.state = {
+      wrapperWidth : 0,
+      beatWidth    : 0,
+    };
   }
 
   componentDidMount () {
     this.onResize();
-    window.addEventListener('resize', ::this.onResize);
+    window.addEventListener('resize',    ::this.onResize);
     window.addEventListener('mousemove', ::this.onMouseMove);
-    window.addEventListener('mouseup', ::this.onMouseUp);
+    window.addEventListener('mouseup',   ::this.onMouseUp);
   }
 
   componentWillUnmount () {
-    window.removeListener('resize', ::this.onResize);
+    window.removeListener('resize',    ::this.onResize);
     window.removeListener('mousemove', ::this.onMouseMove);
-    window.removeListener('mouseup', ::this.onMouseUp);
-  }
-
-  componentWillReceiveProps (nextProps) {
-    // console.log(nextProps);
+    window.removeListener('mouseup',   ::this.onMouseUp);
   }
 
   onResize () {
@@ -59,28 +83,31 @@ class Pianoroll extends Component {
   }
 
   onMouseMove (e) {
-    if (this.props.isDragging) {
-      this.props.actions.dragMoved({
+    if (this.props.state.pianoroll.isDragging) {
+      this.props.actions.pianoroll.dragMoved({
         x : e.clientX,
         y : e.clientY,
       });
     }
   }
 
-  onMouseUp (e) {
-    if (!this.props.isDragging) { return; }
+  onMouseUp () {
+    if (! this.props.state.pianoroll.isDragging) { return; }
 
-    const { notes, selectedNotes, dragMode, x, y } = this.props;
+    const { clip, state, actions } = this.props;
+    const { dragMode, x, y, selectedNotes } = state.pianoroll;
+
+    const notes = midiToNotes(clip.midi);
 
     if (Math.abs(x) < 20 && Math.abs(y) < 10) {
-      this.props.actions.dragEnded();
+      actions.pianoroll.dragEnded();
       return;
     }
 
     const dx = (x / this.state.beatWidth) * 0xFF;
-    const dy = - y / NOTE_HEIGHT;
+    const dy = - y / CONST.NOTE_HEIGHT;
 
-    if (dragMode === 'NOTE_ON') {
+    if (dragMode === DragMode.NOTE_ON) {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const newOn = {
           ...note.on,
@@ -93,13 +120,13 @@ class Pianoroll extends Component {
         });
         this.props.actions.updateNote({
           ...note,
-          left  : newMidi.time / 0x100,
-          width : (note.off.time - newMidi.time) / 0x100,
-          onn   : newOn,
+          left  : newOn.time / 0x100,
+          width : (note.off.time - newOn.time) / 0x100,
+          on    : newOn,
         });
       });
     }
-    if (dragMode === 'NOTE_OFF') {
+    if (dragMode === DragMode.NOTE_OFF) {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const newOff = {
           ...note.off,
@@ -113,12 +140,12 @@ class Pianoroll extends Component {
         });
         this.props.actions.updateNote({
           ...note,
-          width : (newMidi.time - note.on.time) / 0x100,
+          width : (newOff.time - note.on.time) / 0x100,
           off   : newOff,
         });
       });
     }
-    if (dragMode === 'NOTE') {
+    if (dragMode === DragMode.NOTE) {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const { on, off } = note;
         const newOn = {
@@ -156,8 +183,11 @@ class Pianoroll extends Component {
   }
 
   render () {
-    const { scene, clip, notes, zoomX, zoomY } = this.props;
+    const { scene, clip } = this.props;
+    const { zoomX, zoomY } = this.props.state.pianoroll;
     const { beatsPerBar } = scene;
+
+    const notes = midiToNotes(clip.midi);
 
     // beats to show in pianoroll by default??????
     const beats = clip.length[0] * beatsPerBar + clip.length[1] + (clip.length[2] ? 1 : 0);
@@ -181,20 +211,24 @@ class Pianoroll extends Component {
   }
 
   renderNote (note, i) {
-    const height = this.props.zoomY * 10;
-    const isSelected = this.props.selectedNotes[note.uuid];
+    const { state, actions } = this.props;
+    const { x, y, w, zoomY } = state.pianoroll;
+
+    const height = zoomY * 10;
+    const isSelected = state.selection.selectedNoteIds.indexOf(note.uuid) !== -1;
 
     return (
       <PianoNote
         note={note}
         isSelected={isSelected}
-        x={this.props.x}
-        y={this.props.y}
-        w={this.props.w}
+        x={x}
+        y={y}
+        w={w}
         key={i}
         beatWidth={this.state.beatWidth}
         height={height}
-        actions={this.props.actions} />
+        state={state}
+        actions={actions} />
     );
   }
 

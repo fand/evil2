@@ -16,17 +16,9 @@ class Row extends React.Component {
   static propTypes = {
     rowIdx  : React.PropTypes.number.isRequired,
     scene   : React.PropTypes.object,
-    session : React.PropTypes.object.isRequired,
     actions : React.PropTypes.object.isRequired,
+    state   : React.PropTypes.object.isRequired,
   };
-
-  constructor (props) {
-    super(props);
-  }
-
-  componentDidMount () {
-
-  }
 
   render () {
     return (
@@ -37,19 +29,24 @@ class Row extends React.Component {
   }
 
   renderCells (i) {
-    const { scene, clips, session, rowIdx, actions } = this.props;
+    const { scene, actions, state } = this.props;
 
-    let clipIds = this.props.scene ? this.props.scene.clipIds : [];
+    let clipIds = scene ? scene.clipIds : [];
     let columns = Math.max(clipIds.length, COLUMNS);
+
     return range(columns).map(j => {
+      const clipId = clipIds[j];
+      const clip = clipId ? state.clip.entities.clips[clipId] : null;
+
       return (
         <Cell
-          clips={clips}
-          session={session}
-          clipId={clipIds[j]}
+          clip={clip}
+          scene={scene}
           rowIdx={i}
           columnIdx={j}
+          id={`${i}-${j}`}
           actions={actions}
+          state={state}
           key={j}></Cell>
       );
     });

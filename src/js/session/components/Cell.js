@@ -2,17 +2,15 @@
 
 import React from 'react';
 
-import classnames from 'classnames';
-
 class Cell extends React.Component {
 
   static propTypes = {
-    clipId    : React.PropTypes.string,
-    clips     : React.PropTypes.object.isRequired,
-    session   : React.PropTypes.object.isRequired,
+    clip      : React.PropTypes.object,
+    scene     : React.PropTypes.object,
     columnIdx : React.PropTypes.number.isRequired,
     rowIdx    : React.PropTypes.number.isRequired,
-    actions   : React.PropTypes.object.isRequired
+    id        : React.PropTypes.string.isRequired,  // not universally-unique
+    actions   : React.PropTypes.object.isRequired,
   };
 
   constructor (props) {
@@ -20,15 +18,15 @@ class Cell extends React.Component {
   }
 
   isSelected () {
-    const { session, rowIdx, columnIdx } = this.props;
-    if (!session.currentCell) { return false; }
-    if (session.currentCell.rowIdx !== rowIdx) { return false; }
-    if (session.currentCell.columnIdx !== columnIdx) { return false; }
-    return true;
+    const { state, id } = this.props;
+    if (state.selection.selectedCellIds.indexOf(id) !== -1) {
+      return true;
+    }
+    return false;
   }
 
   render () {
-    let clip = this.props.clips[this.props.clipId];
+    const { clip } = this.props;
     let clipName = clip ? clip.name : '';
 
     const className = 'SessionView__Cell' + (this.isSelected() ? '--selected' : '');
@@ -41,14 +39,22 @@ class Cell extends React.Component {
     );
   }
 
-  onClick () {
-    if (!this.props.clipId) { return; }
-    this.props.actions.selectClip(this.props.clipId);
-    this.props.actions.selectScene(this.props.columnIdx);
-    this.props.actions.selectCell({
-      rowIdx    : this.props.rowIdx,
-      columnIdx : this.props.columnIdx
-    });
+  onClick (e) {
+    const { scene, clip, id, actions } = this.props;
+
+    if (! e.shiftKey) {
+      actions.selection.deselectAllCells();
+      actions.selection.deselectAllClips();
+      actions.selection.deselectAllScenes();
+    }
+
+    actions.selection.selectCell(id);
+
+    if (clip) {
+      actions.selection.selectClip(clip.uuid);
+      actions.selection.focusClip(clip.uuid);
+      actions.selection.focusScene(scene.uuid);
+    }
   }
 
 }

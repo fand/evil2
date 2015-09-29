@@ -1,19 +1,17 @@
 'use strict';
 
-import CONST from '../CONST';
+import CONST, { Actions } from '../CONST';
 
-const SELECT_SCENE = 'SELECT_SCENE';
-const SELECT_CELL = 'SELECT_CELL';
+const addScene = (state) => {
+  return state;
+};
 
 export default function sessionReducer (state=CONST.DEFAULT_SESSION, action) {
 
   switch (action.type) {
-  case SELECT_CELL:
-    state.currentCell = action.pos;
-    return state;
-  case SELECT_SCENE:
-    state.currentScene = state.scenes[action.index];
-    return state;
+  case Actions.ADD_SCENE:
+    return addScene(state, action);
+
   default:
     return state;
   }

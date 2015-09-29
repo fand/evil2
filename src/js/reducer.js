@@ -5,33 +5,31 @@ import pianorollReducer from './pianoroll/reducers/pianorollReducer';
 import sessionReducer from './session/reducers/sessionReducer';
 import clipReducer from './clip/reducers/clipReducer';
 import infoReducer from './info/reducers/infoReducer';
-
-// const DEFAULT = {
-//   clipData    : {},
-//   sessionData : {},
-//   infoData    : {},
-//   clipView    : {},
-//   pianoroll   : {},
-// };
+import playerReducer from './player/reducers/playerReducer';
+import deviceReducer from './device/reducers/deviceReducer';
+import sceneReducer from './scene/reducers/sceneReducer';
+import selectionReducer from './selection/reducers';
 
 import CONST from './CONST';
 
 const reducer = function (state=CONST.DEMO_SONG, action) {
 
   // init clips first!
-  const clipData    = clipReducer(state.clipData, action);
-  const sessionData = sessionReducer(state.sessionData, action);
-  const infoData    = infoReducer(state.infoData, action);
-  const clipView    = clipViewReducer(state.clipView, action);
-  const pianoroll   = pianorollReducer(state.pianoroll, action);
+  const clip      = clipReducer(state.clip, action);
+  const session   = sessionReducer(state.session, action);
+  const scene     = sceneReducer(state.scene, action);
+  const selection = selectionReducer(state.selection, action);
+  const pianoroll = pianorollReducer(state.pianoroll, action);
 
-  return {
-    clipData,
-    sessionData,
-    infoData,
-    clipView,
+  const s = {
+    clip,
+    session,
+    scene,
+    selection,
     pianoroll,
   };
+  // console.log('>>>>>>>>');console.log(s);
+  return s;
 };
 
 export default reducer;

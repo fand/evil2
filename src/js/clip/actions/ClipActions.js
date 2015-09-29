@@ -1,35 +1,32 @@
 'use strict';
 
-// import { SELECT_CLIP } from '../CONST';
-
-const SELECT_CLIP   = 'SELECT_CLIP';
-const SET_CLIP_NAME = 'SET_CLIP_NAME';
+import { Actions } from '../CONST';
 
 export function selectClip (clipId) {
   return {
-    type   : SELECT_CLIP,
-    clipId : clipId
+    type   : Actions.SELECT_CLIP,
+    clipId,
   };
 }
 
 export function setClipName (clipId, name) {
   return {
-    type   : SET_CLIP_NAME,
-    clipId : clipId,
-    name   : name,
+    type   : Actions.SET_CLIP_NAME,
+    clipId,
+    name,
   };
 }
 
 export function clipSelected (clip) {
   return {
-    type : 'CLIP_SELECTED',
-    clip : clip
+    type : Actions.CLIP_SELECTED,
+    clip,
   };
 }
 
 export function updateClipMidi ({clipId, midiId, newMidi}) {
   return {
-    type : 'UPDATE_CLIP_MIDI',
+    type : Actions.UPDATE_CLIP_MIDI,
     clipId,
     midiId,
     newMidi,
