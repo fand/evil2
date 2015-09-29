@@ -1,7 +1,5 @@
 'use strict';
 
-import uuid from 'uuid';
-
 const Actions = {};
 
 const DEFAULT_SCENE = {

@@ -9,7 +9,7 @@ import PlayerActions from '../actions/PlayerActions';
 @connect(
   (state) => ({ playerData : state.playerData }),
   (dispatch) => ({
-    actions : bindActionCreators(PlayerActions, dispatch)
+    actions : bindActionCreators(PlayerActions, dispatch),
   }),
 )
 class PlayerView extends Component {

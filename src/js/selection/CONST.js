@@ -1,7 +1,5 @@
 'use strict';
 
-import uuid from 'uuid';
-
 // TODO: focus on device/track
 
 const DEFAULT_SELECTION = {

@@ -2,7 +2,7 @@
 
 import CONST, { Actions } from '../CONST';
 
-const tick = (state, action) => {
+const tick = (state) => {
   const interval = state.interval;
 
   return {

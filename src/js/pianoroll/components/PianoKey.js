@@ -1,14 +1,14 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 const NOTE_COLOR = [
   '#FFF', '#000', '#FFF', '#000', '#FFF',
   '#FFF', '#000', '#FFF', '#000', '#FFF',
-  '#000', '#FFF', '#FFF'
+  '#000', '#FFF', '#FFF',
 ];
 
-class PianoKey extends Component {
+class PianoKey extends React.Component {
 
   static propTypes = {
     noteNum : PropTypes.number.isRequired,

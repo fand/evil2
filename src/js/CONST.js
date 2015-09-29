@@ -10,13 +10,13 @@ import PLAYER from './player/CONST';
 
 const SONG_MODE = {
   SESSION_MODE     : 'SESSION_MODE',
-  ARRANGEMENT_MODE : 'ARRANGEMENT_MODE'
+  ARRANGEMENT_MODE : 'ARRANGEMENT_MODE',
 };
 
 const DEFAULT_ENV = {
   tracks : [],
   master : {
-    effects : []
+    effects : [],
   },
 };
 
@@ -37,7 +37,7 @@ const DEFAULT_SONG = {
 const DEMO_ENV = {
   tracks : [],
   master : {
-    effects : []
+    effects : [],
   },
 };
 

@@ -8,11 +8,9 @@ const initDevices = (state, action) => {
   let newDevices = {};
 
   Object.keys(state.device).forEach((k) => {
-    const d = DeviceFactory.create(state.device[k].data);
-    console.log('#####');console.log(d);
     newDevices[k] = {
       data   : { ...state.device[k].data },
-      entity : d,
+      entity : DeviceFactory.create(state.device[k].data),
     };
   });
 

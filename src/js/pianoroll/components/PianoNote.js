@@ -1,8 +1,8 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class PianoNote extends Component {
+class PianoNote extends React.Component {
 
   static propTypes = {
     note    : PropTypes.object.isRequired,
@@ -10,8 +10,8 @@ class PianoNote extends Component {
   }
 
   render () {
-    const { note, beatWidth, height, selectedNotes } = this.props;
-    const { dragMode, x, y } = this.props.state.pianoroll;
+    const { note, beatWidth, height, isSelected } = this.props;
+    const { x, y, w } = this.props.state.pianoroll;
 
     const style = {
       top      : 1280 - note.noteNum * 10,
@@ -20,13 +20,13 @@ class PianoNote extends Component {
       height   : height,
     };
 
-    if (this.props.isSelected) {
-      style.top   += this.props.y;
-      style.left  += this.props.x;
-      style.width += this.props.w;
+    if (isSelected) {
+      style.top   += y;
+      style.left  += x;
+      style.width += w;
     }
 
-    const cx = `PianoNote ${this.props.isSelected ? 'selected' : ''}`;
+    const cx = `PianoNote ${isSelected ? 'selected' : ''}`;
 
     return (
       <div className={cx} style={style}

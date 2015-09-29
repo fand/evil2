@@ -53,7 +53,7 @@ const updateNote = function (state, action) {
 
   return {
     ...state,
-    notes : newNotes
+    notes : newNotes,
   };
 };
 
@@ -65,7 +65,7 @@ const dragStarted = function (state, action) {
   };
 };
 
-const dragEnded = function (state, action) {
+const dragEnded = function (state) {
   return {
     ...state,
     x          : 0,
@@ -107,7 +107,7 @@ const dragMoved = function (state, action) {
 const selectNote = function (state, action) {
   return {
     ...state,
-    selectedNotes : { [action.note.uuid] : true }
+    selectedNotes : { [action.note.uuid] : true },
   };
 };
 
@@ -116,20 +116,20 @@ const addSelectedNote = function (state, action) {
     ...state,
     selectedNotes : {
       ...state.selectedNotes,
-      [action.note.uuid] : true
-    }
+      [action.note.uuid] : true,
+    },
   };
 };
 
-const startMovingNoteOn = (state, action) => ({
+const startMovingNoteOn = (state) => ({
   ...state,
   dragMode : DragMode.NOTE_ON,
 });
-const startMovingNoteOff = (state, action) => ({
+const startMovingNoteOff = (state) => ({
   ...state,
-  dragMode : DragMode.NOTE_OFF
+  dragMode : DragMode.NOTE_OFF,
 });
-const startMovingNote = (state, action) => ({
+const startMovingNote = (state) => ({
   ...state,
   dragMode : DragMode.NOTE,
 });

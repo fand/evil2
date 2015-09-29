@@ -2,12 +2,9 @@
 
 import uuid from 'uuid';
 import _ from 'lodash';
-import { bindActionCreators } from 'redux';
+
 import { connect } from 'react-redux';
-
-import * as PianorollActions from '../actions/PianorollActions';
-
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
@@ -49,7 +46,7 @@ const midiToNotes = function (midi) {
   const scene = (focusedSceneId) ? state.scene.entities.scenes[focusedSceneId] : null;
   return { scene, ...state.pianoroll };
 })
-class Pianoroll extends Component {
+class Pianoroll extends React.Component {
 
   static propTypes = {
     clip  : PropTypes.object.isRequired,
@@ -95,7 +92,7 @@ class Pianoroll extends Component {
     }
   }
 
-  onMouseUp (e) {
+  onMouseUp () {
     if (!this.props.state.pianoroll.isDragging) { return; }
 
     const { dragMode, x, y } = this.props.state.pianoroll;
@@ -216,17 +213,18 @@ class Pianoroll extends Component {
   renderNote (note, i) {
     const height = this.props.zoomY * 10;
     const isSelected = this.props.state.selection.selectedNoteIds.indexOf(note.uuid) !== -1;
-    const { dragMode, x, y } = this.props.state.pianoroll;
+    const { x, y, w } = this.props.state.pianoroll;
     return (
       <PianoNote
         note={note}
         isSelected={isSelected}
-        x={this.props.x}
-        y={this.props.y}
-        w={this.props.w}
+        x={x}
+        y={y}
+        w={w}
         key={i}
         beatWidth={this.props.beatWidth}
         height={height}
+        state={this.props.state}
         actions={this.props.actions} />
     );
   }

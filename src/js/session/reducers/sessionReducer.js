@@ -2,7 +2,7 @@
 
 import CONST, { Actions } from '../CONST';
 
-const addScene = (state, action) => {
+const addScene = (state) => {
   return state;
 };
 

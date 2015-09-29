@@ -29,7 +29,7 @@ class Row extends React.Component {
   }
 
   renderCells (i) {
-    const { scene, clips, rowIdx, actions, state } = this.props;
+    const { scene, actions, state } = this.props;
 
     let clipIds = scene ? scene.clipIds : [];
     let columns = Math.max(clipIds.length, COLUMNS);

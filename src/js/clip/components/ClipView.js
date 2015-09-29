@@ -1,10 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-import * as ClipActions from '../actions/ClipActions';
 
 import Pianoroll from '../../pianoroll/components/Pianoroll';
 import ClipInfo from './ClipInfo';

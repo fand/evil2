@@ -1,7 +1,5 @@
 'use strict';
 
-import uuid from 'uuid';
-
 const DEFAULT_TRACK = {
   entities : {
     tracks : {

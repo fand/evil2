@@ -25,7 +25,7 @@ const deselectScene = (sceneId) => ({
   sceneId,
 });
 
-const deselectCell = () => ({
+const deselectCell = (cellId) => ({
   type : Actions.DESELECT_CELL,
   cellId,
 });
@@ -38,7 +38,7 @@ const deselectAllScenes = () => ({
   type : Actions.DESELECT_ALL_SCENES,
 });
 
-const deselectAllCells = (sceneId) => ({
+const deselectAllCells = () => ({
   type : Actions.DESELECT_ALL_CELLS,
 });
 

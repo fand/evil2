@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -16,13 +16,13 @@ import * as SelectionActions from '../selection/actions';
 import * as DeviceActions from '../device/actions/DeviceActions';
 
 @connect(state => ({state}))
-class EvilApp extends Component {
+class EvilApp extends React.Component {
 
   constructor (props) {
     super(props);
     this.state = {
       song : this.props.song,
-      clip : null
+      clip : null,
     };
   }
 

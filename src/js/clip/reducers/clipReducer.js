@@ -32,7 +32,7 @@ const setClipName = (state, action) => {
     clips : {
       ...state.clips,
       [action.clipId] : clip,
-    }
+    },
   };
 };
 

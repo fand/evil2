@@ -2,8 +2,6 @@
 
 import React from 'react';
 
-import classnames from 'classnames';
-
 class Cell extends React.Component {
 
   static propTypes = {
@@ -12,7 +10,7 @@ class Cell extends React.Component {
     columnIdx : React.PropTypes.number.isRequired,
     rowIdx    : React.PropTypes.number.isRequired,
     id        : React.PropTypes.string.isRequired,  // not universally-unique
-    actions   : React.PropTypes.object.isRequired
+    actions   : React.PropTypes.object.isRequired,
   };
 
   constructor (props) {
@@ -20,7 +18,7 @@ class Cell extends React.Component {
   }
 
   isSelected () {
-    const { selection, clip, state, id } = this.props;
+    const { state, id } = this.props;
     if (state.selection.selectedCellIds.indexOf(id) !== -1) {
       return true;
     }

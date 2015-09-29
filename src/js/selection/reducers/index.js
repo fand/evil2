@@ -39,17 +39,17 @@ const deselectCell = (state, action) => {
   }
 };
 
-const deselectAllClips = (state, action) => ({
+const deselectAllClips = (state) => ({
   ...state,
   selectedClipIds : [],
 });
 
-const deselectAllScenes = (state, action) => ({
+const deselectAllScenes = (state) => ({
   ...state,
   selectedSceneIds : [],
 });
 
-const deselectAllCells = (state, action) => ({
+const deselectAllCells = (state) => ({
   ...state,
   selectedCellIds : [],
 });

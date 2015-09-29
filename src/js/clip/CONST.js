@@ -33,7 +33,7 @@ const DEMO_CLIP = {
         start    : [1,1,1],
         end      : [3,1,1],
         position : [1,1,1],
-        length   : [2,0,0]
+        length   : [2,0,0],
       },
       bbb : {
         uuid : 'bbb',
@@ -52,7 +52,7 @@ const DEMO_CLIP = {
         start    : [1,1,1],
         end      : [3,1,1],
         position : [1,1,1],
-        length   : [2,0,0]
+        length   : [2,0,0],
       },
       ccc : {
         uuid : 'ccc',
@@ -71,7 +71,7 @@ const DEMO_CLIP = {
         start    : [1,1,1],
         end      : [3,1,1],
         position : [1,1,1],
-        length   : [2,0,0]
+        length   : [2,0,0],
       },
       ddd : {
         uuid : 'ddd',
@@ -90,8 +90,8 @@ const DEMO_CLIP = {
         start    : [1,1,1],
         end      : [3,1,1],
         position : [1,1,1],
-        length   : [2,0,0]
-      }
+        length   : [2,0,0],
+      },
     },
   },
 };
