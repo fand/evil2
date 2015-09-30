@@ -3,8 +3,8 @@
 import uuid from 'uuid';
 import CONST, { Actions, DragMode } from '../CONST';
 
-const isNoteOn  = m => 0x90 <= m && m < 0xA0;
-const isNoteOff = m => 0x80 <= m && m < 0x90;
+const isNoteOn  = m => (0x90 <= m && m < 0xA0);
+const isNoteOff = m => (0x80 <= m && m < 0x90);
 
 const midiToNotes = function (midi) {
   let notes = [];

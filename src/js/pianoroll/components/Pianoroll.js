@@ -10,14 +10,14 @@ import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
 import CONST, { DragMode } from '../CONST';
 
-const isNoteOn  = m => 0x90 <= m && m < 0xA0;
-const isNoteOff = m => 0x80 <= m && m < 0x90;
+const isNoteOn  = m => (0x90 <= m && m < 0xA0);
+const isNoteOff = m => (0x80 <= m && m < 0x90);
 
 const midiToNotes = function (midi) {
-  let notes = [];
-  let rows  = {};
+  const notes = [];
+  const rows  = {};
 
-  midi.forEach(function (m) {
+  midi.forEach((m) => {
     if (isNoteOn(m.data[0])) {
       rows[m.data[1]] = m;
     }
@@ -28,8 +28,8 @@ const midiToNotes = function (midi) {
         left    : n.time  / 0x100,
         width   : (m.time - n.time) / 0x100,
         noteNum : n.data[1],
-        on  : n,
-        off : m,
+        on      : n,
+        off     : m,
       };
 
       notes.push(note);
@@ -43,14 +43,16 @@ const midiToNotes = function (midi) {
 @connect((state) => {
   const focusedSceneId = state.selection.focusedSceneId;
   const scene = (focusedSceneId) ? state.scene.entities.scenes[focusedSceneId] : null;
+
   return { scene, ...state.pianoroll };
 })
 class Pianoroll extends React.Component {
 
   static propTypes = {
-    clip  : PropTypes.object.isRequired,
-    scene : PropTypes.object.isRequired,
-    state : PropTypes.object.isRequired,
+    clip    : PropTypes.object.isRequired,
+    scene   : PropTypes.object.isRequired,
+    state   : PropTypes.object.isRequired,
+    actions : PropTypes.object.isRequired,
   }
 
   constructor () {
@@ -76,9 +78,10 @@ class Pianoroll extends React.Component {
 
   onResize () {
     const wrapperWidth = this.refs.wrapper.getDOMNode().clientWidth;
+
     this.setState({
-      wrapperWidth : wrapperWidth,
-      beatWidth    : wrapperWidth / this.props.scene.beatsPerBar,
+      wrapperWidth,
+      beatWidth : wrapperWidth / this.props.scene.beatsPerBar,
     });
   }
 
@@ -105,7 +108,7 @@ class Pianoroll extends React.Component {
     }
 
     const dx = (x / this.state.beatWidth) * 0xFF;
-    const dy = - y / CONST.NOTE_HEIGHT;
+    const dy = -(y / CONST.NOTE_HEIGHT);
 
     if (dragMode === DragMode.NOTE_ON) {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
@@ -113,7 +116,8 @@ class Pianoroll extends React.Component {
           ...note.on,
           time : note.on.time + dx,
         };
-        this.props.clipActions.updateClipMidi({
+
+        this.props.actions.clip.updateClipMidi({
           clipId  : this.props.clip.uuid,
           midiId  : note.on.uuid,
           newMidi : newOn,
@@ -133,12 +137,12 @@ class Pianoroll extends React.Component {
           time : note.off.time + dx,
         };
 
-        this.props.clipActions.updateClipMidi({
+        this.props.actions.clip.updateClipMidi({
           clipId  : this.props.clip.uuid,
           midiId  : note.off.uuid,
           newMidi : newOff,
         });
-        this.props.actions.updateNote({
+        this.props.actions.clip.updateNote({
           ...note,
           width : (newOff.time - note.on.time) / 0x100,
           off   : newOff,
@@ -157,18 +161,19 @@ class Pianoroll extends React.Component {
           uuid : off.uuid,
           time : note.off.time + dx,
           data : [off.data[0], off.data[1] + dy, off.data[2]],
-        }
-        this.props.clipActions.updateClipMidi({
+        };
+
+        this.props.actions.clip.updateClipMidi({
           clipId  : this.props.clip.uuid,
           midiId  : on.uuid,
           newMidi : newOn,
         });
-        this.props.clipActions.updateClipMidi({
+        this.props.actions.clip.updateClipMidi({
           clipId  : this.props.clip.uuid,
           midiId  : note.off.uuid,
           newMidi : newOff,
         });
-        this.props.actions.updateNote({
+        this.props.actions.clip.updateNote({
           uuid    : note.uuid,
           left    : newOn.time / 0x100,
           width   : (newOff.time - newOn.time) / 0x100,
@@ -180,34 +185,6 @@ class Pianoroll extends React.Component {
     }
 
     this.props.actions.dragEnded();
-  }
-
-  render () {
-    const { scene, clip } = this.props;
-    const { zoomX, zoomY } = this.props.state.pianoroll;
-    const { beatsPerBar } = scene;
-
-    const notes = midiToNotes(clip.midi);
-
-    // beats to show in pianoroll by default??????
-    const beats = clip.length[0] * beatsPerBar + clip.length[1] + (clip.length[2] ? 1 : 0);
-    const totalBars = beats / beatsPerBar + (beats % beatsPerBar ? 1 : 0);
-
-    const notesStyle = {
-      width: `${totalBars * zoomX * 100}%`,
-      height : zoomY * 1280,
-    };
-
-    return (
-      <div className="Pianoroll">
-        {this.renderKeys()}
-        <div className="Pianoroll__NotesWrapper" ref="wrapper">
-          <div className="Pianoroll__Notes" style={notesStyle}>
-            { notes.map((n, i) => this.renderNote(n, i)) }
-          </div>
-        </div>
-      </div>
-    );
   }
 
   renderNote (note, i) {
@@ -233,10 +210,41 @@ class Pianoroll extends React.Component {
   }
 
   renderKeys () {
-    const height = this.props.zoomY * 10;
+    const height = this.props.state.pianoroll.zoomY * 10;
+
     return (
       <div className="Pianoroll__Keys">
-        {_.range(128).map(i => <PianoKey key={i} noteNum={128 - i} height={height} />)}
+        {_.range(128).map(i =>
+          <PianoKey key={i} noteNum={128 - i} height={height} />
+        )}
+      </div>
+    );
+  }
+
+  render () {
+    const { scene, clip } = this.props;
+    const { zoomX, zoomY } = this.props.state.pianoroll;
+    const { beatsPerBar } = scene;
+
+    const notes = midiToNotes(clip.midi);
+
+    // beats to show in pianoroll by default??????
+    const beats = clip.length[0] * beatsPerBar + clip.length[1] + (clip.length[2] ? 1 : 0);
+    const totalBars = beats / beatsPerBar + (beats % beatsPerBar ? 1 : 0);
+
+    const notesStyle = {
+      width  : `${totalBars * zoomX * 100}%`,
+      height : zoomY * 1280,
+    };
+
+    return (
+      <div className="Pianoroll">
+        {this.renderKeys()}
+        <div className="Pianoroll__NotesWrapper" ref="wrapper">
+          <div className="Pianoroll__Notes" style={notesStyle}>
+            {notes.map((n, i) => this.renderNote(n, i))}
+          </div>
+        </div>
       </div>
     );
   }
