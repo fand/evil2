@@ -23,17 +23,17 @@ export function dragMoved (pos) {
   };
 }
 
-export function selectNote (note) {
+export function selectNote (noteId) {
   return {
     type : Actions.SELECT_NOTE,
-    note,
+    noteId,
   };
 }
 
-export function addSelectedNote (note) {
+export function addSelectedNote (noteId) {
   return {
     type : Actions.ADD_SELECTED_NOTE,
-    note,
+    noteId,
   };
 }
 

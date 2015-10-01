@@ -192,7 +192,7 @@ class Pianoroll extends React.Component {
     const { x, y, w, zoomY } = state.pianoroll;
 
     const height = zoomY * 10;
-    const isSelected = state.selection.selectedNoteIds.indexOf(note.uuid) !== -1;
+    const isSelected = state.pianoroll.selectedNotes[note.uuid];
 
     return (
       <PianoNote

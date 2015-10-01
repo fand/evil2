@@ -109,7 +109,7 @@ const dragMoved = function (state, action) {
 const selectNote = function (state, action) {
   return {
     ...state,
-    selectedNotes : { [action.note.uuid] : true },
+    selectedNotes : { [action.noteId] : true },
   };
 };
 
@@ -118,7 +118,7 @@ const addSelectedNote = function (state, action) {
     ...state,
     selectedNotes : {
       ...state.selectedNotes,
-      [action.note.uuid] : true,
+      [action.noteId] : true,
     },
   };
 };

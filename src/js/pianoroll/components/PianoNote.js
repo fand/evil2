@@ -52,10 +52,10 @@ class PianoNote extends React.Component {
 
   selectNote (e) {
     if (e.shiftKey) {
-      this.props.actions.pianoroll.addSelectedNote(this.props.note);
+      this.props.actions.pianoroll.addSelectedNote(this.props.note.uuid);
     }
     else if (!this.props.isSelected) {
-      this.props.actions.pianoroll.selectNote(this.props.note);
+      this.props.actions.pianoroll.selectNote(this.props.note.uuid);
     }
   }
 
