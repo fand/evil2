@@ -30,10 +30,16 @@ export function selectNote (noteId) {
   };
 }
 
-export function addSelectedNote (noteId) {
+export function deselectNote (noteId) {
   return {
-    type : Actions.ADD_SELECTED_NOTE,
+    type : Actions.DESELECT_NOTE,
     noteId,
+  };
+}
+
+export function deselectAllNotes () {
+  return {
+    type : Actions.DESELECT_ALL_NOTES,
   };
 }
 

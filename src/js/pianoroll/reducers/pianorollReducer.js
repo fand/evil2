@@ -109,17 +109,27 @@ const dragMoved = function (state, action) {
 const selectNote = function (state, action) {
   return {
     ...state,
-    selectedNotes : { [action.noteId] : true },
+    selectedNotes : {
+      ...state.selectedNotes,
+      [action.noteId] : true
+    },
   };
 };
 
-const addSelectedNote = function (state, action) {
+const deselectNote = function (state, action) {
   return {
     ...state,
     selectedNotes : {
       ...state.selectedNotes,
-      [action.noteId] : true,
+      [action.noteId] : false
     },
+  };
+};
+
+const deselectAllNotes = function (state, action) {
+  return {
+    ...state,
+    selectedNotes : {}
   };
 };
 
@@ -136,7 +146,7 @@ const startMovingNote = (state) => ({
   dragMode : DragMode.NOTE,
 });
 
-const pianorollReducer = function (state=CONST.DEFAULT_PIANO, action) {
+const pianorollReducer = function (state = CONST.DEFAULT_PIANO, action) {
   switch (action.type) {
   case Actions.CLIP_SELECTED:
     return clipSelected(state, action);
@@ -148,8 +158,10 @@ const pianorollReducer = function (state=CONST.DEFAULT_PIANO, action) {
     return dragEnded(state, action);
   case Actions.SELECT_NOTE:
     return selectNote(state, action);
-  case Actions.ADD_SELECTED_NOTE:
-    return addSelectedNote(state, action);
+  case Actions.DESELECT_NOTE:
+    return deselectNote(state, action);
+  case Actions.DESELECT_ALL_NOTES:
+    return deselectAllNotes(state, action);
 
   case Actions.START_MOVING_NOTE_ON:
     return startMovingNoteOn(state, action);
