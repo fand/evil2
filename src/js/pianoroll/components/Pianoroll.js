@@ -10,35 +10,35 @@ import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
 import CONST, { DragMode } from '../CONST';
 
-const isNoteOn  = m => (0x90 <= m && m < 0xA0);
-const isNoteOff = m => (0x80 <= m && m < 0x90);
-
-const midiToNotes = function (midi) {
-  const notes = [];
-  const rows  = {};
-
-  midi.forEach((m) => {
-    if (isNoteOn(m.data[0])) {
-      rows[m.data[1]] = m;
-    }
-    if (isNoteOff(m.data[0])) {
-      const n = rows[m.data[1]];
-      const note = {
-        uuid    : uuid.v4(),
-        left    : n.time  / 0x100,
-        width   : (m.time - n.time) / 0x100,
-        noteNum : n.data[1],
-        on      : n,
-        off     : m,
-      };
-
-      notes.push(note);
-      rows[m.data[1]] = undefined;
-    }
-  });
-
-  return notes;
-};
+// const isNoteOn  = m => (0x90 <= m && m < 0xA0);
+// const isNoteOff = m => (0x80 <= m && m < 0x90);
+//
+// const midiToNotes = function (midi) {
+//   const notes = [];
+//   const rows  = {};
+//
+//   midi.forEach((m) => {
+//     if (isNoteOn(m.data[0])) {
+//       rows[m.data[1]] = m;
+//     }
+//     if (isNoteOff(m.data[0])) {
+//       const n = rows[m.data[1]];
+//       const note = {
+//         uuid    : uuid.v4(),
+//         left    : n.time  / 0x100,
+//         width   : (m.time - n.time) / 0x100,
+//         noteNum : n.data[1],
+//         on      : n,
+//         off     : m,
+//       };
+//
+//       notes.push(note);
+//       rows[m.data[1]] = undefined;
+//     }
+//   });
+//
+//   return notes;
+// };
 
 @connect((state) => {
   const focusedSceneId = state.selection.focusedSceneId;
@@ -100,7 +100,7 @@ class Pianoroll extends React.Component {
     const { clip, state, actions } = this.props;
     const { dragMode, x, y, selectedNotes } = state.pianoroll;
 
-    const notes = midiToNotes(clip.midi);
+    const notes = clip.notes;
 
     if (Math.abs(x) < 20 && Math.abs(y) < 10) {
       actions.pianoroll.dragEnded();
@@ -222,11 +222,11 @@ class Pianoroll extends React.Component {
   }
 
   render () {
-    const { scene, clip } = this.props;
+    const { scene, clip, state } = this.props;
     const { zoomX, zoomY } = this.props.state.pianoroll;
     const { beatsPerBar } = scene;
 
-    const notes = midiToNotes(clip.midi);
+    const notes = clip.noteIds.map(noteId => state.clip.entities.notes[noteId]);
 
     // beats to show in pianoroll by default??????
     const beats = clip.length[0] * beatsPerBar + clip.length[1] + (clip.length[2] ? 1 : 0);
