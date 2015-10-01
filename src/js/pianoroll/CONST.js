@@ -15,15 +15,15 @@ const DEFAULT_PIANO = {
 };
 
 const Actions = {
-  DRAG_STARTED          : Symbol(),
-  DRAG_ENDED            : Symbol(),
-  DRAG_MOVED            : Symbol(),
-  SELECT_NOTE           : Symbol(),
-  ADD_SELECTED_NOTE     : Symbol(),
-  START_MOVING_NOTE_ON  : Symbol(),
-  START_MOVING_NOTE_OFF : Symbol(),
-  START_MOVING_NOTE     : Symbol(),
-  UPDATE_NOTE           : Symbol(),
+  DRAG_STARTED          : 'PIANOROLL:DRAG_STARTED',
+  DRAG_ENDED            : 'PIANOROLL:DRAG_ENDED',
+  DRAG_MOVED            : 'PIANOROLL:DRAG_MOVED',
+  SELECT_NOTE           : 'PIANOROLL:SELECT_NOTE',
+  ADD_SELECTED_NOTE     : 'PIANOROLL:ADD_SELECTED_NOTE',
+  START_MOVING_NOTE_ON  : 'PIANOROLL:START_MOVING_NOTE_ON',
+  START_MOVING_NOTE_OFF : 'PIANOROLL:START_MOVING_NOTE_OFF',
+  START_MOVING_NOTE     : 'PIANOROLL:START_MOVING_NOTE',
+  UPDATE_NOTE           : 'PIANOROLL:UPDATE_NOTE',
 };
 
 const DragMode = {

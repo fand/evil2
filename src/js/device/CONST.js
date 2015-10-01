@@ -1,8 +1,8 @@
 'use strict';
 
 const Actions = {
-  PLAY         : Symbol(),
-  INIT_DEVICES : Symbol(),
+  PLAY         : 'DEVICE:PLAY',
+  INIT_DEVICES : 'DEVICE:INIT_DEVICES',
 };
 
 const DEVICE_TYPE = {

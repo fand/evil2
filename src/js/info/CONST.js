@@ -3,7 +3,7 @@
 import uuid from 'uuid';
 
 const Actions = {
-  SET_ARTIST : 'INFO__SET_ARTIST',
+  SET_ARTIST : 'INFO:SET_ARTIST',
 };
 
 const DEFAULT_INFO = {

@@ -3,10 +3,10 @@
 import uuid from 'uuid';
 
 const Actions = {
-  SELECT_CLIP      : Symbol(),
-  SET_CLIP_NAME    : Symbol(),
-  CLIP_SELECTED    : Symbol(),
-  UPDATE_CLIP_MIDI : Symbol(),
+  SELECT_CLIP      : 'CLIP:SELECT_CLIP',
+  SET_CLIP_NAME    : 'CLIP:SET_CLIP_NAME',
+  CLIP_SELECTED    : 'CLIP:CLIP_SELECTED',
+  UPDATE_CLIP_MIDI : 'CLIP:UPDATE_CLIP_MIDI',
 };
 
 const DEFAULT_CLIP = {

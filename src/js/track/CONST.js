@@ -21,8 +21,8 @@ const DEFAULT_TRACK = {
 };
 
 const Actions = {
-  TICK     : Symbol(),
-  SET_CLIP : Symbol(),
+  TICK     : 'TRACK:TICK',
+  SET_CLIP : 'TRACK:SET_CLIP',
 };
 
 export default {

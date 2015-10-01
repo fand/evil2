@@ -1,7 +1,7 @@
 'use strict';
 
 const Actions = {
-  ADD_SCENE : Symbol(),
+  ADD_SCENE : 'SESSION:ADD_SCENE',
 };
 
 const DEFAULT_SESSION = {
