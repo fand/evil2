@@ -4,8 +4,8 @@ import CONST, { Actions } from '../CONST';
 
 import DeviceFactory from '../models/DeviceFactory';
 
-const initDevices = (state, action) => {
-  let newDevices = {};
+const initDevices = (state) => {
+  const newDevices = {};
 
   Object.keys(state.device).forEach((k) => {
     newDevices[k] = {
@@ -20,12 +20,12 @@ const initDevices = (state, action) => {
   };
 };
 
-const deviceReducer = (state=CONST.DEMO_DEVICE, action) => {
+const deviceReducer = (state = CONST.DEMO_DEVICE, action) => {
   switch (action.type) {
   case Actions.INIT_DEVICES:
     return initDevices(state, action);
   case Actions.PLAY:
-    return {...state, isPlaying : true};
+    return { ...state, isPlaying : true };
   default:
     return state;
   }

@@ -1,8 +1,12 @@
 'use strict';
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 class SongInfo extends React.Component {
+
+  static propTypes = {
+    info : PropTypes.object.isRequired,
+  };
 
   constructor (props) {
     super(props);

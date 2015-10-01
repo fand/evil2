@@ -25,20 +25,6 @@ class Cell extends React.Component {
     return false;
   }
 
-  render () {
-    const { clip } = this.props;
-    let clipName = clip ? clip.name : '';
-
-    const className = 'SessionView__Cell' + (this.isSelected() ? '--selected' : '');
-
-    return (
-      <div className={className} onClick={::this.onClick}>
-        <span className="SessionView__Cell__PlayButton">▲</span>
-        {clipName}
-      </div>
-    );
-  }
-
   onClick (e) {
     const { scene, clip, id, actions } = this.props;
 
@@ -55,6 +41,20 @@ class Cell extends React.Component {
       actions.selection.focusClip(clip.uuid);
       actions.selection.focusScene(scene.uuid);
     }
+  }
+
+  render () {
+    const { clip } = this.props;
+    const clipName = clip ? clip.name : '';
+
+    const className = 'SessionView__Cell' + (this.isSelected() ? '--selected' : '');
+
+    return (
+      <div className={className} onClick={::this.onClick}>
+        <span className="SessionView__Cell__PlayButton">▲</span>
+        {clipName}
+      </div>
+    );
   }
 
 }

@@ -23,10 +23,10 @@ class PianoNote extends React.Component {
     const { x, y, w } = this.props.state.pianoroll;
 
     const style = {
-      top      : 1280 - note.noteNum * 10,
-      left     : note.left * beatWidth,
-      width    : note.width * beatWidth,
-      height   : height,
+      top    : 1280 - note.noteNum * 10,
+      left   : note.left * beatWidth,
+      width  : note.width * beatWidth,
+      height : height,
     };
 
     if (isSelected) {

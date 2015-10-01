@@ -14,7 +14,7 @@ const clipSelected = function (state, action) {
   };
 };
 
-const clipViewReducer = function (state=DEFAULT, action) {
+const clipViewReducer = function (state = DEFAULT, action) {
 
   switch (action.type) {
   case CLIP_SELECTED:

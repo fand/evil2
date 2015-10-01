@@ -12,6 +12,7 @@ class PianoKey extends React.Component {
 
   static propTypes = {
     noteNum : PropTypes.number.isRequired,
+    height  : PropTypes.number.isRequired,
   };
 
   render () {

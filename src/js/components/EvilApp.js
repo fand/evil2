@@ -17,7 +17,7 @@ import * as PianorollActions from '../pianoroll/actions/PianorollActions';
 
 import * as DeviceActions from '../device/actions/DeviceActions';
 
-@connect(state => ({state}))
+@connect(state => ({ state }))
 class EvilApp extends React.Component {
 
   constructor (props) {
@@ -30,6 +30,7 @@ class EvilApp extends React.Component {
 
   componentDidMount () {
     const songActions = bindActionCreators(SongActions, this.props.dispatch);
+
     songActions.initSong();
     this.props.dispatch(DeviceActions.initDevices());
   }

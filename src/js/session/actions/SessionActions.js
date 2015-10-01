@@ -3,7 +3,7 @@
 import { Actions } from '../CONST';
 
 const addScene = (sceneId) => ({
-  type: Actions.ADD_SCENE,
+  type : Actions.ADD_SCENE,
   sceneId,
 });
 

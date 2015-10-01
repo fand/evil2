@@ -1,3 +1,5 @@
+'use strict';
+
 import { Actions } from '../CONST';
 
 const selectClip = (clipId) => ({

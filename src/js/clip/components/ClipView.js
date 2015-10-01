@@ -9,6 +9,7 @@ import ClipInfo from './ClipInfo';
 @connect((state) => {
   const focusedClipId = state.selection.focusedClipId;
   const clip = (focusedClipId) ?  state.clip.entities.clips[focusedClipId] : null;
+
   return { clip };
 })
 class ClipView extends React.Component {
@@ -21,6 +22,7 @@ class ClipView extends React.Component {
 
   renderClip () {
     const { state, actions, clip } = this.props;
+
     if (!clip) { return; }
 
     return (

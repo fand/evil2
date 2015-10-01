@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
     persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
   )(createStore);
 
-  renderDevTools = () => (
+  renderDevTools = (store) => (
     <DebugPanel top right bottom>
       <DevTools store={store} monitor={LogMonitor} />
     </DebugPanel>
@@ -33,17 +33,16 @@ if (process.env.NODE_ENV === 'production') {
   renderDevTools = () => {};
 }
 
-
 const store = createStoreForEnv(reducer);
 
 export default class App extends React.Component {
-  render() {
+  render () {
     return (
       <div>
         <Provider store={store}>
           {() => <EvilApp />}
         </Provider>
-        {renderDevTools()}
+        {renderDevTools(store)}
       </div>
     );
   }

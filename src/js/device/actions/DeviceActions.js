@@ -2,17 +2,13 @@
 
 import { Actions } from '../CONST';
 
-const play = () => {
-  return {
-    type: Actions.PLAY,
-  };
-};
+const play = () => ({
+  type : Actions.PLAY,
+});
 
-const initDevices = () => {
-  return {
-    type: Actions.INIT_DEVICES,
-  };
-};
+const initDevices = () => ({
+  type : Actions.INIT_DEVICES,
+});
 
 export default {
   play,

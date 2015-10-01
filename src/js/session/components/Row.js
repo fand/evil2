@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {range} from 'lodash';
+import { range } from 'lodash';
 
 import Cell from './Cell';
 
@@ -20,19 +20,11 @@ class Row extends React.Component {
     state   : React.PropTypes.object.isRequired,
   };
 
-  render () {
-    return (
-      <div className="SessionView__Row" key={this.props.rowIdx}>
-        {this.renderCells(this.props.rowIdx)}
-      </div>
-    );
-  }
-
   renderCells (i) {
     const { scene, actions, state } = this.props;
 
-    let clipIds = scene ? scene.clipIds : [];
-    let columns = Math.max(clipIds.length, COLUMNS);
+    const clipIds = scene ? scene.clipIds : [];
+    const columns = Math.max(clipIds.length, COLUMNS);
 
     return range(columns).map(j => {
       const clipId = clipIds[j];
@@ -47,9 +39,17 @@ class Row extends React.Component {
           id={`${i}-${j}`}
           actions={actions}
           state={state}
-          key={j}></Cell>
+          key={j} />
       );
     });
+  }
+
+  render () {
+    return (
+      <div className="SessionView__Row" key={this.props.rowIdx}>
+        {this.renderCells(this.props.rowIdx)}
+      </div>
+    );
   }
 
 }

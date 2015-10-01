@@ -2,6 +2,10 @@
 
 import uuid from 'uuid';
 
+const Actions = {
+  SET_ARTIST : 'INFO__SET_ARTIST',
+};
+
 const DEFAULT_INFO = {
   userId  : 'ANONYMOUS',
   title   : 'Untitled',
@@ -19,6 +23,7 @@ const DEMO_INFO = {
 };
 
 export default {
+  Actions,
   DEFAULT_INFO,
   DEMO_INFO,
 };

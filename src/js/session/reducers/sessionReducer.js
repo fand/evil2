@@ -6,7 +6,7 @@ const addScene = (state) => {
   return state;
 };
 
-export default function sessionReducer (state=CONST.DEFAULT_SESSION, action) {
+export default function sessionReducer (state = CONST.DEFAULT_SESSION, action) {
 
   switch (action.type) {
   case Actions.ADD_SCENE:

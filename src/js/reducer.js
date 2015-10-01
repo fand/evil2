@@ -1,3 +1,4 @@
+
 'use strict';
 
 import clipViewReducer from './clip/reducers/clipViewReducer';
@@ -12,7 +13,7 @@ import selectionReducer from './selection/reducers';
 
 import CONST from './CONST';
 
-const reducer = function (state=CONST.DEMO_SONG, action) {
+const reducer = function (state = CONST.DEMO_SONG, action) {
 
   // init clips first!
   const clip      = clipReducer(state.clip, action);

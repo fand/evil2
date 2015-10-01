@@ -64,7 +64,7 @@ const focusScene = (state, action) => ({
   focusedSceneId : action.sceneId,
 });
 
-const selectionReducer = (state=CONST.DEFAULT_SELECTION, action) => {
+const selectionReducer = (state = CONST.DEFAULT_SELECTION, action) => {
 
   switch (action.type) {
   case Actions.SELECT_CLIP:

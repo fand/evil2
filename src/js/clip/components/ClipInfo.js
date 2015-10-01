@@ -13,21 +13,20 @@ class ClipInfo extends React.Component {
     super(props);
   }
 
+  onChangeClipName (e) {
+    this.props.actions.setClipName(this.props.clip.uuid, e.target.value);
+  }
+
   render () {
     return (
       <ul>
         <li>UUID : {this.props.clip.uuid}</li>
         <li>
           <input className="ClipView__ClipName" value={this.props.clip.name}
-            onChange={::this.onChangeClipName}
-            />
+            onChange={::this.onChangeClipName} />
         </li>
       </ul>
     );
-  }
-
-  onChangeClipName (e) {
-    this.props.actions.setClipName(this.props.clip.uuid, e.target.value);
   }
 
 }

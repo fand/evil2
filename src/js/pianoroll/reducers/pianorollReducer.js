@@ -7,10 +7,10 @@ const isNoteOn  = m => (0x90 <= m && m < 0xA0);
 const isNoteOff = m => (0x80 <= m && m < 0x90);
 
 const midiToNotes = function (midi) {
-  let notes = [];
-  let rows  = {};
+  const notes = [];
+  const rows  = {};
 
-  midi.forEach(function (m) {
+  midi.forEach((m) => {
     if (isNoteOn(m.data[0])) {
       rows[m.data[1]] = m;
     }
@@ -42,8 +42,8 @@ const clipSelected = function (state, action) {
 
 const updateNote = function (state, action) {
   const { newNote } = action;
-
   const newNotes = [];
+
   for (let i = 0; i < state.notes.length; i++) {
     if (state.notes[i].uuid === newNote.uuid) {
       newNotes.push(newNote);
@@ -79,6 +79,7 @@ const dragEnded = function (state) {
 const dragMoved = function (state, action) {
   const dx = action.pos.x - state.clickPos.x;
   const dy = action.pos.y - state.clickPos.y;
+
   if (state.dragMode === DragMode.NOTE_ON) {
     return {
       ...state,
@@ -94,6 +95,7 @@ const dragMoved = function (state, action) {
   }
   if (state.dragMode === DragMode.NOTE) {
     const height = CONST.NOTE_HEIGHT * state.zoomY;
+
     return {
       ...state,
       x : dx,

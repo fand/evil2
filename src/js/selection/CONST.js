@@ -3,13 +3,13 @@
 // TODO: focus on device/track
 
 const DEFAULT_SELECTION = {
-  currentClipId     : null,
-  currentSceneId    : null,
-  currentCellId     : null,
-  selectedClipIds   : [],
-  selectedSceneIds  : [],
-  selectedCellIds   : [],
-  selectedNoteIds   : [],
+  currentClipId    : null,
+  currentSceneId   : null,
+  currentCellId    : null,
+  selectedClipIds  : [],
+  selectedSceneIds : [],
+  selectedCellIds  : [],
+  selectedNoteIds  : [],
 };
 
 const Actions = {

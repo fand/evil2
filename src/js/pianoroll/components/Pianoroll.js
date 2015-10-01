@@ -95,7 +95,7 @@ class Pianoroll extends React.Component {
   }
 
   onMouseUp () {
-    if (! this.props.state.pianoroll.isDragging) { return; }
+    if (!this.props.state.pianoroll.isDragging) { return; }
 
     const { clip, state, actions } = this.props;
     const { dragMode, x, y, selectedNotes } = state.pianoroll;
@@ -250,6 +250,5 @@ class Pianoroll extends React.Component {
   }
 
 }
-
 
 export default Pianoroll;

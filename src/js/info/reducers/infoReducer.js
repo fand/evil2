@@ -1,15 +1,15 @@
 'use strict';
 
-import { DEFAULT_INFO } from '../../CONST';
-
-const SET_ARTIST = 'SET_ARTIST';
+import { Actions, DEFAULT_INFO } from '../../CONST';
 
 export default function infoReducer (state=DEFAULT_INFO, action) {
 
   switch (action.type) {
-  case SET_ARTIST:
-    state.artist = action.artist;
-    return state;
+  case Actions.SET_ARTIST:
+    return {
+      ...state,
+      artist : action.artist,
+    };
   default:
     return state;
   }
