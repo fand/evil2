@@ -125,7 +125,7 @@ const pianorollReducer = function (state = CONST.DEFAULT_PIANO, action) {
     return startMovingNoteOn(state, action);
   case Actions.START_MOVING_NOTE_OFF:
     return startMovingNoteOff(state, action);
-  case Actions.TART_MOVING_NOTE:
+  case Actions.START_MOVING_NOTE:
     return startMovingNote(state, action);
 
   case Actions.UPDATE_NOTE:
