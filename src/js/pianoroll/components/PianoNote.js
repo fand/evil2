@@ -38,8 +38,7 @@ class PianoNote extends React.Component {
     const cx = `PianoNote ${isSelected ? 'selected' : ''}`;
 
     return (
-      <div className={cx} style={style}
-        onMouseDown={::this.selectNote}>
+      <div className={cx} style={style}>
         <div className="PianoNote__Left"
           onMouseDown={::this.onMouseDownLeftHandle} />
         <div className="PianoNote__Right"
@@ -68,6 +67,7 @@ class PianoNote extends React.Component {
   }
 
   onMouseDownLeftHandle (e) {
+    this.selectNote(e);
     this.props.actions.pianoroll.startMovingNoteOn();
     this.props.actions.pianoroll.dragStarted({
       x : e.clientX,
@@ -76,6 +76,7 @@ class PianoNote extends React.Component {
   }
 
   onMouseDownRightHandle (e) {
+    this.selectNote(e);
     this.props.actions.pianoroll.startMovingNoteOff();
     this.props.actions.pianoroll.dragStarted({
       x : e.clientX,
@@ -84,6 +85,7 @@ class PianoNote extends React.Component {
   }
 
   onMouseDownCenter (e) {
+    this.selectNote(e);
     this.props.actions.pianoroll.startMovingNote();
     this.props.actions.pianoroll.dragStarted({
       x : e.clientX,

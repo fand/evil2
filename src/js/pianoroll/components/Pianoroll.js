@@ -10,36 +10,6 @@ import PianoKey from './PianoKey';
 import PianoNote from './PianoNote';
 import CONST, { DragMode } from '../CONST';
 
-// const isNoteOn  = m => (0x90 <= m && m < 0xA0);
-// const isNoteOff = m => (0x80 <= m && m < 0x90);
-//
-// const midiToNotes = function (midi) {
-//   const notes = [];
-//   const rows  = {};
-//
-//   midi.forEach((m) => {
-//     if (isNoteOn(m.data[0])) {
-//       rows[m.data[1]] = m;
-//     }
-//     if (isNoteOff(m.data[0])) {
-//       const n = rows[m.data[1]];
-//       const note = {
-//         uuid    : uuid.v4(),
-//         left    : n.time  / 0x100,
-//         width   : (m.time - n.time) / 0x100,
-//         noteNum : n.data[1],
-//         on      : n,
-//         off     : m,
-//       };
-//
-//       notes.push(note);
-//       rows[m.data[1]] = undefined;
-//     }
-//   });
-//
-//   return notes;
-// };
-
 @connect((state) => {
   const focusedSceneId = state.selection.focusedSceneId;
   const scene = (focusedSceneId) ? state.scene.entities.scenes[focusedSceneId] : null;
@@ -190,9 +160,9 @@ class Pianoroll extends React.Component {
   renderNote (note, i) {
     const { state, actions } = this.props;
     const { x, y, w, zoomY } = state.pianoroll;
-
+    // console.log({x,y,w});
     const height = zoomY * 10;
-    const isSelected = state.pianoroll.selectedNotes[note.uuid];
+    const isSelected = !!state.pianoroll.selectedNotes[note.uuid];
 
     return (
       <PianoNote

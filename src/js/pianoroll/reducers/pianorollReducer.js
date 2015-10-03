@@ -1,61 +1,6 @@
 'use strict';
 
-import uuid from 'uuid';
 import CONST, { Actions, DragMode } from '../CONST';
-
-const isNoteOn  = m => (0x90 <= m && m < 0xA0);
-const isNoteOff = m => (0x80 <= m && m < 0x90);
-
-const midiToNotes = function (midi) {
-  const notes = [];
-  const rows  = {};
-
-  midi.forEach((m) => {
-    if (isNoteOn(m.data[0])) {
-      rows[m.data[1]] = m;
-    }
-    if (isNoteOff(m.data[0])) {
-      const n = rows[m.data[1]];
-      const note = {
-        uuid    : uuid.v4(),
-        left    : n.time / 0x100,
-        width   : (m.time - n.time) / 0x100,
-        noteNum : n.data[1],
-        on      : n,
-        off     : m,
-      };
-
-      notes.push(note);
-      rows[m.data[1]] = undefined;
-    }
-  });
-
-  return notes;
-};
-
-const clipSelected = function (state, action) {
-  return {
-    ...state,
-    notes : midiToNotes(action.clip.midi),
-  };
-};
-
-const updateNote = function (state, action) {
-  const { newNote } = action;
-  const newNotes = [];
-
-  for (let i = 0; i < state.notes.length; i++) {
-    if (state.notes[i].uuid === newNote.uuid) {
-      newNotes.push(newNote);
-    }
-    newNotes.push(state.notes[i]);
-  }
-
-  return {
-    ...state,
-    notes : newNotes,
-  };
-};
 
 const dragStarted = function (state, action) {
   return {
@@ -144,10 +89,25 @@ const startMovingNote = (state) => ({
   dragMode : DragMode.NOTE,
 });
 
+const updateNote = function (state, action) {
+  const { newNote } = action;
+  const newNotes = [];
+
+  for (let i = 0; i < state.notes.length; i++) {
+    if (state.notes[i].uuid === newNote.uuid) {
+      newNotes.push(newNote);
+    }
+    newNotes.push(state.notes[i]);
+  }
+
+  return {
+    ...state,
+    notes : newNotes,
+  };
+};
+
 const pianorollReducer = function (state = CONST.DEFAULT_PIANO, action) {
   switch (action.type) {
-  case Actions.CLIP_SELECTED:
-    return clipSelected(state, action);
   case Actions.DRAG_STARTED:
     return dragStarted(state, action);
   case Actions.DRAG_MOVED:

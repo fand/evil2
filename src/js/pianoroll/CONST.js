@@ -3,7 +3,6 @@
 const NOTE_HEIGHT = 10;
 
 const DEFAULT_PIANO = {
-  notes         : [],
   zoomX         : 1.0, // (1 / zoom) bars per window
   zoomY         : 1.0, // 10px per note
   clickPos      : null,
