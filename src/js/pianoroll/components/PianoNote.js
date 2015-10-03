@@ -12,27 +12,26 @@ class PianoNote extends React.Component {
     state      : PropTypes.object.isRequired,
     actions    : PropTypes.object.isRequired,
 
-    // TODO: Calculate these props in this component
-    // x : PropTypes.number.isRequired,
-    // y : PropTypes.number.isRequired,
-    // w : PropTypes.number.isRequired,
+    dx : PropTypes.number.isRequired,
+    dy : PropTypes.number.isRequired,
+    dw : PropTypes.number.isRequired,
   }
 
   render () {
     const { note, beatWidth, height, isSelected } = this.props;
-    const { x, y, w } = this.props.state.pianoroll;
+    const { dx, dy, dw } = this.props.state.pianoroll;
 
     const style = {
       top    : 1280 - note.on.data[1] * 10,
       left   : (note.on.time / 0x100) * beatWidth,
       width  : (note.off.time - note.on.time) / 0x100 * beatWidth,
-      height : height,
+      height,
     };
 
     if (isSelected) {
-      style.top   += y;
-      style.left  += x;
-      style.width += w;
+      style.top   += dy;
+      style.left  += dx;
+      style.width += dw;
     }
 
     const cx = `PianoNote ${isSelected ? 'selected' : ''}`;

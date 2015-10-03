@@ -13,9 +13,9 @@ const dragStarted = function (state, action) {
 const dragEnded = function (state) {
   return {
     ...state,
-    x          : 0,
-    y          : 0,
-    w          : 0,
+    dx         : 0,
+    dy         : 0,
+    dw         : 0,
     isDragging : false,
     dragMode   : null,
   };
@@ -28,14 +28,14 @@ const dragMoved = function (state, action) {
   if (state.dragMode === DragMode.NOTE_ON) {
     return {
       ...state,
-      x : dx,
-      w : -dx,
+      dx : dx,
+      dw : -dx,
     };
   }
   if (state.dragMode === DragMode.NOTE_OFF) {
     return {
       ...state,
-      w : dx,
+      dw : dx,
     };
   }
   if (state.dragMode === DragMode.NOTE) {
@@ -43,8 +43,8 @@ const dragMoved = function (state, action) {
 
     return {
       ...state,
-      x : dx,
-      y : Math.floor(dy / height) * height,
+      dx : dx,
+      dy : Math.floor(dy / height) * height,
     };
   }
 
@@ -106,7 +106,7 @@ const updateNote = function (state, action) {
   };
 };
 
-const pianorollReducer = function (state = CONST.DEFAULT_PIANO, action) {
+const pianorollReducer = (state = CONST.DEFAULT_PIANO, action) => {
   switch (action.type) {
   case Actions.DRAG_STARTED:
     return dragStarted(state, action);

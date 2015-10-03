@@ -6,8 +6,9 @@ const DEFAULT_PIANO = {
   zoomX         : 1.0, // (1 / zoom) bars per window
   zoomY         : 1.0, // 10px per note
   clickPos      : null,
-  x             : 0,
-  y             : 0,
+  dx            : 0,
+  dy            : 0,
+  dw            : 0,
   isDragging    : false,
   dragMode      : null,
   selectedNotes : {},

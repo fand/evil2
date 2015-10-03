@@ -67,23 +67,24 @@ class Pianoroll extends React.Component {
     if (!this.props.state.pianoroll.isDragging) { return; }
 
     const { clip, state, actions } = this.props;
-    const { dragMode, x, y, selectedNotes } = state.pianoroll;
+    const { dragMode, dx, dy, dw, selectedNotes } = state.pianoroll;
 
     const notes = clip.noteIds.map(id => state.clip.entities.notes[id]);
 
-    if (Math.abs(x) < 20 && Math.abs(y) < 10) {
+    if (Math.abs(dx) < 20 && Math.abs(dy) < 10 && Math.abs(dw) < 20) {
       actions.pianoroll.dragEnded();
       return;
     }
 
-    const dx = (x / this.state.beatWidth) * 0xFF;
-    const dy = -(y / CONST.NOTE_HEIGHT);
+    const dx_note = (dx / this.state.beatWidth) * 0xFF;
+    const dy_note = -(dy / CONST.NOTE_HEIGHT);
+    const dw_note = (dw / this.state.beatWidth) * 0xFF;
 
     if (dragMode === DragMode.NOTE_ON) {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const newOn = {
           ...note.on,
-          time : note.on.time + dx,
+          time : note.on.time + dx_note,
         };
 
         this.props.actions.clip.updateNote({
@@ -96,7 +97,7 @@ class Pianoroll extends React.Component {
       notes.filter(n => selectedNotes[n.uuid]).forEach((note) => {
         const newOff = {
           ...note.off,
-          time : note.off.time + dx,
+          time : note.off.time + dw_note,
         };
 
         this.props.actions.clip.updateNote({
@@ -110,13 +111,13 @@ class Pianoroll extends React.Component {
         const { on, off } = note;
         const newOn = {
           uuid : on.uuid,
-          time : note.on.time + dx,
-          data : [on.data[0], on.data[1] + dy, on.data[2]],
+          time : note.on.time + dx_note,
+          data : [on.data[0], on.data[1] + dy_note, on.data[2]],
         };
         const newOff = {
           uuid : off.uuid,
-          time : note.off.time + dx,
-          data : [off.data[0], off.data[1] + dy, off.data[2]],
+          time : note.off.time + dx_note,
+          data : [off.data[0], off.data[1] + dy_note, off.data[2]],
         };
 
         this.props.actions.clip.updateNote({
@@ -132,7 +133,7 @@ class Pianoroll extends React.Component {
 
   renderNote (note, i) {
     const { state, actions } = this.props;
-    const { x, y, w, zoomY } = state.pianoroll;
+    const { dx, dy, dw, zoomY } = state.pianoroll;
 
     const height = zoomY * 10;
     const isSelected = !!state.pianoroll.selectedNotes[note.uuid];
@@ -141,9 +142,9 @@ class Pianoroll extends React.Component {
       <PianoNote
         note={note}
         isSelected={isSelected}
-        x={x}
-        y={y}
-        w={w}
+        dx={dx}
+        dy={dy}
+        dw={dw}
         key={i}
         beatWidth={this.state.beatWidth}
         height={height}
