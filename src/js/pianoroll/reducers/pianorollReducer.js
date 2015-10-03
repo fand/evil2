@@ -111,7 +111,7 @@ const selectNote = function (state, action) {
     ...state,
     selectedNotes : {
       ...state.selectedNotes,
-      [action.noteId] : true
+      [action.noteId] : true,
     },
   };
 };
@@ -121,17 +121,15 @@ const deselectNote = function (state, action) {
     ...state,
     selectedNotes : {
       ...state.selectedNotes,
-      [action.noteId] : false
+      [action.noteId] : false,
     },
   };
 };
 
-const deselectAllNotes = function (state, action) {
-  return {
-    ...state,
-    selectedNotes : {}
-  };
-};
+const deselectAllNotes = (state) => ({
+  ...state,
+  selectedNotes : {},
+});
 
 const startMovingNoteOn = (state) => ({
   ...state,
