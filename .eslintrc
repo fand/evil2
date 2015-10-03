@@ -28,7 +28,7 @@
     "comma-dangle"            : [2, "always-multiline"],
     "no-console"              : 0,
     "no-extra-semi"           : 2,
-    "valid-jsdoc"             : 2,
+    "valid-jsdoc"             : 0,
     "no-unexpected-multiline" : 2,
 
     // Best Practices
@@ -112,9 +112,6 @@
     "func-style"                  : [2, "expression"],
     "indent"                      : [2, 2, {"SwitchCase": 0}],
     "jsx-quotes"                  : [2, "prefer-double"],
-    "key-spacing"                 : [2,
-      { "align" : "colon", "beforeColon" : true, "afterColon" : true }
-    ],
     "lines-around-comment"        : [2,
       { "beforeBlockComment" : true, "beforeLineComment" : false }
     ],
@@ -122,7 +119,7 @@
     "max-nested-callbacks"        : [2, 3],
     "new-cap"                     : 2,
     "new-parens"                  : 2,
-    "newline-after-var"           : 1,
+    "newline-after-var"           : 0,
     "no-array-constructor"        : 2,
     "no-continue"                 : 1,
     "no-lonely-if"                : 2,
@@ -180,7 +177,7 @@
     "react/jsx-indent-props"             : [2, 2],
     "react/jsx-max-props-per-line"       : [2, {maximum: 3}],
     "react/jsx-no-duplicate-props"       : 2,
-    "react/jsx-no-literals"              : 2,
+    "react/jsx-no-literals"              : 0,
     "react/jsx-no-undef"                 : 2,
     "react/jsx-sort-prop-types"          : 0,
     "react/jsx-sort-props"               : 0,
