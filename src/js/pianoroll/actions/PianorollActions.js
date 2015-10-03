@@ -58,10 +58,3 @@ export function startMovingNote () {
     type : Actions.START_MOVING_NOTE,
   };
 }
-
-export function updateNote (newNote) {
-  return {
-    type : Actions.UPDATE_NOTE,
-    newNote,
-  };
-}

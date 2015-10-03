@@ -24,11 +24,9 @@ export function clipSelected (clip) {
   };
 }
 
-export function updateClipMidi ({clipId, midiId, newMidi}) {
+export function updateNote (newNote) {
   return {
-    type : Actions.UPDATE_CLIP_MIDI,
-    clipId,
-    midiId,
-    newMidi,
+    type : Actions.UPDATE_NOTE,
+    newNote,
   };
 }

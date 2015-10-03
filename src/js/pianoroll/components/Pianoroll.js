@@ -70,7 +70,7 @@ class Pianoroll extends React.Component {
     const { clip, state, actions } = this.props;
     const { dragMode, x, y, selectedNotes } = state.pianoroll;
 
-    const notes = clip.notes;
+    const notes = clip.noteIds.map(id => state.clip.entities.notes[id]);
 
     if (Math.abs(x) < 20 && Math.abs(y) < 10) {
       actions.pianoroll.dragEnded();
@@ -87,16 +87,9 @@ class Pianoroll extends React.Component {
           time : note.on.time + dx,
         };
 
-        this.props.actions.clip.updateClipMidi({
-          clipId  : this.props.clip.uuid,
-          midiId  : note.on.uuid,
-          newMidi : newOn,
-        });
-        this.props.actions.updateNote({
+        this.props.actions.clip.updateNote({
           ...note,
-          left  : newOn.time / 0x100,
-          width : (note.off.time - newOn.time) / 0x100,
-          on    : newOn,
+          on : newOn,
         });
       });
     }
@@ -107,15 +100,9 @@ class Pianoroll extends React.Component {
           time : note.off.time + dx,
         };
 
-        this.props.actions.clip.updateClipMidi({
-          clipId  : this.props.clip.uuid,
-          midiId  : note.off.uuid,
-          newMidi : newOff,
-        });
         this.props.actions.clip.updateNote({
           ...note,
-          width : (newOff.time - note.on.time) / 0x100,
-          off   : newOff,
+          off : newOff,
         });
       });
     }
@@ -133,34 +120,21 @@ class Pianoroll extends React.Component {
           data : [off.data[0], off.data[1] + dy, off.data[2]],
         };
 
-        this.props.actions.clip.updateClipMidi({
-          clipId  : this.props.clip.uuid,
-          midiId  : on.uuid,
-          newMidi : newOn,
-        });
-        this.props.actions.clip.updateClipMidi({
-          clipId  : this.props.clip.uuid,
-          midiId  : note.off.uuid,
-          newMidi : newOff,
-        });
         this.props.actions.clip.updateNote({
-          uuid    : note.uuid,
-          left    : newOn.time / 0x100,
-          width   : (newOff.time - newOn.time) / 0x100,
-          noteNum : newOn.data[1],
-          on      : newOn,
-          off     : newOff,
+          uuid : note.uuid,
+          on   : newOn,
+          off  : newOff,
         });
       });
     }
 
-    this.props.actions.dragEnded();
+    this.props.actions.pianoroll.dragEnded();
   }
 
   renderNote (note, i) {
     const { state, actions } = this.props;
     const { x, y, w, zoomY } = state.pianoroll;
-    // console.log({x,y,w});
+
     const height = zoomY * 10;
     const isSelected = !!state.pianoroll.selectedNotes[note.uuid];
 
