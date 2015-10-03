@@ -28,9 +28,9 @@ const Actions = {
 };
 
 const DragMode = {
-  NOTE_ON  : Symbol(),
-  NOTE_OFF : Symbol(),
-  NOTE     : Symbol(),
+  NOTE_ON  : 'DRAGMODE:NOTE_ON',
+  NOTE_OFF : 'DRAGMODE:NOTE_OFF',
+  NOTE     : 'DRAGMODE:NOTE',
 };
 
 export default {
