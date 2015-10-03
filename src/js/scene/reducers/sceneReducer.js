@@ -2,7 +2,7 @@
 
 import CONST, { Actions } from '../CONST';
 
-export default function sceneReducer (state=CONST.DEMO_SCENE, action) {
+const sceneReducer = (state = CONST.DEMO_SCENE, action) => {
 
   switch (action.type) {
 
@@ -10,4 +10,6 @@ export default function sceneReducer (state=CONST.DEMO_SCENE, action) {
     return state;
   }
 
-}
+};
+
+export default sceneReducer;

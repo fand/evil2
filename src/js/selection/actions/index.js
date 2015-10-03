@@ -2,68 +2,60 @@
 
 import { Actions } from '../CONST';
 
-const selectClip = (clipId) => ({
-  type : Actions.SELECT_CLIP,
-  clipId,
-});
+const SelectionActions = {
 
-const selectScene = (sceneId) => ({
-  type : Actions.SELECT_SCENE,
-  sceneId,
-});
+  selectClip : (clipId) => ({
+    type : Actions.SELECT_CLIP,
+    clipId,
+  }),
 
-const selectCell = (cellId) => ({
-  type : Actions.SELECT_CELL,
-  cellId,
-});
+  selectScene : (sceneId) => ({
+    type : Actions.SELECT_SCENE,
+    sceneId,
+  }),
 
-const deselectClip = (clipId) => ({
-  type : Actions.DESELECT_CLIP,
-  clipId,
-});
+  selectCell : (cellId) => ({
+    type : Actions.SELECT_CELL,
+    cellId,
+  }),
 
-const deselectScene = (sceneId) => ({
-  type : Actions.DESELECT_SCENE,
-  sceneId,
-});
+  deselectClip : (clipId) => ({
+    type : Actions.DESELECT_CLIP,
+    clipId,
+  }),
 
-const deselectCell = (cellId) => ({
-  type : Actions.DESELECT_CELL,
-  cellId,
-});
+  deselectScene : (sceneId) => ({
+    type : Actions.DESELECT_SCENE,
+    sceneId,
+  }),
 
-const deselectAllClips = () => ({
-  type : Actions.DESELECT_ALL_CLIPS,
-});
+  deselectCell : (cellId) => ({
+    type : Actions.DESELECT_CELL,
+    cellId,
+  }),
 
-const deselectAllScenes = () => ({
-  type : Actions.DESELECT_ALL_SCENES,
-});
+  deselectAllClips : () => ({
+    type : Actions.DESELECT_ALL_CLIPS,
+  }),
 
-const deselectAllCells = () => ({
-  type : Actions.DESELECT_ALL_CELLS,
-});
+  deselectAllScenes : () => ({
+    type : Actions.DESELECT_ALL_SCENES,
+  }),
 
-const focusClip = (clipId) => ({
-  type : Actions.FOCUS_CLIP,
-  clipId,
-});
+  deselectAllCells : () => ({
+    type : Actions.DESELECT_ALL_CELLS,
+  }),
 
-const focusScene = (sceneId) => ({
-  type : Actions.FOCUS_SCENE,
-  sceneId,
-});
+  focusClip : (clipId) => ({
+    type : Actions.FOCUS_CLIP,
+    clipId,
+  }),
 
-export default {
-  selectClip,
-  selectScene,
-  selectCell,
-  deselectClip,
-  deselectScene,
-  deselectCell,
-  deselectAllClips,
-  deselectAllScenes,
-  deselectAllCells,
-  focusClip,
-  focusScene,
+  focusScene : (sceneId) => ({
+    type : Actions.FOCUS_SCENE,
+    sceneId,
+  }),
+
 };
+
+export default SelectionActions;

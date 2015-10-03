@@ -23,7 +23,7 @@ const DEMO_SCENE = {
         controls    : [],
         beatsPerBar : 4,
       },
-    }
+    },
   },
 };
 

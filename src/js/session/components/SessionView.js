@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import {range} from 'lodash';
+import { range } from 'lodash';
 
 import Row from './Row';
 

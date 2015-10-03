@@ -22,8 +22,8 @@ const DEMO_DEVICE = {
         },
         entity : null,
       },
-    }
-  }
+    },
+  },
 };
 
 export default {

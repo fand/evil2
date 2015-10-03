@@ -3,7 +3,8 @@
 import CONST, { Actions } from '../CONST';
 
 const setClipName = (state, action) => {
-  let clip = state.clips[action.clipId];
+  const clip = state.clips[action.clipId];
+
   clip.name = action.name;
 
   return {
@@ -37,7 +38,7 @@ const updateNote = function (state, action) {
   };
 };
 
-export default function clipReducer (state = CONST.DEFAULT_CLIP, action) {
+const clipReducer = (state = CONST.DEFAULT_CLIP, action) => {
   switch (action.type) {
   case Actions.SELECT_CLIP:
     return selectClip(state, action);
@@ -50,4 +51,6 @@ export default function clipReducer (state = CONST.DEFAULT_CLIP, action) {
     return state;
   }
 
-}
+};
+
+export default clipReducer;

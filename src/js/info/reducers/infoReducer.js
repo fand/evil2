@@ -2,7 +2,7 @@
 
 import { Actions, DEFAULT_INFO } from '../../CONST';
 
-export default function infoReducer (state=DEFAULT_INFO, action) {
+const infoReducer = (state = DEFAULT_INFO, action) => {
 
   switch (action.type) {
   case Actions.SET_ARTIST:
@@ -10,8 +10,11 @@ export default function infoReducer (state=DEFAULT_INFO, action) {
       ...state,
       artist : action.artist,
     };
+
   default:
     return state;
   }
 
-}
+};
+
+export default infoReducer;

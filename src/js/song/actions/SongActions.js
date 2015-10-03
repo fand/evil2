@@ -2,8 +2,12 @@
 
 const INIT_SONG = 'INIT_SONG';
 
-export function initSong () {
-  return {
+const SongActions = {
+
+  initSong : () => ({
     type : INIT_SONG,
-  };
-}
+  }),
+
+};
+
+export default SongActions;

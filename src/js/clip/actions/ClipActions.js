@@ -2,31 +2,37 @@
 
 import { Actions } from '../CONST';
 
-export function selectClip (clipId) {
-  return {
-    type   : Actions.SELECT_CLIP,
-    clipId,
-  };
-}
+const ClipActions = {
 
-export function setClipName (clipId, name) {
-  return {
-    type   : Actions.SET_CLIP_NAME,
-    clipId,
-    name,
-  };
-}
+  selectClip (clipId) {
+    return {
+      type : Actions.SELECT_CLIP,
+      clipId,
+    };
+  },
 
-export function clipSelected (clip) {
-  return {
-    type : Actions.CLIP_SELECTED,
-    clip,
-  };
-}
+  setClipName (clipId, name) {
+    return {
+      type : Actions.SET_CLIP_NAME,
+      clipId,
+      name,
+    };
+  },
 
-export function updateNote (newNote) {
-  return {
-    type : Actions.UPDATE_NOTE,
-    newNote,
-  };
-}
+  clipSelected (clip) {
+    return {
+      type : Actions.CLIP_SELECTED,
+      clip,
+    };
+  },
+
+  updateNote (newNote) {
+    return {
+      type : Actions.UPDATE_NOTE,
+      newNote,
+    };
+  },
+
+};
+
+export default ClipActions;

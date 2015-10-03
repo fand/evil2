@@ -1,3 +1,5 @@
+'use strict';
+
 import CONST, { Actions } from '../CONST';
 
 const selectClip = (state, action) => ({
@@ -20,7 +22,7 @@ const deselectClip = (state, action) => {
   return {
     ...state,
     selectedClipIds : newClipIds,
-  }
+  };
 };
 
 const deselectScene = (state, action) => {
@@ -28,7 +30,7 @@ const deselectScene = (state, action) => {
   return {
     ...state,
     selectedSceneIds : newSceneIds,
-  }
+  };
 };
 
 const deselectCell = (state, action) => {
@@ -36,7 +38,7 @@ const deselectCell = (state, action) => {
   return {
     ...state,
     selectedCellIds : newCellIds,
-  }
+  };
 };
 
 const deselectAllClips = (state) => ({

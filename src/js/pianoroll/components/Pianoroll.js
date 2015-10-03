@@ -1,6 +1,5 @@
 'use strict';
 
-import uuid from 'uuid';
 import _ from 'lodash';
 
 import { connect } from 'react-redux';

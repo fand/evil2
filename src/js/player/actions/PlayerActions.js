@@ -2,37 +2,38 @@
 
 import { Actions } from '../CONST';
 
-const play = () => {
+const PlayerActions = {
 
-  return (dispatch, getState) => {
-    dispatch({
-      type : Actions.PLAY,
-    });
-
-    const interval = getState().playerData.interval;
-
-    const tick = () => {
-      const state = getState();
-      if (!state.playerData.isPlaying) { return; }
-
+  play () {
+    return (dispatch, getState) => {
       dispatch({
-        type: Actions.TICK,
+        type : Actions.PLAY,
       });
 
-      setTimeout(tick, interval);
+      const interval = getState().playerData.interval;
+
+      const tick = () => {
+        const state = getState();
+
+        if (!state.playerData.isPlaying) { return; }
+
+        dispatch({
+          type: Actions.TICK,
+        });
+
+        setTimeout(tick, interval);
+      };
+
+      tick();
     };
+  },
 
-    tick();
-  };
+  stop () {
+    return {
+      type : Actions.STOP,
+    };
+  },
 
 };
 
-const stop = () => {
-  return {
-    type : Actions.STOP,
-  };
-};
-
-export default {
-  play, stop,
-};
+export default PlayerActions;

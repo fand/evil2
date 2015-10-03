@@ -2,59 +2,67 @@
 
 import { Actions } from '../CONST';
 
-export function dragStarted (pos) {
-  return {
-    type : Actions.DRAG_STARTED,
-    pos,
-  };
-}
+const PianorollActions = {
 
-export function dragEnded (pos) {
-  return {
-    type : Actions.DRAG_ENDED,
-    pos,
-  };
-}
+  dragStarted (pos) {
+    return {
+      type : Actions.DRAG_STARTED,
+      pos,
+    };
+  },
 
-export function dragMoved (pos) {
-  return {
-    type : Actions.DRAG_MOVED,
-    pos,
-  };
-}
+  dragEnded (pos) {
+    return {
+      type : Actions.DRAG_ENDED,
+      pos,
+    };
+  },
 
-export function selectNote (noteId) {
-  return {
-    type : Actions.SELECT_NOTE,
-    noteId,
-  };
-}
+  dragMoved (pos) {
+    return {
+      type : Actions.DRAG_MOVED,
+      pos,
+    };
+  },
 
-export function deselectNote (noteId) {
-  return {
-    type : Actions.DESELECT_NOTE,
-    noteId,
-  };
-}
+  selectNote (noteId) {
+    return {
+      type : Actions.SELECT_NOTE,
+      noteId,
+    };
+  },
 
-export function deselectAllNotes () {
-  return {
-    type : Actions.DESELECT_ALL_NOTES,
-  };
-}
+  deselectNote (noteId) {
+    return {
+      type : Actions.DESELECT_NOTE,
+      noteId,
+    };
+  },
 
-export function startMovingNoteOn () {
-  return {
-    type : Actions.START_MOVING_NOTE_ON,
-  };
-}
-export function startMovingNoteOff () {
-  return {
-    type : Actions.START_MOVING_NOTE_OFF,
-  };
-}
-export function startMovingNote () {
-  return {
-    type : Actions.START_MOVING_NOTE,
-  };
-}
+  deselectAllNotes () {
+    return {
+      type : Actions.DESELECT_ALL_NOTES,
+    };
+  },
+
+  startMovingNoteOn () {
+    return {
+      type : Actions.START_MOVING_NOTE_ON,
+    };
+  },
+
+  startMovingNoteOff () {
+    return {
+      type : Actions.START_MOVING_NOTE_OFF,
+    };
+  },
+
+  startMovingNote () {
+    return {
+      type : Actions.START_MOVING_NOTE,
+    };
+  },
+
+};
+
+export default PianorollActions;

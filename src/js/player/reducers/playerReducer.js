@@ -11,12 +11,12 @@ const tick = (state) => {
   };
 };
 
-const playerReducer = (state=CONST.DEFAULT_PLAY, action) => {
+const playerReducer = (state = CONST.DEFAULT_PLAY, action) => {
   switch (action.type) {
   case Actions.PLAY:
-    return {...state, isPlaying : true};
+    return { ...state, isPlaying : true };
   case Actions.STOP:
-    return {...state, isPlaying : false};
+    return { ...state, isPlaying : false };
   case Actions.TICK:
     return tick(state, action);
   default:

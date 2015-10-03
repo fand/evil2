@@ -2,11 +2,13 @@
 
 import { Actions } from '../CONST';
 
-const addScene = (sceneId) => ({
-  type : Actions.ADD_SCENE,
-  sceneId,
-});
+const SessionActions = {
 
-export default {
-  addScene,
+  addScene : (sceneId) => ({
+    type : Actions.ADD_SCENE,
+    sceneId,
+  }),
+
 };
+
+export default SessionActions;

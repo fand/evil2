@@ -20,7 +20,7 @@ class PianoKey extends React.Component {
 
     const style = {
       background : NOTE_COLOR[noteNum % 12],
-      height     : height,
+      height,
     };
 
     return (
