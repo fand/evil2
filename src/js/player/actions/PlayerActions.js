@@ -10,18 +10,16 @@ const PlayerActions = {
         type : Actions.PLAY,
       });
 
-      const interval = getState().playerData.interval;
-
       const tick = () => {
         const state = getState();
 
-        if (!state.playerData.isPlaying) { return; }
+        if (!state.player.isPlaying) { return; }
 
         dispatch({
           type: Actions.TICK,
         });
 
-        setTimeout(tick, interval);
+        setTimeout(tick, state.player.interval);
       };
 
       tick();

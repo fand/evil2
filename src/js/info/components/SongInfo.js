@@ -11,7 +11,7 @@ class SongInfo extends React.Component {
 
   render () {
     const info = this.props.state.songInfo;
-    console.log(info);
+
     return (
       <div className="SongInfo">
         <ul>

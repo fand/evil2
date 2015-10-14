@@ -22,6 +22,7 @@ const reducer = function (state = CONST.DEMO_SONG, action) {
   const selection = selectionReducer(state.selection, action);
   const pianoroll = pianorollReducer(state.pianoroll, action);
   const songInfo  = songInfoReducer(state.songInfo, action);
+  const player    = playerReducer(state.player, action);
 
   const s = {
     clip,
@@ -30,6 +31,7 @@ const reducer = function (state = CONST.DEMO_SONG, action) {
     selection,
     pianoroll,
     songInfo,
+    player,
   };
   // console.log('>>>>>>>>');console.log(s);
   return s;
