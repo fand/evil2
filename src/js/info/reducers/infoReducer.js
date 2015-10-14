@@ -1,6 +1,6 @@
 'use strict';
 
-import { Actions, DEFAULT_INFO } from '../../CONST';
+import { Actions, DEFAULT_INFO } from '../CONST';
 
 const infoReducer = (state = DEFAULT_INFO, action) => {
 

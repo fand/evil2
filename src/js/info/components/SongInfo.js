@@ -5,20 +5,19 @@ import React, { PropTypes } from 'react';
 class SongInfo extends React.Component {
 
   static propTypes = {
-    info : PropTypes.object.isRequired,
+    state   : React.PropTypes.object.isRequired,
+    actions : React.PropTypes.object.isRequired,
   };
 
-  constructor (props) {
-    super(props);
-  }
-
   render () {
+    const info = this.props.state.songInfo;
+    console.log(info);
     return (
       <div className="SongInfo">
         <ul>
-          <li>title  : {this.props.info.title}</li>
-          <li>artist : {this.props.info.artist}</li>
-          <li>userId : {this.props.info.userId}</li>
+          <li>title  : {info.title}</li>
+          <li>artist : {info.artist}</li>
+          <li>userId : {info.userId}</li>
         </ul>
       </div>
     );

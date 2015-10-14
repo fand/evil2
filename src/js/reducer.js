@@ -5,7 +5,7 @@ import clipViewReducer  from './clip/reducers/clipViewReducer';
 import pianorollReducer from './pianoroll/reducers/pianorollReducer';
 import sessionReducer   from './session/reducers/sessionReducer';
 import clipReducer      from './clip/reducers/clipReducer';
-import infoReducer      from './info/reducers/infoReducer';
+import songInfoReducer  from './info/reducers/infoReducer';
 import playerReducer    from './player/reducers/playerReducer';
 import deviceReducer    from './device/reducers/deviceReducer';
 import sceneReducer     from './scene/reducers/sceneReducer';
@@ -21,6 +21,7 @@ const reducer = function (state = CONST.DEMO_SONG, action) {
   const scene     = sceneReducer(state.scene, action);
   const selection = selectionReducer(state.selection, action);
   const pianoroll = pianorollReducer(state.pianoroll, action);
+  const songInfo  = songInfoReducer(state.songInfo, action);
 
   const s = {
     clip,
@@ -28,6 +29,7 @@ const reducer = function (state = CONST.DEMO_SONG, action) {
     scene,
     selection,
     pianoroll,
+    songInfo,
   };
   // console.log('>>>>>>>>');console.log(s);
   return s;

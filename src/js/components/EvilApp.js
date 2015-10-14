@@ -7,7 +7,7 @@ import { connect }            from 'react-redux';
 import SessionView from '../session/components/SessionView';
 import ClipView    from '../clip/components/ClipView';
 import SongInfo    from '../info/components/SongInfo';
-import PlayerView  from '../player/components/PlayerView';
+// import PlayerView  from '../player/components/PlayerView';
 
 import * as SessionActions   from '../session/actions/SessionActions';
 import * as SongActions      from '../song/actions/SongActions';
@@ -49,10 +49,10 @@ class EvilApp extends React.Component {
       <div className="EvilApp">
         <SessionView state={state} actions={actions} />
         <ClipView state={state} actions={actions} />
+        <SongInfo state={state} actions={actions} />
       </div>
     );
 
-    // <SongInfo state={state} />
     // <PlayerView />
   }
 
