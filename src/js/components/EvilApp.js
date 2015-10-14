@@ -1,17 +1,17 @@
 'use strict';
 
-import React from 'react';
+import React                  from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { connect }            from 'react-redux';
 
 import SessionView from '../session/components/SessionView';
-import ClipView from '../clip/components/ClipView';
-import SongInfo from '../info/components/SongInfo';
-import PlayerView from '../player/components/PlayerView';
+import ClipView    from '../clip/components/ClipView';
+import SongInfo    from '../info/components/SongInfo';
+import PlayerView  from '../player/components/PlayerView';
 
-import * as SessionActions from '../session/actions/SessionActions';
-import * as SongActions from '../song/actions/SongActions';
-import * as ClipActions from '../clip/actions/ClipActions';
+import * as SessionActions   from '../session/actions/SessionActions';
+import * as SongActions      from '../song/actions/SongActions';
+import * as ClipActions      from '../clip/actions/ClipActions';
 import * as SelectionActions from '../selection/actions';
 import * as PianorollActions from '../pianoroll/actions/PianorollActions';
 

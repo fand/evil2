@@ -1,10 +1,10 @@
 'use strict';
 
-import SESSION from './session/CONST';
-import CLIP from './clip/CONST';
+import SESSION   from './session/CONST';
+import CLIP      from './clip/CONST';
 import SELECTION from './selection/CONST';
 
-import INFO from './info/CONST';
+import INFO   from './info/CONST';
 import PLAYER from './player/CONST';
 
 

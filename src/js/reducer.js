@@ -1,14 +1,14 @@
 
 'use strict';
 
-import clipViewReducer from './clip/reducers/clipViewReducer';
+import clipViewReducer  from './clip/reducers/clipViewReducer';
 import pianorollReducer from './pianoroll/reducers/pianorollReducer';
-import sessionReducer from './session/reducers/sessionReducer';
-import clipReducer from './clip/reducers/clipReducer';
-import infoReducer from './info/reducers/infoReducer';
-import playerReducer from './player/reducers/playerReducer';
-import deviceReducer from './device/reducers/deviceReducer';
-import sceneReducer from './scene/reducers/sceneReducer';
+import sessionReducer   from './session/reducers/sessionReducer';
+import clipReducer      from './clip/reducers/clipReducer';
+import infoReducer      from './info/reducers/infoReducer';
+import playerReducer    from './player/reducers/playerReducer';
+import deviceReducer    from './device/reducers/deviceReducer';
+import sceneReducer     from './scene/reducers/sceneReducer';
 import selectionReducer from './selection/reducers';
 
 import CONST from './CONST';
