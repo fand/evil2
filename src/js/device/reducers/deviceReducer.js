@@ -1,22 +1,25 @@
 'use strict';
 
 import CONST, { Actions } from '../CONST';
-
 import DeviceFactory from '../models/DeviceFactory';
 
 const initDevices = (state) => {
-  const newDevices = {};
 
-  Object.keys(state.device).forEach((k) => {
+  const newDevices = { ... state.entities.devices };
+  Object.keys(state.entities.devices).forEach((k) => {
+    const data = state.entities.devices[k].data;
     newDevices[k] = {
-      data   : { ...state.device[k].data },
-      entity : DeviceFactory.create(state.device[k].data),
+      data,
+      engine : DeviceFactory.create(data),
     };
   });
 
   return {
     ...state,
-    device : newDevices,
+    entities : {
+      ...state.entities,
+      devices : newDevices,
+    },
   };
 };
 
@@ -24,8 +27,7 @@ const deviceReducer = (state = CONST.DEMO_DEVICE, action) => {
   switch (action.type) {
   case Actions.INIT_DEVICES:
     return initDevices(state, action);
-  case Actions.PLAY:
-    return { ...state, isPlaying : true };
+
   default:
     return state;
   }

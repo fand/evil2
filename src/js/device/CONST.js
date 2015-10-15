@@ -20,10 +20,11 @@ const DEMO_DEVICE = {
         data : {
           type : DEVICE_TYPE.REZ_SYNTH,
         },
-        entity : null,
+        engine : null,
       },
     },
   },
+  deviceIds : [0],
 };
 
 export default {
